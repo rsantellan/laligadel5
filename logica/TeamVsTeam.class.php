@@ -41,12 +41,40 @@ class TeamVsTeam {
 
     public static function saveTeamVsTeam($team1_id, $team2_id, $round_id){
 
-        require_once '../persistencia/dBase.php';
-        require_once '../persistencia/persistencia.php';
-        require_once '../persistencia/laligadel5DBase.php';
+        require_once '../../persistencia/dBase.php';
+        require_once '../../persistencia/persistencia.php';
+        require_once '../../persistencia/laligadel5DBase.php';
 
         $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
         $conn->selectDB ( laligadel5DBase::$database );
+
+        $per = new Persistencia("select");
+        $per->setTable("team_vs_team");
+        $per->addColum ( 'count(id_team_1)' );
+        $per->addWhere("id_round = ".$round_id);
+        $per->addWhere("id_team_1 = ".$team2_id);
+        $per->addWhere("id_team_2 = ".$team1_id);
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        if($auxDatos[0] > 0){
+            throw new Exception('Este partido ya se jugo', 101);
+        }
+
+        $per = new Persistencia("select");
+        $per->setTable("team_vs_team");
+        $per->addColum ( 'count(id_team_1)' );
+        $per->addWhere("id_round = ".$round_id);
+        $per->addWhere("id_team_1 = ".$team1_id);
+        $per->addWhere("id_team_2 = ".$team2_id);
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        if($auxDatos[0] > 0){
+            throw new Exception('Este partido ya se jugo', 102);
+        }
 
         $per1 = new Persistencia ( "INSERT" );
         $per1->setTable("team_vs_team");

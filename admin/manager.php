@@ -24,26 +24,41 @@
                 <h2>Admin area</h2>
                 <div id="topmenu">
                     <ul>
-                        <li class="current"><a href="index.php">Dashboard</a></li>
-                        <li><a href="addPlayer.php">addPlayer</a></li>
-                        <li><a href="addTeam.php">addTeam</a></li>
-                        <li><a href="addRound.php">addRound</a></li>
-                        <li><a href="addPlayerTeamGoal.php">addPlayerTeamGoal</a></li>
-                        <li><a href="addTeamVsTeam.php">addTeamVsTeam</a></li>
-
+                        <li><a href="index.php">Dashboard</a></li>
+                        <li class="current"><a href="index.php">Manejar la liga</a></li>
+                        <li><a href="index_upload.php">Subir fotos</a></li>
                     </ul>
                 </div>
             </div>
             <div id="top-panel">
                 <div id="panel">
-
+                    <ul>
+                            <li><a href="javascript:void(0)" id="top_agregar_jugador">Agregar jugador</a></li>
+                            <li><a href="javascript:void(0)" id="top_agregar_equipo">Agregar equipo</a></li>
+                            <li><a href="javascript:void(0)" id="top_agregar_ronda">Agregar ronda</a></li>
+                            <li><a href="javascript:void(0)" id="top_agregar_team_vs_team">Equipo vs Equipo</a></li>
+                            <li><a href="javascript:void(0)" id="top_agregar_player_goal_team">Goles del jugador</a></li>
+                    </ul>
                 </div>
             </div>
             <div id="wrapper">
                 <div id="content">
 
-
-                    <div id="addPlayer">
+                    <div id="information">
+                        <h2>Utiliza los botones de arriba y los de la derecha para ingresar
+                            <br/>
+                            jugadores, equipos, fechas y etc...
+                        </h2>
+                        
+                    </div>
+                    <hr/>
+                    <div id ="logos_container" class ="hide">
+                        
+                    </div>
+                    <div id="logo_ok" class="hide logo64">
+                        <img src="../images/dialog-ok.png"/>
+                    </div>
+                    <div id="addPlayer" class="hide">
                         <p>Formulario jugadores:</p>
                         <form id="form_jugadores" name="form_jugadores" method="post"  action="" onsubmit="return false;">
                             <p>Nombre:
@@ -60,7 +75,7 @@
                         <div id="form_jugadores_errors"></div>
                     </div>
 
-                    <div id="addTeam">
+                    <div id="addTeam" class="hide">
                         <p>Formulario equipos:</p>
                         <form id="form_equipos" name="form_equipos" method="post" action="" onsubmit="return false;">
                             <p>Nombre:
@@ -77,7 +92,8 @@
                         <div id="form_equipos_errors"></div>
                     </div>
 
-                    <div id="addRound">
+                    <div id="addRound" class="hide">
+                        <p>Formulario fechas:</p>
                         <form id="form_fechas" name="form_fechas" method="post" action="" onsubmit="return false;">
                             <p>Nombre:
                                 <label>
@@ -95,8 +111,9 @@
                         <?php
                         include("../logica/Team.class.php");
                         include("../logica/Round.class.php");
+                        include("../logica/Player.class.php");
                         ?>
-                    <div id="addTeamVsTeam">
+                    <div id="addTeamVsTeam" class="hide">
                         Equipo fecha:
                         <form id="team_vs_team_form" name="team_vs_team_form" method="post" action="" onsubmit="return false;">
                                 <?php $teamList = Team::getAllTeamsAdmin(); ?>
@@ -134,26 +151,81 @@
                         <div id="team_vs_team_form_on_round"></div>
                         <div id="team_vs_team_form_errors"></div>
                     </div>
+
+                    <div id="addPlayerTeamGoals" class="hide">
+                        <p>Jugador fecha: </p>
+                        <form id="player_team_goal_form" name="player_team_goal_form" method="post" action="" onsubmit="return false;">
+                            <p>
+                                <label>Jugador
+                                        <?php $playerList = Player::getAllPlayersAdmin()?>
+                                    <select name="player_team_goal_form_select_player" id="player_team_goal_form_select_player">
+                                            <?php foreach($playerList as $player): ?>
+                                        <option value="<?php echo $player->getId()?>"><?php echo $player->getName()?></option>
+                                            <?php endforeach; ?>
+                                    </select>
+                                    <br />
+                                </label>
+                                <label>equipo
+                                        <?php //$teamList = Team::getAllTeamsAdmin(); ?>
+                                    <select name="player_team_goal_form_select_team" id="player_team_goal_form_select_team">
+                                            <?php foreach($teamList as $team): ?>
+                                        <option value="<?php echo $team->getId()?>"><?php echo $team->getName()?></option>
+                                            <?php endforeach; ?>
+                                    </select>
+                                    <br />
+                                </label>
+                                <label>Fecha
+                                        <?php //$roundList = Round::getAllRoundsAdmin();?>
+                                    <select name="player_team_goal_form_select_round" id="player_team_goal_form_select_round">
+                                            <?php foreach($roundList as $round): ?>
+                                        <option value="<?php echo $round->getId()?>"><?php echo $round->getName()?></option>
+                                            <?php endforeach; ?>
+                                    </select>
+                                </label>
+                            </p>
+                            <p>
+                                <label>Goles
+                                    <input type="text" name="player_team_goal_form_goles" id="player_team_goal_form_goles" />
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="submit" name="player_team_goal_form_enviar" id="player_team_goal_form_enviar" value="Guardar" />
+                                </label>
+                            </p>
+
+                        </form>
+                        <div id="player_team_goal_form_on_round"></div>
+                        <div id="player_team_goal_form_errors"></div>
+                    </div>
                 </div>
 
             </div>
             <div id="sidebar">
                 <ul>
-
-                    <li><h3><a href="#" class="folder_table">Imagenes</a></h3>
+                    <li><h3><a href="#" class="folder_table">Manejar la liga</a></h3>
                         <ul>
-                            <li><a href="#" class="addorder">Nueva imagen</a></li>
-                            <li><a href="#" class="shipping">Manejar</a></li>
+                            <li><a href="javascript:void(0)" class="folder_table" id="menu_agregar_jugador">Agregar jugador</a></li>
+                            <li><a href="javascript:void(0)" class="folder_table" id="menu_agregar_equipo">Agregar equipo</a></li>
+                            <li><a href="javascript:void(0)" class="folder_table" id="menu_agregar_ronda">Agregar ronda</a></li>
+                            <li><a href="javascript:void(0)" class="folder_table" id="menu_agregar_team_vs_team">Equipo vs Equipo</a></li>
+                            <li><a href="javascript:void(0)" class="folder_table" id="menu_agregar_player_goal_team">Goles del jugador</a></li>
                         </ul>
                     </li>
-                    <li><h3><a href="#" class="user">Users</a></h3>
+                    <li><h3><a href="javascript:void(0)" class="folder_table">Imagenes</a></h3>
                         <ul>
-                            <li><a href="#" class="useradd">Nuevo usuario</a></li>
-                            <li><a href="#" class="group">Mandar notificacion</a></li>
+                            <li><a href="javascript:void(0)" class="addorder">Nueva imagen</a></li>
+                            <li><a href="javascript:void(0)" class="shipping">Manejar</a></li>
+                        </ul>
+                    </li>
+                    <li><h3><a href="javascript:void(0)" class="user">Users</a></h3>
+                        <ul>
+                            <li><a href="javascript:void(0)" class="useradd">Nuevo usuario</a></li>
+                            <li><a href="javascript:void(0)" class="group">Mandar notificacion</a></li>
                         </ul>
                     </li>
                     <li>
-                        <h3><a href="#" onclick='return adminLogout()'>Salir</a></h3>
+                        <h3><a href="javascript:void(0)" onclick='return adminLogout()'>Salir</a></h3>
                     </li>
                 </ul>
             </div>

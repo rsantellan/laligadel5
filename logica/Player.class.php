@@ -2,7 +2,7 @@
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
- */
+*/
 
 /**
  * Description of Playerclass
@@ -19,22 +19,22 @@ class Player {
     private $auxGoals;
 
     private $auxPlayed;
-    
+
     private $image;
-    
+
     public function setImage($image) {
-		$this->image = $image;
-	}
+        $this->image = $image;
+    }
 
-	public function getImage() {
-		if($this->image == "-") return 'photos/images.jpg';
-		return $this->image;
-	}
+    public function getImage() {
+        if($this->image == "-") return 'photos/images.jpg';
+        return $this->image;
+    }
 
-	public function getAuxPlayed() {
+    public function getAuxPlayed() {
         return $this->auxPlayed;
     }
-	
+
 
     public function setAuxPlayed($auxPlayed) {
         $this->auxPlayed = $auxPlayed;
@@ -48,7 +48,7 @@ class Player {
         $this->auxGoals = $auxGoals;
     }
 
-    
+
 
     public function getId() {
         return $this->id;
@@ -66,148 +66,185 @@ class Player {
         $this->name = $name;
     }
 
-    public static function savePlayer($name){
+    public static function savePlayer($name) {
 
-		require_once '../../persistencia/dBase.php';
-		require_once '../../persistencia/persistencia.php';
-		require_once '../../persistencia/laligadel5DBase.php';
+        require_once '../../persistencia/dBase.php';
+        require_once '../../persistencia/persistencia.php';
+        require_once '../../persistencia/laligadel5DBase.php';
 
-		$conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
-                $conn->selectDB ( laligadel5DBase::$database );
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
 
-		$per1 = new Persistencia ( "INSERT" );
-		$per1->setTable("player");
-		$per1->addColum ( 'nombre' );
-		
-		$per1->addValue ( "'".$name."'");
-		
-		$str = $per1->constructQuery ();
-		$result = $per1->doQuery ( $str );
+        $per1 = new Persistencia ( "INSERT" );
+        $per1->setTable("player");
+        $per1->addColum ( 'nombre' );
 
-                $per = new Persistencia("SELECT");
-                $per->addColum ( "id" );
-                $per->setTable ( "player" );
-                $per->addOrderBy("id DESC");
-		$per->addLimit(0, 1);
-                $str = $per->constructQuery ();
-                $result = $per->doQuery ( $str );
-                $per->viewData($result);
-                $auxDatos = $per->returnValores();
-                return $auxDatos[0];
-	}
+        $per1->addValue ( "'".$name."'");
 
-     public static function getAllPlayersAdmin(){
+        $str = $per1->constructQuery ();
+        $result = $per1->doQuery ( $str );
 
-            require_once '../persistencia/dBase.php';
-            require_once '../persistencia/persistencia.php';
-            require_once '../persistencia/laligadel5DBase.php';
-
-            $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
-            $conn->selectDB ( laligadel5DBase::$database );
-            $per = new Persistencia ( 'select' );
-
-            $per->addColum ( "*" );
-            $per->setTable ( "player" );
-            $str = $per->constructQuery ();
-            $result = $per->doQuery ( $str );
-            $per->viewData($result);
-            $auxDatos = $per->returnValores();
-            $index = 0;
-            $list = array();
-            while($index+3 <= count($auxDatos)){
-                $player = new Player();
-                $player->setId($auxDatos[$index]);
-                $player->setName($auxDatos[$index+1]);
-                $player->setImage($auxDatos[$index+2]);
-                array_push($list,$player);
-                $index = $index+3;
-            }
-            return $list;
-	}
-
-        public static function getAll(){
-
-            require_once './persistencia/dBase.php';
-            require_once './persistencia/persistencia.php';
-            require_once './persistencia/laligadel5DBase.php';
-
-            $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
-            $conn->selectDB ( laligadel5DBase::$database );
-            $per = new Persistencia ( 'select' );
-
-            $per->addColum ( "p.*, sum(tpr.goals) as goals, count( tpr.id_player ) AS played " );
-            $per->setTable ( "player as p, team_player_round as tpr" );
-            $per->addWhere("p.id = tpr.id_player");
-            $per->addGroupBy(" tpr.id_player");
-            $per->addOrderBy('goals desc');
-            $str = $per->constructQuery ();
-
-            $result = $per->doQuery ( $str );
-            $per->viewData($result);
-            $auxDatos = $per->returnValores();
-            $index = 0;
-            $list = array();
-            while($index+5 <= count($auxDatos)) {
-                $player = new Player();
-                $player->setId($auxDatos[$index]);
-                $player->setName($auxDatos[$index+1]);
-                $player->setImage($auxDatos[$index+2]);
-                $player->setAuxGoals($auxDatos[$index+3]);
-                $player->setAuxPlayed($auxDatos[$index+4]);
-                array_push($list,$player);
-                $index = $index+5;
-            }
-            return $list;
+        $per = new Persistencia("SELECT");
+        $per->addColum ( "id" );
+        $per->setTable ( "player" );
+        $per->addOrderBy("id DESC");
+        $per->addLimit(0, 1);
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        return $auxDatos[0];
     }
 
-    public static function getTeamRoundPlayers($team_id, $round_id){
-        require_once './persistencia/dBase.php';
-            require_once './persistencia/persistencia.php';
-            require_once './persistencia/laligadel5DBase.php';
+    public static function getAllPlayersAdmin() {
 
-            $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
-            $conn->selectDB ( laligadel5DBase::$database );
-            $per = new Persistencia ( 'select' );
+        require_once '../persistencia/dBase.php';
+        require_once '../persistencia/persistencia.php';
+        require_once '../persistencia/laligadel5DBase.php';
 
-            $per->addColum ( "p.*, sum(tpr.goals) as goals, count( tpr.id_player ) AS played " );
-            $per->setTable ( "player as p, team_player_round as tpr" );
-            $per->addWhere("p.id = tpr.id_player");
-            $per->addWhere("tpr.id_team =".$team_id);
-            $per->addWhere("tpr.id_round =".$round_id);
-            $per->addGroupBy(" tpr.id_player");
-            $per->addOrderBy('goals desc');
-            $str = $per->constructQuery ();
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
 
-            $result = $per->doQuery ( $str );
-            $per->viewData($result);
-            $auxDatos = $per->returnValores();
-            $index = 0;
-            $list = array();
-            while($index+4 <= count($auxDatos)) {
-                $player = new Player();
-                $player->setId($auxDatos[$index]);
-                $player->setName($auxDatos[$index+1]);
-                $player->setImage($auxDatos[$index+2]);
-                $player->setAuxGoals($auxDatos[$index+3]);
-                $player->setAuxPlayed($auxDatos[$index+4]);
-                array_push($list,$player);
-                $index = $index+5;
-            }
-            return $list;
+        $per->addColum ( "*" );
+        $per->setTable ( "player" );
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while($index+3 <= count($auxDatos)) {
+            $player = new Player();
+            $player->setId($auxDatos[$index]);
+            $player->setName($auxDatos[$index+1]);
+            $player->setImage($auxDatos[$index+2]);
+            array_push($list,$player);
+            $index = $index+3;
+        }
+        return $list;
     }
 
-    public static function getPlayersOfLastRound(){
+    public static function getAll() {
+
         require_once './persistencia/dBase.php';
-            require_once './persistencia/persistencia.php';
-            require_once './persistencia/laligadel5DBase.php';
+        require_once './persistencia/persistencia.php';
+        require_once './persistencia/laligadel5DBase.php';
 
-            $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
-            $conn->selectDB ( laligadel5DBase::$database );
-            $per = new Persistencia ( 'select' );
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
 
-            $per->addColum ( "p.*" );
-            $per->setTable ( "player as p" );
-            $per->addWhere("
+        $per->addColum ( "p.*, sum(tpr.goals) as goals, count( tpr.id_player ) AS played " );
+        $per->setTable ( "player as p, team_player_round as tpr" );
+        $per->addWhere("p.id = tpr.id_player");
+        $per->addGroupBy(" tpr.id_player");
+        $per->addOrderBy('goals desc');
+        $str = $per->constructQuery ();
+
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while($index+5 <= count($auxDatos)) {
+            $player = new Player();
+            $player->setId($auxDatos[$index]);
+            $player->setName($auxDatos[$index+1]);
+            $player->setImage($auxDatos[$index+2]);
+            $player->setAuxGoals($auxDatos[$index+3]);
+            $player->setAuxPlayed($auxDatos[$index+4]);
+            array_push($list,$player);
+            $index = $index+5;
+        }
+        return $list;
+    }
+
+    public static function getTeamRoundPlayers($team_id, $round_id) {
+        require_once './persistencia/dBase.php';
+        require_once './persistencia/persistencia.php';
+        require_once './persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "p.*, sum(tpr.goals) as goals, count( tpr.id_player ) AS played " );
+        $per->setTable ( "player as p, team_player_round as tpr" );
+        $per->addWhere("p.id = tpr.id_player");
+        $per->addWhere("tpr.id_team =".$team_id);
+        $per->addWhere("tpr.id_round =".$round_id);
+        $per->addGroupBy(" tpr.id_player");
+        $per->addOrderBy('goals desc');
+        $str = $per->constructQuery ();
+
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while($index+4 <= count($auxDatos)) {
+            $player = new Player();
+            $player->setId($auxDatos[$index]);
+            $player->setName($auxDatos[$index+1]);
+            $player->setImage($auxDatos[$index+2]);
+            $player->setAuxGoals($auxDatos[$index+3]);
+            $player->setAuxPlayed($auxDatos[$index+4]);
+            array_push($list,$player);
+            $index = $index+5;
+        }
+        return $list;
+    }
+
+    public static function getTeamRoundPlayersAdmin($team_id, $round_id) {
+        require_once '../../persistencia/dBase.php';
+        require_once '../../persistencia/persistencia.php';
+        require_once '../../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "p.*, sum(tpr.goals) as goals, count( tpr.id_player ) AS played " );
+        $per->setTable ( "player as p, team_player_round as tpr" );
+        $per->addWhere("p.id = tpr.id_player");
+        $per->addWhere("tpr.id_team =".$team_id);
+        $per->addWhere("tpr.id_round =".$round_id);
+        $per->addGroupBy(" tpr.id_player");
+        $per->addOrderBy('goals desc');
+        $str = $per->constructQuery ();
+
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while($index+4 <= count($auxDatos)) {
+            $player = new Player();
+            $player->setId($auxDatos[$index]);
+            $player->setName($auxDatos[$index+1]);
+            $player->setImage($auxDatos[$index+2]);
+            $player->setAuxGoals($auxDatos[$index+3]);
+            $player->setAuxPlayed($auxDatos[$index+4]);
+            array_push($list,$player);
+            $index = $index+5;
+        }
+        return $list;
+    }
+
+
+    public static function getPlayersOfLastRound() {
+        require_once './persistencia/dBase.php';
+        require_once './persistencia/persistencia.php';
+        require_once './persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "p.*" );
+        $per->setTable ( "player as p" );
+        $per->addWhere("
             p.id IN (
 				SELECT tp.id_player
 				FROM team_player_round tp
@@ -223,24 +260,24 @@ class Player {
 			) 
 
 ");
-            $str = $per->constructQuery ();
-            $result = $per->doQuery ( $str );
-            $per->viewData($result);
-            $auxDatos = $per->returnValores();
-            $index = 0;
-            $list = array();
-            while($index+2 <= count($auxDatos)) {
-                $player = new Player();
-                $player->setId($auxDatos[$index]);
-                $player->setName($auxDatos[$index+1]);
-                $player->setImage($auxDatos[$index+2]);
-                array_push($list,$player);
-                $index = $index+3;
-                $indexAux++;
-            }
-            return $list;
-    }    
-    
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while($index+2 <= count($auxDatos)) {
+            $player = new Player();
+            $player->setId($auxDatos[$index]);
+            $player->setName($auxDatos[$index+1]);
+            $player->setImage($auxDatos[$index+2]);
+            array_push($list,$player);
+            $index = $index+3;
+            $indexAux++;
+        }
+        return $list;
+    }
+
     /*
      *  
 SELECT *
@@ -260,6 +297,6 @@ SELECT max( r1.id )
 FROM rounds r1 )
 )
 ) 
-     */
+    */
 }
 

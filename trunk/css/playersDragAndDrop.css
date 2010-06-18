@@ -1,0 +1,108 @@
+/* 
+    Document   : playersDragAndDrop
+    Created on : Jun 14, 2010, 11:17:04 PM
+    Author     : rodrigo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.player{
+    background-color: #F7F8E0;
+    height:86px;
+    width:70px;
+    text-align:center;
+    float: left;
+    color: blue;
+    margin-left:7px;
+	margin-top: 20px;
+    border:1px solid red;
+    outline-style:solid;
+    outline-width:thin;
+}
+
+.playerOnBox{
+	margin-left:15px !important; 
+	margin-top: 15px !important;
+}
+
+.selected-plan{
+    background-color: black;
+	background-image:url('../images/pasto.jpg');
+    height:108px;
+    width:100px;
+    border:1px solid red;
+    outline-style:solid;
+    outline-width:thin;
+    color: white;
+    margin-left:50px;
+    float: left;
+}
+
+.item-arrived {
+	background: #ffa;
+}
+
+.field{
+	float: left;
+	height:750px;
+	width:578px;
+	
+}
+
+.players{
+	float: left;
+}
+
+.golero{
+	left:446px;
+	position:fixed;
+	top:535px;
+}
+
+.defensaDerecho{
+	left:600px;
+	position:fixed;
+	top:635px;
+}
+
+.campo{
+	left:245px;
+	position:fixed;
+	top:495px;
+}
+
+#campo.fixed {
+  top: 0 !important;
+}
+
+.defensaIzquierdo{
+	left:300px;
+	position:fixed;
+	top:635px;
+}
+
+.atacanteIzquierdo{
+	left:300px;
+	position:fixed;
+	top: 775px;
+}
+
+.atacanteDerecho{
+	left:600px;
+	position:fixed;
+	top: 775px;
+}
+
+.formulario{
+	width:145px;
+	float: right;
+}
+
+#help{
+	margin-left:430px;
+}

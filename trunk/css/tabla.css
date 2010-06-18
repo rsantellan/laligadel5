@@ -1,0 +1,51 @@
+table .odd{
+    background-color: #D0F5A9;
+}
+
+table .even{
+    background-color: #F6CEF5;
+}
+
+table .first{
+    background-color: #58FAF4;
+}
+
+.ulTable
+{
+    background:#333;
+    margin-left:50px;
+
+}
+.ulTable ul
+{
+    float:left;
+    margin:0;
+    padding:0;
+    border:1px solid #C9C9C9;
+}
+.ulTable ul li
+{
+    list-style:none;
+    padding:5px 10px;
+}
+.ulTable ul li.liTitle
+{
+    font-weight:bold;
+    background:#FFEE8E;
+}
+.ulTable ul li.even
+{
+    background:#FFFFE6
+}
+.ulTable ul li.odd
+{
+    background:#FFFF99
+}
+
+div .goleadores{
+    margin-left:170px !important;
+}
+
+div .floating{
+    float: left;
+}

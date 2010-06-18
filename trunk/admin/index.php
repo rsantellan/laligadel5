@@ -24,12 +24,8 @@
     <div id="topmenu">
             	<ul>
                 	<li class="current"><a href="index.php">Dashboard</a></li>
-                    <li><a href="addPlayer.php">addPlayer</a></li>
-                    <li><a href="addTeam.php">addTeam</a></li>
-                    <li><a href="addRound.php">addRound</a></li>
-                    <li><a href="addPlayerTeamGoal.php">addPlayerTeamGoal</a></li>
-                    <li><a href="addTeamVsTeam.php">addTeamVsTeam</a></li>
-                    
+                        <li><a href="manager.php">Manejar la liga</a></li>
+                        <li><a href="index_upload.php">Subir fotos</a></li>
               </ul>
           </div>
       </div>
@@ -40,8 +36,16 @@
       </div>
         <div id="wrapper">
             <div id="content">
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
+                <div>
+                <h1>Bienvenido al admin de la liga del 5</h1>
+                <p>Desde este lugar podra manejar toda la pagina</p>
+                <p>Cosas que estan quedando pendientes</p>
+                <ol>
+                    <li>Subir fotos y que se muestren automaticamente</li>
+                    <li>Poder ingresar desde aqui textos de la pantalla principal</li>
+                    <li>Poder filtrar los comentarios</li>
+                </ol>
+                </div>
             </div>
             <div id="sidebar">
   				<ul>

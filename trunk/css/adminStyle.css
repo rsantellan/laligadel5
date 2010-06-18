@@ -377,3 +377,20 @@ form#form #button1:hover, form#form #button2:hover {
 .report_seo{background:transparent url(../images/icons/report_link.png) no-repeat left;}
 .modules{background:transparent url(../images/icons/bricks.png) no-repeat left;}
 .modules_manage{background:transparent url(../images/icons/bricks_gear.png) no-repeat left;}
+
+
+/***************
+	Propios
+***************/
+
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}
+
+.logo64{
+    height: 66px;
+    width:  66px;
+}

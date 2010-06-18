@@ -2,7 +2,7 @@
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
- */
+*/
 
 /**
  * Description of TeamPlayerRoundclass
@@ -49,28 +49,49 @@ class TeamPlayerRound {
         $this->goals = $goals;
     }
 
-    public static function saveTeamPlayerRound($team_id, $player_id, $round_id, $goals){
+    public static function saveTeamPlayerRound($team_id, $player_id, $round_id, $goals) {
 
-        require_once '../persistencia/dBase.php';
-        require_once '../persistencia/persistencia.php';
-        require_once '../persistencia/laligadel5DBase.php';
+        require_once '../../persistencia/dBase.php';
+        require_once '../../persistencia/persistencia.php';
+        require_once '../../persistencia/laligadel5DBase.php';
 
         $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
         $conn->selectDB ( laligadel5DBase::$database );
-
-        $per1 = new Persistencia ( "INSERT" );
-        $per1->setTable("team_player_round");
-        $per1->addColum ( 'id_player' );
-        $per1->addColum ( 'id_team' );
-        $per1->addColum ( 'id_round' );
-        $per1->addColum ( 'goals' );
-        $per1->addValue ( $player_id);
-        $per1->addValue ( $team_id);
-        $per1->addValue ( $round_id);
-        $per1->addValue ( $goals);
-        $str = $per1->constructQuery ();
-        $result = $per1->doQuery ( $str );
-        return true;
+        $per = new Persistencia("select");
+        $per->setTable("team_player_round");
+        $per->addColum ( 'count(id_player)' );
+        $per->addWhere('id_player ='.$player_id);
+        $per->addWhere('id_team = '.$team_id);
+        $per->addWhere('id_round = '.$round_id);
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $alreadyPlayed = false;
+        if($auxDatos[0] > 0) {
+            $per = new Persistencia("update");
+            $per->setTable("team_player_round");
+            $per->addColum ( 'goals' );
+            $per->addValue($goals);
+            $per->addWhere('id_player ='.$player_id.' and id_team = '.$team_id. ' and id_round ='.$round_id);
+            $str = $per->constructQuery ();
+            $result = $per->doQuery ( $str );
+            return $result;
+        }else {
+            $per1 = new Persistencia ( "INSERT" );
+            $per1->setTable("team_player_round");
+            $per1->addColum ( 'id_player' );
+            $per1->addColum ( 'id_team' );
+            $per1->addColum ( 'id_round' );
+            $per1->addColum ( 'goals' );
+            $per1->addValue ( $player_id);
+            $per1->addValue ( $team_id);
+            $per1->addValue ( $round_id);
+            $per1->addValue ( $goals);
+            $str = $per1->constructQuery ();
+            $result = $per1->doQuery ( $str );
+            return $result;
+        }
     }
 }
 

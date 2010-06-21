@@ -51,91 +51,14 @@
         </div>
 
         <div id="players">
-
-            <div class="player" id="3">
-                <img src="photos/images.jpg" width="54" height="54" tooltip="Este es el jugador 1"/>
+<?php include_once 'logica/Player.class.php';?>
+<?php $list = Player::getPlayersOfLastRound();?>
+<?php foreach($list as $player):?>
+            <div class="player" id="<?php echo $player->getId() ?>">
+                <img src="<?php echo $player->getImage() ?>" width="54" height="54" tooltip="<?php echo $player->getName() ?>"/>
                 <p class="remove">sacar</p>
             </div>
-
-            <div class="player" id ="1">
-                Player 2
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id="2">
-                Player 3
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-            <div class="player" id="4">
-                Player 4
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id ="5">
-                Player 5
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id="6">
-                Player 6
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-            <div class="player" id="12">
-                Player 12
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id ="11">
-                Player 11
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id="10">
-                Player 10
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-            <div class="player" id="9">
-                Player 9
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id ="8">
-                Player 8
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id="7">
-                Player 7
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-            <div class="player" id="9">
-                Player 9
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id ="8">
-                Player 8
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
-
-            <div class="player" id="7">
-                Player 7
-                <img src="photos/images.jpg" width="40" height="40" alt="" />
-                <p class="remove">sacar</p>
-            </div>
+<?php endforeach;?>
             <script type="text/javascript">
                 var pageHeight = 1000;
             </script>

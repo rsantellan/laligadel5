@@ -15,8 +15,14 @@
 		$id = $_GET["ID"];
 	}	
 
-	HandleError($id);
-	exit(0);
+	$className = '';
+	if (isset($_POST["OBJECTCLASSNAME"])) {
+		$className = $_POST["OBJECTCLASSNAME"];
+	} else if (isset($_GET["OBJECTCLASSNAME"])) {
+		$className = $_GET["OBJECTCLASSNAME"];
+	}	
+
+
 // Check post_max_size (http://us3.php.net/manual/en/features.file-upload.php#73762)
 	$POST_MAX_SIZE = ini_get('post_max_size');
 	$unit = strtoupper(substr($POST_MAX_SIZE, -1));
@@ -128,6 +134,23 @@
 		been saved.
 	*/
 
+  //If the object is a player then it will update the avatar picture.
+  if(strcmp($className, "Player") == 0){
+    $different_path = "../uploads/player_avatar/";
+    $save_path = getcwd() ."/".$different_path;
+    if (!@move_uploaded_file($_FILES[$upload_name]["tmp_name"], $save_path.$id.'-'.$file_name)) {
+		    HandleError("File could not be saved.");
+		    exit(0);
+	    }else{
+        include_once '../logica/Player.class.php';
+        Player::updatePlayerAvatar($id,"uploads/player_avatar/".$id.'-'.$file_name);
+        echo "FILEID:" . $different_path.$id.'-'.$file_name;
+      }
+    
+    exit(0);
+  }
+
+
 	if (!@move_uploaded_file($_FILES[$upload_name]["tmp_name"], $save_path.$file_name)) {
 		HandleError("File could not be saved.");
 		exit(0);
@@ -144,11 +167,11 @@
 /* Handles the error output. This error message will be sent to the uploadSuccess event handler.  The event handler
 will have to check for any error messages and react as needed. */
 function HandleError($message) {
-  $file = getcwd() . "/uploads/log.txt";
+  /*$file = getcwd() . "/uploads/log.txt";
   $myFile = $file;
   $fh = fopen($myFile, 'x+') or die("can't open file");
   fwrite($fh, $message);
   fwrite($fh, "\n");
-  fclose($fh);
+  fclose($fh);*/
   echo $message;
 }

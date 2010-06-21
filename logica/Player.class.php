@@ -130,6 +130,30 @@ class Player {
 
     }    
     
+    /**
+     * @author Rodrigo Santellan
+     * @return Player 
+     */
+    public static function updatePlayerAvatar($id, $file) {
+
+        require_once '../persistencia/dBase.php';
+        require_once '../persistencia/persistencia.php';
+        require_once '../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'update' );
+
+        $per->addColum ( "image" );
+        $per->addValue( $file );
+        $per->setTable ( "player" );
+        $per->addWhere("id =".$id);
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        return true;
+
+    }  
+
     public static function getAllPlayersAdmin() {
 
         require_once '../persistencia/dBase.php';
@@ -312,25 +336,6 @@ class Player {
         return $list;
     }
 
-    /*
-     *  
-SELECT *
-FROM player p
-WHERE id
-IN (
 
-SELECT tp.id_player
-FROM team_player_round tp
-WHERE id_round
-IN (
-
-SELECT r.id
-FROM rounds r
-WHERE id = (
-SELECT max( r1.id )
-FROM rounds r1 )
-)
-) 
-    */
 }
 

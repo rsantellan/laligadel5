@@ -29,7 +29,7 @@ if ($_REQUEST['id']!= null){
 <script type="text/javascript" src="./swfupload/swfupload.js"></script>
 <script type="text/javascript" src="./js/swfupload.queue.js"></script>
 <script type="text/javascript" src="./js/fileprogress.js"></script>
-<script type="text/javascript" src="./js/handlers.js"></script>
+<script type="text/javascript" src="./js/swfOnlyButton/handlers.js"></script>
 
 <script type="text/javascript">
 		var swfu;
@@ -47,7 +47,8 @@ if ($_REQUEST['id']!= null){
 				file_size_limit : "2 MB",	// 2MB
 				file_types : "*.jpg",
 				file_types_description : "JPG Images",
-				file_upload_limit : "1",
+				file_upload_limit : "20",
+        file_queue_limit:   "1",
 
 				// Event Handler Settings - these functions as defined in Handlers.js
 				//  The handlers are not part of SWFUpload but are part of my website and control how
@@ -75,66 +76,18 @@ if ($_REQUEST['id']!= null){
 
 				custom_settings : {
 					upload_target : "divFileProgressContainer",
-					cancelButtonId : "btnCancel"
+          object_class_name : "<?php echo get_class($player);?>"
 				},
 				
 				// Debug Settings
-				debug: true
+				debug: false
 			});
 		};
 	</script>
 
 <?php endif;?>
 	
-<!--
-
-
-<script type="text/javascript">
-		var swfu;
-
-		window.onload = function() {
-			var settings = {
-				flash_url : "./swfupload/swfupload.swf",
-				upload_url: "upload.php",
-				post_params: {"PHPSESSID" : "<?php echo session_id(); ?>"},
-				file_size_limit : "2 MB",
-				file_types : "*.*",
-				file_types_description : "All Files",
-				file_upload_limit : 100,
-				file_queue_limit : 0,
-				custom_settings : {
-					progressTarget : "fsUploadProgress",
-					cancelButtonId : "btnCancel"
-				},
-				debug: false,
-
-				// Button settings
-				button_image_url: "images/TestImageNoText_65x29.png",
-				button_width: "65",
-				button_height: "29",
-				button_placeholder_id: "spanButtonPlaceHolder",
-				button_text: '<span class="theFont">Subir</span>',
-				button_text_style: ".theFont { font-size: 16; }",
-				button_text_left_padding: 12,
-				button_text_top_padding: 3,
-				
-				// The event handler functions are defined in handlers.js
-				file_queued_handler : fileQueued,
-				file_queue_error_handler : fileQueueError,
-				file_dialog_complete_handler : fileDialogComplete,
-				upload_start_handler : uploadStart,
-				upload_progress_handler : uploadProgress,
-				upload_error_handler : uploadError,
-				upload_success_handler : uploadSuccess,
-				upload_complete_handler : uploadComplete,
-				queue_complete_handler : queueComplete	// Queue plugin event
-			};
-
-			swfu = new SWFUpload(settings);
-	     };
-	</script>
-	
---></head>
+</head>
 
 
 <body>
@@ -164,7 +117,7 @@ if ($_REQUEST['id']!= null){
             	<?php if(is_null($player)):?>
             		<h2>No existe ningun jugador con ese Id</h2>
             	<?php else:?>
-            		<div class ="player_info">
+            		<div class ="player_info" id="div_image_update">
 						<img src="../<?php echo $player->getImage()?>" width="54" height="54" tooltip="<?php echo $player->getName()?>" alt="<?php echo $player->getName()?>"/>
 					</div>
 					
@@ -177,12 +130,12 @@ if ($_REQUEST['id']!= null){
 								<span id="spanButtonPlaceholder"></span>
 					
 							</div>
-							<input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />
+
 						</form>
 						
 					</div>
-					<div id="divFileProgressContainer" style="height: 75px;"></div>
-					<div id="thumbnails"></div>
+					<div id="divFileProgressContainer" style="height: 75px; display: none;"></div>
+					<div id="thumbnails" style="display: none;"></div>
 					
             	<?php endif;?>
             <?php endif;?>

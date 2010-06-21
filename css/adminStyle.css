@@ -394,3 +394,13 @@ form#form #button1:hover, form#form #button2:hover {
     height: 66px;
     width:  66px;
 }
+
+.player_info{
+    width:  100px;	
+	float: left;
+}
+
+.big_player_info{
+    /*width:  100px;	
+	float: left;*/
+}

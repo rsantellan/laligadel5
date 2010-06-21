@@ -52,13 +52,35 @@
                         
                     </div>
                     <hr/>
-                    <div id ="logos_container" class ="hide">
+                    <div id ="logos_container">
                         
                     </div>
-                    <div id="logo_ok" class="hide logo64">
+                    <div id="logo_ok" class="logo64">
                         <img src="../images/dialog-ok.png"/>
                     </div>
-                    <div id="addPlayer" class="hide">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <?php include("../logica/Player.class.php");?>
+                    <?php $playerList = Player::getAllPlayersAdmin()?>
+                    <h3><a href="javascript:void(0)" id="players_admin_table">Jugadores</a></h3>
+                    <div id="player_table_list">
+                    <table width="200" border="1" id="players_admin_table">
+					  <tr>
+					    <th scope="col">Id</th>
+					    <th scope="col">Nombre</th>
+					    <th scope="col">Imagen</th>
+					  </tr>
+					  <?php foreach($playerList as $player): ?>
+					  <tr>
+					    <td><a href="editPlayer.php?id=<?php echo $player->getId()?>"><?php echo $player->getId()?></a></td>
+					    <td><?php echo $player->getName()?></td>
+					    <td><?php echo $player->getImage()?></td>
+					  </tr>
+					  <?php endforeach;?>
+					</table>    
+                    </div>
+                    <div id="addPlayer">
                         <p>Formulario jugadores:</p>
                         <form id="form_jugadores" name="form_jugadores" method="post"  action="" onsubmit="return false;">
                             <p>Nombre:
@@ -74,8 +96,29 @@
                         </form>
                         <div id="form_jugadores_errors"></div>
                     </div>
+					<br/>
+					<br/>
+					<h3><a href="javascript:void(0)" id="teams_admin_table">Equipos</a></h3>
+                    <div id="teams_table_list">
+                    <?php include("../logica/Team.class.php"); ?>
+                     <?php $teamList = Team::getAllTeamsAdmin(); ?>
+                    <table width="200" border="1" id="teams_admin_table">
+					  <tr>
+					    <th scope="col">Id</th>
+					    <th scope="col">Nombre</th>
+					    <th scope="col">Logo</th>
+					  </tr>
+					  <?php foreach($teamList as $team): ?>
+					  <tr>
+					    <td>><?php echo $team->getId()?></td>
+					    <td><?php echo $team->getName()?></td>
+					    <td>...</td>
+					  </tr>
+					  <?php endforeach;?>
+					</table>    
+                    </div>
 
-                    <div id="addTeam" class="hide">
+                    <div id="addTeam">
                         <p>Formulario equipos:</p>
                         <form id="form_equipos" name="form_equipos" method="post" action="" onsubmit="return false;">
                             <p>Nombre:
@@ -92,7 +135,27 @@
                         <div id="form_equipos_errors"></div>
                     </div>
 
-                    <div id="addRound" class="hide">
+					<br/>
+					<br/>
+					<h3><a href="javascript:void(0)" id="rounds_admin_table">Fechas</a></h3>
+                    <div id="rounds_table_list">
+                    <?php include("../logica/Round.class.php"); ?>
+                    <?php $roundList = Round::getAllRoundsAdmin();?>
+                    <table width="200" border="1" id="rounds_admin_table">
+					  <tr>
+					    <th scope="col">Id</th>
+					    <th scope="col">Nombre</th>
+					  </tr>
+					  <?php foreach($roundList as $round): ?>
+					  <tr>
+					    <td><?php echo $round->getId()?></td>
+					    <td><?php echo $round->getName()?></td>
+					  </tr>
+					  <?php endforeach;?>
+					</table>    
+                    </div>
+                    
+                    <div id="addRound">
                         <p>Formulario fechas:</p>
                         <form id="form_fechas" name="form_fechas" method="post" action="" onsubmit="return false;">
                             <p>Nombre:
@@ -108,15 +171,11 @@
                         </form>
                         <div id="form_fechas_errors"></div>
                     </div>
-                        <?php
-                        include("../logica/Team.class.php");
-                        include("../logica/Round.class.php");
-                        include("../logica/Player.class.php");
-                        ?>
-                    <div id="addTeamVsTeam" class="hide">
+
+                    <div id="addTeamVsTeam" >
                         Equipo fecha:
                         <form id="team_vs_team_form" name="team_vs_team_form" method="post" action="" onsubmit="return false;">
-                                <?php $teamList = Team::getAllTeamsAdmin(); ?>
+                               
                             <label>equipo 1
                                 <select name="team_vs_team_form_equipo_1" id="team_vs_team_form_equipo_1">
                                         <?php foreach($teamList as $team): ?>
@@ -134,7 +193,7 @@
                                 <br />
                             </label>
                             <label>Fecha
-                                    <?php $roundList = Round::getAllRoundsAdmin();?>
+                                    
                                 <select name="team_vs_team_form_fecha" id="team_vs_team_form_fecha">
                                         <?php foreach($roundList as $round): ?>
                                     <option value="<?php echo $round->getId()?>"><?php echo $round->getName()?></option>
@@ -152,12 +211,12 @@
                         <div id="team_vs_team_form_errors"></div>
                     </div>
 
-                    <div id="addPlayerTeamGoals" class="hide">
+                    <div id="addPlayerTeamGoals">
                         <p>Jugador fecha: </p>
                         <form id="player_team_goal_form" name="player_team_goal_form" method="post" action="" onsubmit="return false;">
                             <p>
                                 <label>Jugador
-                                        <?php $playerList = Player::getAllPlayersAdmin()?>
+                                        
                                     <select name="player_team_goal_form_select_player" id="player_team_goal_form_select_player">
                                             <?php foreach($playerList as $player): ?>
                                         <option value="<?php echo $player->getId()?>"><?php echo $player->getName()?></option>
@@ -197,6 +256,7 @@
                         </form>
                         <div id="player_team_goal_form_on_round"></div>
                         <div id="player_team_goal_form_errors"></div>
+                        
                     </div>
                 </div>
 

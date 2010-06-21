@@ -28,9 +28,10 @@ class SendMail {
                 );
 
 	public function sendFeedBackMail($from, $name, $comment){
-		$MESSAGE_BODY = "Name: ".$name."<br>"; 
-		$MESSAGE_BODY .= "Email: ".$from."<br>"; 
-		$MESSAGE_BODY .= "Comment: ".nl2br($comment)."<br>";
+		$MESSAGE_BODY = "Nombre: ".$name."<br/><br/>"; 
+		$MESSAGE_BODY .= "Email: ".$from."<br/><br/>"; 
+		$MESSAGE_BODY .= "Comentario: ".nl2br($comment)."<br/><br/><br/>";
+		$MESSAGE_BODY .= "Para ver otros comentarios ve a : <a href='http://www.thetaterra.com/laligadel5/comentarios.php'>La liga del 5</a>";
 		$first = true;
 		foreach($this->list as $mail){
 			$this->actualSendMail($from, "La liga del 5 Comentario",$MESSAGE_BODY,$mail, $first);

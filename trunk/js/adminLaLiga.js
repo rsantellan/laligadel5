@@ -4,7 +4,7 @@
  */
 
 $(document).ready(function(){
-
+	startHidenContainers();
     $("#player_team_goal_form_goles").keydown(function(event) {
         // Allow only backspace and delete
         if ( event.keyCode == 46 || event.keyCode == 8 ) {
@@ -44,9 +44,29 @@ $(document).ready(function(){
     $('#player_team_goal_form_select_team').change(showTeamGoals);
     $('#player_team_goal_form_select_round').change(showTeamGoals);
     $('#player_team_goal_form_errors').hide();
-
+    $('#players_admin_table').click(function(){
+    	$('#player_table_list').slideToggle("slow");
+    });
+    $('#teams_admin_table').click(function(){
+    	$('#teams_table_list').slideToggle("slow");
+    });
+    $('#rounds_admin_table').click(function(){
+    	$('#rounds_table_list').slideToggle("slow");
+    });
 });
 
+function startHidenContainers(){
+	$('#logos_container').hide();
+	$('#logo_ok').hide();
+	$('#player_table_list').hide();
+	$('#addPlayer').hide();
+	$('#addTeam').hide();
+	$('#addRound').hide();
+	$('#addTeamVsTeam').hide();
+	$('#addPlayerTeamGoals').hide();
+	$('#teams_table_list').hide();
+	$('#rounds_table_list').hide();
+}
 function showAddPlayer(){
     $('#addPlayer').slideToggle("slow");
 }
@@ -93,7 +113,15 @@ function agregarJugador(){
             if(data.result == 1){
                     
                 $("#player_team_goal_form_select_player").append("<option value='"+data.id+"'>"+data.name+"</option>");
-                    
+                $('#players_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td>...</td></tr>');
+                $('#logo_ok').show();
+                $('#form_jugadores_errors').html($('#logo_ok'));
+                $('#form_jugadores_errors').show();
+                $('#logo_ok').fadeOut(6000, function () {
+                    $('#logo_ok').hide();
+                    $('#logos_container').append($('#logo_ok'));
+                });
+    
             }else{
                 $('#form_jugadores_errors').show();
                 $('#form_jugadores_errors').html('<h2>'+data.error+'</h2>');
@@ -133,6 +161,15 @@ function agregarTeam(){
                 $("#player_team_goal_form_select_team").append("<option value='"+data.id+"'>"+data.name+"</option>");
                 $("#team_vs_team_form_equipo_2").append("<option value='"+data.id+"'>"+data.name+"</option>");
                 $("#team_vs_team_form_equipo_1").append("<option value='"+data.id+"'>"+data.name+"</option>");
+                
+                $('#teams_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td>...</td></tr>');
+                $('#logo_ok').show();
+                $('#form_equipos_errors').html($('#logo_ok'));
+                $('#form_equipos_errors').show();
+                $('#logo_ok').fadeOut(6000, function () {
+                    $('#logo_ok').hide();
+                    $('#logos_container').append($('#logo_ok'));
+                });
             }else{
                 $('#form_equipos_errors').show();
                 $('#form_equipos_errors').html('<h2>'+data.error+'</h2>');
@@ -171,6 +208,16 @@ function agregarRound(){
             if(data.result == 1){
                 $("#team_vs_team_form_fecha").append("<option value='"+data.id+"'>"+data.name+"</option>");
                 $('#player_team_goal_form_select_round').append("<option value='"+data.id+"'>"+data.name+"</option>");
+                
+                $('#rounds_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td></tr>');
+                $('#logo_ok').show();
+                $('#form_fechas_errors').html($('#logo_ok'));
+                $('#form_fechas_errors').show();
+                $('#logo_ok').fadeOut(6000, function () {
+                    $('#logo_ok').hide();
+                    $('#logos_container').append($('#logo_ok'));
+                });
+                
             }else{
                 $('#form_fechas_errors').show();
                 $('#form_fechas_errors').html('<h2>'+data.error+'</h2>');

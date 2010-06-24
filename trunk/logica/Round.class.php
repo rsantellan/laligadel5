@@ -117,5 +117,32 @@ class Round {
         }
         return $list;
     }
+
+    public static function getLastRound(){
+                require_once './persistencia/dBase.php';
+        require_once './persistencia/persistencia.php';
+        require_once './persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "r.*" );
+        $per->setTable ( "rounds r" );
+        $per->addWhere("id = (
+						SELECT max( r1.id )
+						FROM rounds r1 )
+						");
+        $str = $per->constructQuery ();
+
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $round = new Round();
+        $round->setId($auxDatos[$index]);
+        $round->setName($auxDatos[$index+1]);
+        return $round;
+    }
 }
 

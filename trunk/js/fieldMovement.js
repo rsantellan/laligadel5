@@ -3,7 +3,7 @@ $(document).ready(function(){
         auto: true,
         continuous: true
     });
-    seleccionarMis5.bootstrap;
+    seleccionarMis5.bootstrap();
     $('#menu_index').addClass('active');
 	
 	loadQTipModal();

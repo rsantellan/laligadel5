@@ -11,7 +11,9 @@
 <?php include('logoAndMenu.php')?>
 
 <div id="body">
-    <h2 class="title">Arma el cuadra de la fecha <label id="help"> Ayuda <img src="images/HelpIcon.gif" alt="Futbol" width="34" height="34" /></label></h2>
+    <?php    include_once 'logica/Round.class.php'; ?>
+    <?php $round = Round::getLastRound() ?>
+    <h2 class="title">Arma el equipo de la: <?php echo $round->getName() ?><label id="help"> Ayuda <img src="images/HelpIcon.gif" alt="Futbol" width="34" height="34" /></label></h2>
     <div class="story">
 
 
@@ -68,7 +70,7 @@
         <div class="formulario" id="formulario">
 		Escribe tu nombre:
             <input name="nombre" type="text" maxlength="255" id="text_person_name"/>
-
+            <input type="hidden" name="round_id" id="round_id" value="<?php echo $round->getId()?>"/>
             <input name="enviar" type="button" value="enviar" id="button_send_form"/>
         </div>
         <div style="clear: both"><!-- --></div>

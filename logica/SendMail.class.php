@@ -28,12 +28,15 @@ class SendMail {
                 );
 
 	public function sendFeedBackMail($from, $name, $comment){
+		include_once './logica/CommentsMailing.class.php';
+		$emailList = CommentsMailing::getArrayAllMails();
+
 		$MESSAGE_BODY = "Nombre: ".$name."<br/><br/>"; 
 		$MESSAGE_BODY .= "Email: ".$from."<br/><br/>"; 
 		$MESSAGE_BODY .= "Comentario: ".nl2br($comment)."<br/><br/><br/>";
 		$MESSAGE_BODY .= "Para ver otros comentarios ve a : <a href='http://www.thetaterra.com/laligadel5/comentarios.php'>La liga del 5</a>";
 		$first = true;
-		foreach($this->list as $mail){
+		foreach($emailList as $mail){
 			$this->actualSendMail($from, "La liga del 5 Comentario",$MESSAGE_BODY,$mail, $first);
 			if($first)$first =false;
 		} 

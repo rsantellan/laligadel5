@@ -246,24 +246,54 @@ seleccionarMis5.enviar = function() {
 	if(!seleccionarMis5.allfilled()){
 		alert("Tienes que llenar todas las posiciones");
 	}else{
+
 		var nombre = $("#text_person_name").val();
-		
-		alert(seleccionarMis5.goaly);
+		if(nombre == '' || nombre == ' '){
+            alert('Tienes que ingresar un nombre');
+            return;
+        }
+        var roundId = $("#round_id").val();
+        var dataString = "round_id="+roundId+"&nombre="+ nombre +"&golero="+seleccionarMis5.goaly +"&defensa_izquierdo="+seleccionarMis5.defender_left+"&defensa_derecho="+seleccionarMis5.defender_right+"&atacante_izquierdo="+seleccionarMis5.attacker_left+"&atacante_derecho="+seleccionarMis5.attacker_right;
+        $.ajax({
+        type: "POST",
+        url: "ajax/addTeamOfTheRoundAjax.php",
+        data: dataString,
+        dataType: "json",
+        beforeSend: function(x) {
+            if(x && x.overrideMimeType) {
+                x.overrideMimeType("application/json;charset=UTF-8");
+            }
+        },
+        success: function(data){
+            if(data.result == 1){
 
-		alert(seleccionarMis5.defender_left);
+//                $("#player_team_goal_form_select_player").append("<option value='"+data.id+"'>"+data.name+"</option>");
+//                $('#players_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td>...</td></tr>');
+//                $('#logo_ok').show();
+//                $('#form_jugadores_errors').html($('#logo_ok'));
+//                $('#form_jugadores_errors').show();
+//                $('#logo_ok').fadeOut(6000, function () {
+//                    $('#logo_ok').hide();
+//                    $('#logos_container').append($('#logo_ok'));
+//                });
 
-		alert(seleccionarMis5.defender_right);
+            }else{
+//                $('#form_jugadores_errors').show();
+//                $('#form_jugadores_errors').html('<h2>'+data.error+'</h2>');
+//                $('#form_jugadores_errors').fadeOut(8000, function () {
+//                    $('#form_jugadores_errors').hide();
+//                });
+            }
+        }
 
-		alert(seleccionarMis5.attacker_left);
+    });
 
-		alert(seleccionarMis5.attacker_right);
 	}
 	
 }
 
 seleccionarMis5.bootstrap = function() {
-	$("#button_send_form").click(seleccionarMis5.enviar);
-
+	
 	//$('.remove').hide();
 	$('.player').draggable({
 		opacity: 0.7,
@@ -293,6 +323,7 @@ seleccionarMis5.bootstrap = function() {
 		hoverClass : 'item-arrived'
 	});
 
+    $("#button_send_form").click(seleccionarMis5.enviar);
 
 
 };

@@ -15,7 +15,7 @@
     <?php $round = Round::getLastRound() ?>
     <h2 class="title">Arma el equipo de la: <?php echo $round->getName() ?><label id="help"> Ayuda <img src="images/HelpIcon.gif" alt="Futbol" width="34" height="34" /></label></h2>
     <div class="story">
-
+        <div id ="addTeamOfTheWeak">
 
         <div id='field' class='field'>
             <div class="campo" id="campo">
@@ -84,6 +84,7 @@
         <label id="selected_attacker_left"></label>
         <br/>
         <label id="selectedGoaly"></label>
+    </div>
     </div>
 </div>
 

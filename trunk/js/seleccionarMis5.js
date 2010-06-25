@@ -68,6 +68,7 @@ seleccionarMis5.dropGoaly = function(event, ui) {
         }
 
         if(seleccionarMis5.goaly != 0){
+            $('#'+seleccionarMis5.goaly).find('.remove').hide();
             $('#players').append($('#'+seleccionarMis5.goaly));
 			$('#'+seleccionarMis5.goaly).removeClass('playerOnBox');
         }
@@ -80,6 +81,7 @@ seleccionarMis5.dropGoaly = function(event, ui) {
 
         // Closure function which handles removing of the created basket item
 	function remove() {
+                $(selectedItem).find('.remove').hide();
                 $('#players').append(selectedItem);
 				selectedItem.removeClass('playerOnBox');
                 seleccionarMis5.goaly = 0;
@@ -87,6 +89,7 @@ seleccionarMis5.dropGoaly = function(event, ui) {
 
 	// bind click even for the remove item
 	$(selectedItem).find('.remove').click(remove);
+    $(selectedItem).find('.remove').show();
 };
 
 
@@ -106,6 +109,7 @@ seleccionarMis5.dropDefenderLeft = function(event, ui) {
         }
 
         if(seleccionarMis5.defender_left != 0){
+            $('#'+seleccionarMis5.defender_left).find('.remove').hide();
             $('#players').append($('#'+seleccionarMis5.defender_left));
 			$('#'+seleccionarMis5.defender_left).removeClass('playerOnBox');
         }
@@ -119,6 +123,7 @@ seleccionarMis5.dropDefenderLeft = function(event, ui) {
         //selectedItem.disable();
         // Closure function which handles removing of the created basket item
 	function remove() {
+                $(selectedItem).find('.remove').hide();
                 $('#players').append(selectedItem);
 				selectedItem.removeClass('playerOnBox');
                 seleccionarMis5.defender_left =0;
@@ -126,6 +131,7 @@ seleccionarMis5.dropDefenderLeft = function(event, ui) {
 
 	// bind click even for the remove item
 	$(selectedItem).find('.remove').click(remove);
+    $(selectedItem).find('.remove').show();
 };
 
 seleccionarMis5.dropDefenderRight = function(event, ui) {
@@ -144,6 +150,7 @@ seleccionarMis5.dropDefenderRight = function(event, ui) {
         }
 
         if(seleccionarMis5.defender_right != 0){
+            $('#'+seleccionarMis5.defender_right).find('.remove').hide();
             $('#players').append($('#'+seleccionarMis5.defender_right));
 			$('#'+seleccionarMis5.defender_right).removeClass('playerOnBox');
         }
@@ -157,6 +164,7 @@ seleccionarMis5.dropDefenderRight = function(event, ui) {
         //selectedItem.disable();
         // Closure function which handles removing of the created basket item
 	function remove() {
+                $(selectedItem).find('.remove').hide();
                 $('#players').append(selectedItem);
                 seleccionarMis5.defender_right =0;
 				selectedItem.removeClass('playerOnBox');
@@ -164,6 +172,7 @@ seleccionarMis5.dropDefenderRight = function(event, ui) {
 
 	// bind click even for the remove item
 	$(selectedItem).find('.remove').click(remove);
+    $(selectedItem).find('.remove').show();
 };
 
 seleccionarMis5.dropAttackerLeft = function(event, ui) {
@@ -182,6 +191,7 @@ seleccionarMis5.dropAttackerLeft = function(event, ui) {
         }
 
         if(seleccionarMis5.attacker_left != 0){
+            $('#'+seleccionarMis5.attacker_left).find('.remove').hide();
             $('#players').append($('#'+seleccionarMis5.attacker_left));
 			$('#'+seleccionarMis5.attacker_left).removeClass('playerOnBox');
         }
@@ -194,6 +204,7 @@ seleccionarMis5.dropAttackerLeft = function(event, ui) {
         //selectedItem.disable();
         // Closure function which handles removing of the created basket item
 	function remove() {
+                $(selectedItem).find('.remove').hide();
                 $('#players').append(selectedItem);
                 seleccionarMis5.attacker_left =0;
 				selectedItem.removeClass('playerOnBox');
@@ -201,6 +212,7 @@ seleccionarMis5.dropAttackerLeft = function(event, ui) {
 
 	// bind click even for the remove item
 	$(selectedItem).find('.remove').click(remove);
+    $(selectedItem).find('.remove').show();
 };
 
 
@@ -220,6 +232,7 @@ seleccionarMis5.dropAttackerRight = function(event, ui) {
         }
 
         if(seleccionarMis5.attacker_right != 0){
+            $('#'+seleccionarMis5.attacker_right).find('.remove').hide();
             $('#players').append($('#'+seleccionarMis5.attacker_right));
 			$('#'+seleccionarMis5.attacker_right).removeClass('playerOnBox');
         }
@@ -233,6 +246,7 @@ seleccionarMis5.dropAttackerRight = function(event, ui) {
         //selectedItem.disable();
         // Closure function which handles removing of the created basket item
 	function remove() {
+                $(selectedItem).find('.remove').hide();
                 $('#players').append(selectedItem);
                 seleccionarMis5.attacker_right =0;
 				selectedItem.removeClass('playerOnBox');
@@ -240,6 +254,7 @@ seleccionarMis5.dropAttackerRight = function(event, ui) {
 
 	// bind click even for the remove item
 	$(selectedItem).find('.remove').click(remove);
+    $(selectedItem).find('.remove').show();
 };
 
 seleccionarMis5.enviar = function() {
@@ -266,7 +281,8 @@ seleccionarMis5.enviar = function() {
         },
         success: function(data){
             if(data.result == 1){
-
+                $('#list_of_teams_of_the_round').prepend(data.body);
+                showListOfTeamOfTheRound();
 //                $("#player_team_goal_form_select_player").append("<option value='"+data.id+"'>"+data.name+"</option>");
 //                $('#players_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td>...</td></tr>');
 //                $('#logo_ok').show();
@@ -298,7 +314,7 @@ seleccionarMis5.bootstrap = function() {
 	$('.player').draggable({
 		opacity: 0.7,
 		revert: true,
-		cursorAt : { top:0, left:0 }
+		cursorAt : {top:0, left:0}
 	});
 
 	$('#goaly').droppable({
@@ -324,6 +340,6 @@ seleccionarMis5.bootstrap = function() {
 	});
 
     $("#button_send_form").click(seleccionarMis5.enviar);
-
+    $(".remove").hide();
 
 };

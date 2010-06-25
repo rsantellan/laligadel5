@@ -1,15 +1,19 @@
 $(document).ready(function(){
+    
     $("#slider").easySlider({
         auto: true,
         continuous: true
     });
     seleccionarMis5.bootstrap();
     $('#menu_index').addClass('active');
-	
+
+    $('#addTeamOfTheRound').hide();
+    $('#addTeamOfTheRound').removeClass('hide');
 	loadQTipModal();
 	changeFieldArea();
 	loadQTipsOfPlayers();
-
+     //$('input.star').rating();
+    startRatings();
     var top = 495;//$('#campo').offset().top;
     var goaly = 535;//$('#goaly').offset().top;
     var defense_left = 635; //$('#defense_left').offset().top;
@@ -95,7 +99,7 @@ function loadQTipModal(){
       },
       hide: false,
       style: {
-         width: { max: 350 },
+         width: {max: 350},
          padding: '14px',
          border: {
             width: 9,
@@ -135,4 +139,19 @@ function loadQTipModal(){
       .hide(); // Hide it initially
 
 
+}
+
+function showAddTeamOfTheRound(){
+    $('#addTeamOfTheRound').slideToggle("slow");
+    $('#add_team_of_the_round_link').hide();
+    $('#show_list_of_team_of_the_round_link').show();
+    $('#list_of_teams_of_the_round').slideToggle("slow");
+
+}
+
+function showListOfTeamOfTheRound(){
+    $('#addTeamOfTheRound').slideToggle("slow");
+    $('#add_team_of_the_round_link').show();
+    $('#show_list_of_team_of_the_round_link').hide();
+    $('#list_of_teams_of_the_round').slideToggle("slow");
 }

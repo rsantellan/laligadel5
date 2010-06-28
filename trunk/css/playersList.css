@@ -1,0 +1,20 @@
+/* 
+    Document   : playersList
+    Created on : Jun 28, 2010, 1:08:42 AM
+    Author     : rodrigo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.player{
+    background-color: #FFEE8E;
+    height:86px;
+    width:70px;
+    text-align:center;
+    float:left;
+    margin-left: 30px;
+}
+
+.clear{
+	clear:both;
+}

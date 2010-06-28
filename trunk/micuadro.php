@@ -5,6 +5,7 @@
 <link href="css/playersDragAndDrop.css" type="text/css" rel="stylesheet" />
 <link href="css/rating.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/rating.js"></script>
+
 <script type="text/javascript" src="js/fieldMovement.js"></script>
 
 

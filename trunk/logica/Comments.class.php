@@ -14,6 +14,7 @@ class Comments {
     public function getId() {
         return $this->id;
     }
+
     /**
      * @param $date the $date to set
      */
@@ -28,7 +29,6 @@ class Comments {
         $date = $this->date;
         return $date;
     }
-
 
     /**
      * @return the $name
@@ -79,11 +79,10 @@ class Comments {
         $this->comment = $comment;
     }
 
-
     private $requiere = false;
 
     private function addRequiered() {
-        if(!$this->requiere) {
+        if (!$this->requiere) {
             require_once './persistencia/dBase.php';
             require_once './persistencia/persistencia.php';
             require_once './persistencia/laligadel5DBase.php';
@@ -91,38 +90,53 @@ class Comments {
         }
     }
 
-    public static function getAllComents($limitStart = 0, $limitEnd = 0) {
+    public static function getAllComents($limitStart = 0, $limitEnd = 0, $required = true, $differentOrder = false, $admin = false) {
+        if ($required) {
+            if (!$admin) {
+                require_once './persistencia/dBase.php';
+                require_once './persistencia/persistencia.php';
+                require_once './persistencia/laligadel5DBase.php';
+            } else {
+                require_once '../../persistencia/dBase.php';
+                require_once '../../persistencia/persistencia.php';
+                require_once '../../persistencia/laligadel5DBase.php';
+            }
+        }
 
-        require_once './persistencia/dBase.php';
-        require_once './persistencia/persistencia.php';
-        require_once './persistencia/laligadel5DBase.php';
 
-        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
-        $conn->selectDB ( laligadel5DBase::$database );
-        $per = new Persistencia ( 'select' );
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia('select');
 
-        $per->addColum ( "*" );
-        $per->setTable ( "comments" );
-        $per->addOrderBy('date DESC');
-        if($limitEnd != 0){
+        $per->addColum("id");
+        $per->addColum('nombre');
+        $per->addColum('email');
+        $per->addColum('comentario');
+        $per->addColum('UNIX_TIMESTAMP(`date`)');
+        $per->setTable("comments");
+        if (!$differentOrder) {
+            $per->addOrderBy('date DESC');
+        }
+
+        if ($limitEnd != 0) {
             $per->addLimit($limitStart, $limitEnd);
         }
-        $str = $per->constructQuery ();
-        $result = $per->doQuery ( $str );
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
         $per->viewData($result);
         $auxDatos = $per->returnValores();
         $index = 0;
         $list = array();
 
-        while($index+5 <= count($auxDatos)) {
+        while ($index + 5 <= count($auxDatos)) {
             $comment = new Comments();
             $comment->setId($auxDatos[$index]);
-            $comment->setName($auxDatos[$index+1]);
-            $comment->setEmail($auxDatos[$index+2]);
-            $comment->setComment($auxDatos[$index +3]);
-            $comment->setDate($auxDatos[$index+4]);
-            array_push($list,$comment);
-            $index = $index+5;
+            $comment->setName($auxDatos[$index + 1]);
+            $comment->setEmail($auxDatos[$index + 2]);
+            $comment->setComment($auxDatos[$index + 3]);
+            $comment->setDate(date("d-m-Y", $auxDatos[$index + 4]));
+            array_push($list, $comment);
+            $index = $index + 5;
         }
         return $list;
     }
@@ -133,22 +147,49 @@ class Comments {
         require_once './persistencia/persistencia.php';
         require_once './persistencia/laligadel5DBase.php';
 
-        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
-        $conn->selectDB ( laligadel5DBase::$database );
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
 
-        $per1 = new Persistencia ( "INSERT" );
+        $per1 = new Persistencia("INSERT");
         $per1->setTable("comments");
-        $per1->addColum ( 'nombre' );
-        $per1->addColum ( 'email' );
-        $per1->addColum ( 'comentario' );
+        $per1->addColum('nombre');
+        $per1->addColum('email');
+        $per1->addColum('comentario');
 
-        $per1->addValue ( "'".$name."'");
-        $per1->addValue ( "'".$email."'" );
-        $per1->addValue ( "'".$comment."'");
+        $per1->addValue("'" . $name . "'");
+        $per1->addValue("'" . $email . "'");
+        $per1->addValue("'" . $comment . "'");
 
-        $str = $per1->constructQuery ();
-        $result = $per1->doQuery ( $str );
+        $str = $per1->constructQuery();
+        $result = $per1->doQuery($str);
         return true;
     }
+
+    public static function groupAndCountByDay($commentsList) {
+        $start = true;
+        $last = "";
+        $count = 0;
+        $return = array();
+        $index = 0;
+        while ($index < count($commentsList)) {
+            $comment = $commentsList[$index];
+            if ($last == "") {
+                $last = $comment->getDate();
+            }
+            if ($last != $comment->getDate()) {
+                $return[$comment->getDate()] = $count;
+                $count = 0;
+                $last = $comment->getDate();
+            }
+            $count++;
+            $index++;
+            if ($index == count($commentsList)) {
+                $return[$comment->getDate()] = $count;
+                $count = 0;
+            }
+        }
+        return $return;
+    }
+
 }
 

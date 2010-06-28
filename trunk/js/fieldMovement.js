@@ -7,40 +7,42 @@ $(document).ready(function(){
     seleccionarMis5.bootstrap();
     $('#menu_index').addClass('active');
 
-    $('#addTeamOfTheRound').hide();
+    //$('#addTeamOfTheRound').hide();
     $('#addTeamOfTheRound').removeClass('hide');
 	loadQTipModal();
 	changeFieldArea();
 	loadQTipsOfPlayers();
      //$('input.star').rating();
     startRatings();
-    var top = 495;//$('#campo').offset().top;
-    var goaly = 535;//$('#goaly').offset().top;
-    var defense_left = 635; //$('#defense_left').offset().top;
-    var defense_right = 635; //$('#defense_right').offset().top;
-    var attacker_left = 775; //$('#attacker_left').offset().top;
-    var attacker_right = 775; //$('#attacker_right').offset().top;
+    var movementStart = 500;
+    var top = 15;//$('#campo').offset().top;
+    var goaly = -350;//$('#goaly').offset().top;
+    var defense_left = -365; //$('#defense_left').offset().top;
+    var defense_right = -365; //$('#defense_right').offset().top;
+    var attacker_left = -360; //$('#attacker_left').offset().top;
+    var attacker_right = -360; //$('#attacker_right').offset().top;
     $(window).scroll(function (event) {
         // what the y position of the scroll is
+
         var y = $(this).scrollTop();
-        // whether that's below the form
-        if (y >= top) {
+        // whether that's below the formy
+        if (y <= movementStart) {
             // if so, ad the fixed class
-            $('#campo').css('top',0);
-            $('#goaly').css('top',goaly -top);
-            $('#defense_left').css('top',defense_left -top);
-            $('#defense_right').css('top',defense_right -top);
-            $('#attacker_left').css('top',attacker_left -top);
-            $('#attacker_right').css('top',attacker_right -top);
+            $('#campo').css('top',top);
+            $('#goaly').css('top',goaly);
+            $('#defense_left').css('top',defense_left );
+            $('#defense_right').css('top',defense_right );
+            $('#attacker_left').css('top',attacker_left );
+            $('#attacker_right').css('top',attacker_right );
         } else {
             // otherwise remove it
-            var delta = top - (top - y);
-            $('#campo').css('top',top - delta  );
-            $('#goaly').css('top',goaly - delta  );
-            $('#defense_left').css('top',defense_left - delta);
-            $('#defense_right').css('top',defense_right - delta);
-            $('#attacker_left').css('top',attacker_left - delta );
-            $('#attacker_right').css('top',attacker_right - delta );
+            var delta = (y - movementStart);
+            $('#campo').css('top', delta  );
+            $('#goaly').css('top',goaly + delta  );
+            $('#defense_left').css('top',defense_left + delta);
+            $('#defense_right').css('top',defense_right + delta);
+            $('#attacker_left').css('top',attacker_left + delta );
+            $('#attacker_right').css('top',attacker_right + delta );
         }
     });
 });

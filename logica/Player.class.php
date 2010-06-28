@@ -332,5 +332,42 @@ class Player {
         return $list;
     }
 
+    public static function getPlayersOfATeam($teamId, $requiered = true) {
+        if ($requiered) {
+            require_once './persistencia/dBase.php';
+            require_once './persistencia/persistencia.php';
+            require_once './persistencia/laligadel5DBase.php';
+        }
+
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia('select');
+
+        $per->addColum("p.*");
+        $per->setTable("player as p");
+        $per->addWhere("
+            p.id IN (
+				SELECT tp.id_player
+				FROM team_player_round tp
+				WHERE tp.id_team = ".$teamId.")");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while ($index + 2 <= count($auxDatos)) {
+            $player = new Player();
+            $player->setId($auxDatos[$index]);
+            $player->setName($auxDatos[$index + 1]);
+            $player->setImage($auxDatos[$index + 2]);
+            array_push($list, $player);
+            $index = $index + 3;
+            $indexAux++;
+        }
+        return $list;
+    }
+
 }
 

@@ -17,19 +17,6 @@
 			include("./logica/SendMail.class.php");
 		?>
 		
-		<?php 
-			if ($_POST["email"]<>'') {
-				
-				//Comments::saveComment($_POST["name"],$_POST["email"],$_POST["comment"]);
-				
-				//$sendMail = new SendMail();
-
-				//$sendMail->sendFeedBackMail($_POST["email"],$_POST["name"],$_POST["comment"]);
-			?> 
-			<h2>Gracias por su comentario</h2>
-		<?php 
-		} 
-		?> 
 		<form action="comentarios.php" method="post"> 
 			<table width="400" border="0" cellspacing="2" cellpadding="0"> 
 				<tr> 
@@ -56,7 +43,7 @@
 			
 			<?php $list = Comments::getAllComents(0,25);?>
 		<ol class="comments" id ="commentsList">
-			
+
 			<?php foreach($list as $comment):?>
 		
 			<li>

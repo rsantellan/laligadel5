@@ -90,6 +90,36 @@ class Team {
         return $list;
     }
 
+    public static function getAllTeams($requiered = true) {
+        if ($requiered) {
+            require_once './persistencia/dBase.php';
+            require_once './persistencia/persistencia.php';
+            require_once './persistencia/laligadel5DBase.php';
+        }
+
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia('select');
+
+        $per->addColum("*");
+        $per->setTable("team");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while ($index + 2 <= count($auxDatos)) {
+            $team = new Team();
+            $team->setId($auxDatos[$index]);
+            $team->setName($auxDatos[$index + 1]);
+            array_push($list, $team);
+            $index = $index + 2;
+        }
+        return $list;
+    }
+
     public static function getTeamById($team_id) {
 
 //            require_once '../persistencia/dBase.php';

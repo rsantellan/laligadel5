@@ -19,20 +19,20 @@
     float: left;
     color: blue;
     margin-left:7px;
-	margin-top: 20px;
+    margin-top: 20px;
     border:1px solid red;
     outline-style:solid;
     outline-width:thin;
 }
 
 .playerOnBox{
-	margin-left:15px !important; 
-	margin-top: 15px !important;
+    margin-left:15px !important;
+    margin-top: 15px !important;
 }
 
 .selected-plan{
     background-color: black;
-	background-image:url('../images/pasto.jpg');
+    background-image:url('../images/pasto.jpg');
     height:108px;
     width:100px;
     border:1px solid red;
@@ -44,67 +44,85 @@
 }
 
 .item-arrived {
-	background: #ffa;
+    background: #ffa;
 }
 
 .field{
-	float: left;
-	height:750px;
-	width:578px;
-	
+    float: left;
+    height:750px;
+    width:578px;
+
 }
 
 .players{
-	float: left;
+    float: left;
 }
 
 .golero{
-	left:446px;
-	position:fixed;
-	top:535px;
+    /*    left:446px;
+        position:fixed;
+        top:535px;*/
+    left:182px;
+    position:relative;
+    top:-350px;
 }
 
 .defensaDerecho{
-	left:600px;
-	position:fixed;
-	top:635px;
+    /*    left:600px;
+        position:fixed;
+        top:635px;*/
+    left:200px;
+    position:relative;
+    top:-365px;
 }
 
 .campo{
-	left:245px;
+    /*	left:245px;
 	position:fixed;
-	top:495px;
+	top:495px;*/
+    left:-18px;
+    position:relative;
+    top:15px;
 }
 
 #campo.fixed {
-  top: 0 !important;
+    top: 0 !important;
 }
 
 .defensaIzquierdo{
-	left:300px;
-	position:fixed;
-	top:635px;
+    /*    left:300px;
+        position:fixed;
+        top:635px;*/
+    left:3px;
+    position:relative;
+    top:-365px;
 }
 
 .atacanteIzquierdo{
-	left:300px;
-	position:fixed;
-	top: 775px;
+    /*    left:300px;
+        position:fixed;
+        top: 775px;*/
+    left:60px;
+    position:relative;
+    top:-360px;
 }
 
 .atacanteDerecho{
-	left:600px;
-	position:fixed;
-	top: 775px;
+    /*    left:600px;
+        position:fixed;
+        top: 775px;*/
+    left:145px;
+    position:relative;
+    top:-360px;
 }
 
 .formulario{
-	width:145px;
-	float: right;
+    width:145px;
+    float: right;
 }
 
 #help{
-	margin-left:395px;
+    margin-left:395px;
 }
 
 #text_person_name{
@@ -144,7 +162,7 @@
 }
 
 .clear{
-	clear:both;
+    clear:both;
 }
 
 .stars_container{

@@ -7,7 +7,7 @@ $(document).ready(function(){
     seleccionarMis5.bootstrap();
     $('#menu_index').addClass('active');
 
-    //$('#addTeamOfTheRound').hide();
+    $('#addTeamOfTheRound').hide();
     $('#addTeamOfTheRound').removeClass('hide');
 	loadQTipModal();
 	changeFieldArea();

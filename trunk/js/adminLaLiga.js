@@ -53,6 +53,8 @@ $(document).ready(function(){
     $('#rounds_admin_table').click(function(){
     	$('#rounds_table_list').slideToggle("slow");
     });
+    showTeamGoals();
+    mostrarPartidosDeLaFecha();
 });
 
 function startHidenContainers(){
@@ -97,6 +99,8 @@ function agregarJugador(){
         });
         return;
     }
+
+    $("#form_jugadores_procesando").fadeIn(400).html('<img src="../images/ajax-loader.gif" /><h3>Procesando...</h3>');
     var dataString = 'name='+ name;
     $('#form_jugadores_errors').hide();
     $.ajax({
@@ -121,7 +125,7 @@ function agregarJugador(){
                     $('#logo_ok').hide();
                     $('#logos_container').append($('#logo_ok'));
                 });
-    
+                
             }else{
                 $('#form_jugadores_errors').show();
                 $('#form_jugadores_errors').html('<h2>'+data.error+'</h2>');
@@ -132,6 +136,7 @@ function agregarJugador(){
         }
             
     });
+    $('#form_jugadores_procesando').fadeOut(6000);
 }
 
 function agregarTeam(){
@@ -146,6 +151,9 @@ function agregarTeam(){
     }
     var dataString = 'name='+ name;
     $('#form_equipos_errors').hide();
+
+
+    $("#form_equipos_procesando").fadeIn(400).html('<img src="../images/ajax-loader.gif" /><h3>Procesando...</h3>');
     $.ajax({
         type: "POST",
         url: "process/agregarTeamAjax.php",
@@ -180,6 +188,7 @@ function agregarTeam(){
         }
 
     });
+    $('#form_equipos_procesando').fadeOut(6000);
 }
 
 function agregarRound(){
@@ -194,6 +203,8 @@ function agregarRound(){
     }
     var dataString = 'name='+ name;
     $('#form_fechas_errors').hide();
+
+    $("#form_fechas_procesando").fadeIn(400).html('<img src="../images/ajax-loader.gif" /><h3>Procesando...</h3>');
     $.ajax({
         type: "POST",
         url: "process/agregarRoundAjax.php",
@@ -228,6 +239,7 @@ function agregarRound(){
         }
 
     });
+    $('#form_fechas_procesando').fadeOut(6000);
 }
 
 function agregarTeamVsTeam(){
@@ -243,6 +255,9 @@ function agregarTeamVsTeam(){
     }
     $('#team_vs_team_form_errors').hide();
     var dataString = 'equipo_1='+ team1 +'&equipo_2='+team2+'&fecha='+$('#team_vs_team_form_fecha').val();
+    $("#team_vs_team_form_on_round_procesando").fadeIn(400).html('<img src="../images/ajax-loader.gif" /><h3>Procesando...</h3>');
+
+
     $('#player_team_goal_form_errors').hide();
     $.ajax({
         type: "POST",
@@ -259,11 +274,12 @@ function agregarTeamVsTeam(){
                 $('#logo_ok').show();
                 $('#team_vs_team_form_on_round').html($('#logo_ok'));
                 $('#logo_ok').fadeOut("slow");
+                
                 $('#logo_ok').fadeOut(4000, function () {
                     $('#logo_ok').hide();
                     $('#logos_container').append($('#logo_ok'));
                 });
-
+                mostrarPartidosDeLaFecha();
             }else{
                 $('#team_vs_team_form_errors').show();
                 $('#team_vs_team_form_errors').html('<h2>'+data.error+'</h2>');
@@ -274,6 +290,7 @@ function agregarTeamVsTeam(){
         }
 
     });
+    $('#team_vs_team_form_on_round_procesando').fadeOut(6000);
 }
 
 function mostrarPartidosDeLaFecha(){
@@ -314,6 +331,9 @@ function agregarPlayerTeamGoals(){
     var player =$('#player_team_goal_form_select_player').val();
     var dataString = 'equipo='+ team +'&fecha='+round+'&jugador='+player+'&goles='+goals;
     $('#player_team_goal_form_errors').hide();
+    $("#player_team_goal_form_on_round_procesando").fadeIn(400).html('<img src="../images/ajax-loader.gif" /><h3>Procesando...</h3>');
+
+
     $.ajax({
         type: "POST",
         url: "process/agregarPlayerTeamGoalsAjax.php",
@@ -332,7 +352,7 @@ function agregarPlayerTeamGoals(){
                     $('#logo_ok').hide();
                     $('#logos_container').append($('#logo_ok'));
                 });
-
+                showTeamGoals();
             }else{
                 $('#player_team_goal_form_errors').show();
                 $('#player_team_goal_form_errors').html('<h2>'+data.error+'</h2>');
@@ -343,6 +363,7 @@ function agregarPlayerTeamGoals(){
         }
 
     });
+    $('#player_team_goal_form_on_round_procesando').fadeOut(6000);
 
 }
 

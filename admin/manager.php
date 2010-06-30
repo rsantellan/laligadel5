@@ -94,6 +94,7 @@
                                 </label>
                             </p>
                         </form>
+                        <div id="form_jugadores_procesando"></div>
                         <div id="form_jugadores_errors"></div>
                     </div>
 					<br/>
@@ -132,6 +133,7 @@
                                 </label>
                             </p>
                         </form>
+                        <div id="form_equipos_procesando"></div>
                         <div id="form_equipos_errors"></div>
                     </div>
 
@@ -169,6 +171,7 @@
                                 </label>
                             </p>
                         </form>
+                        <div id="form_fechas_procesando"></div>
                         <div id="form_fechas_errors"></div>
                     </div>
 
@@ -207,6 +210,7 @@
                             </p>
 
                         </form>
+                        <div id="team_vs_team_form_on_round_procesando"></div>
                         <div id="team_vs_team_form_on_round"></div>
                         <div id="team_vs_team_form_errors"></div>
                     </div>
@@ -254,6 +258,7 @@
                             </p>
 
                         </form>
+                        <div id="player_team_goal_form_on_round_procesando"></div>
                         <div id="player_team_goal_form_on_round"></div>
                         <div id="player_team_goal_form_errors"></div>
                         

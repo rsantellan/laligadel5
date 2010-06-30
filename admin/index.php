@@ -10,95 +10,11 @@
                 <link rel="stylesheet" type="text/css" href="../css/adminTheme.css" />
                 <link rel="stylesheet" type="text/css" href="../css/adminStyle.css" />
                 <link rel="stylesheet" type="text/css" href="../css/adminTheme4.css" />
-
+                <link rel="stylesheet" type="text/css" href="css/cssGraphics.css" />
                 <script type="text/javascript" src="../js/jquery-1.3.2.min.js"> </script>
-                <script type="text/javascript" src="../js/jquery.flot.js"> </script>
+                
+                <script type="text/javascript" src="js/adminGraphs.js"></script>
 
-                <style type="text/css">
-
-                    td.value {
-                        background-image: url(gridline58.gif);
-                        background-repeat: repeat-x;
-                        background-position: left top;
-                        border-left: 1px solid #e5e5e5;
-                        border-right: 1px solid #e5e5e5;
-                        padding:0;
-                        border-bottom: none;
-                        background-color:transparent;
-                    }
-                    td {
-                        padding: 4px 6px;
-                        border-bottom:1px solid #e5e5e5;
-                        border-left:1px solid #e5e5e5;
-                        background-color:#fff;
-                    }
-                    body {
-                        font-family: Verdana, Arial, Helvetica, sans-serif;
-                        font-size: 80%;
-                    }
-                    td.value img {
-                        vertical-align: middle;
-                        margin: 5px 5px 5px 0;
-                    }
-                    th {
-                        text-align: left;
-                        vertical-align:top;
-                    }
-                    td.last {
-                        border-bottom:1px solid #e5e5e5;
-                    }
-                    td.first {
-                        border-top:1px solid #e5e5e5;
-                    }
-                    .auraltext
-                    {
-                        position: absolute;
-                        font-size: 0;
-                        left: -1000px;
-                    }
-                    table {
-                        background-image:url(bg_fade.png);
-                        background-repeat:repeat-x;
-                        background-position:left top;
-                        width: 33em;
-                    }
-                    caption {
-                        font-size:90%;
-                        font-style:italic;
-                    }
-
-                </style>
-
-
-                <script type="text/javascript">
-                    $(document).ready(function(){
-
-                    });
-                    function askForData(){
-                        var dataString = "";
-                        $.ajax({
-                            type: "POST",
-                            url: "process/commentsPerDay.php",
-                            data: dataString,
-                            dataType: "json",
-                            beforeSend: function(x) {
-                                if(x && x.overrideMimeType) {
-                                    x.overrideMimeType("application/json;charset=UTF-8");
-                                }
-                            },
-                            success: function(data){
-                                if(data.result == 1){
-                                    //$.plot($("#placeholder"), [ data.ordenados ]);
-
-
-                                }else{
-
-                                }
-                            }
-
-                        });
-                    }
-                </script>
                 <!--
                 [if IE]>
                 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
@@ -135,58 +51,13 @@
                                     <li>Poder filtrar los comentarios</li>
                                 </ol>
                             </div>
-
-                            <table cellspacing="0" cellpadding="0" summary="Sweden was the top importing country by far in 1998.">
-                                <caption align="top">Top banana importers 1998 (value of banana imports in millions of US dollars per million people)<br /><br /></caption>
-                                <tr>
-                                    <th scope="col"><span class="auraltext">Country</span> </th>
-                                    <th scope="col"><span class="auraltext">Millions of US dollars per million people</span> </th>
-
-                                </tr>
-                                <tr>
-                                    <td class="first">Sweden</td>
-                                    <td class="value first"><img src="images/bar.png" alt="" width="200" height="16" />17.12</td>
-                                </tr>
-                                <tr>
-                                    <td>United&nbsp;Kingdom</td>
-
-                                    <td class="value"><img src="images/bar.png" alt="" width="104" height="16" />8.88</td>
-                                </tr>
-                                <tr>
-                                    <td>Germany</td>
-                                    <td class="value"><img src="images/bar.png" alt="" width="98" height="16" />8.36</td>
-                                </tr>
-                                <tr>
-
-                                    <td>Italy</td>
-                                    <td class="value"><img src="images/bar.png" alt="" width="70" height="16" />5.96</td>
-                                </tr>
-                                <tr>
-                                    <td>United States </td>
-                                    <td class="value"><img src="images/bar.png" alt="" width="56" height="16" />4.78</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Canada</td>
-                                    <td class="value"><img src="images/bar.png" alt="" width="54" height="16" />4.62</td>
-                                </tr>
-                                <tr>
-                                    <td>Japan</td>
-                                    <td class="value"><img src="images/bar.png" alt="" width="50" height="16" />4.30</td>
-
-                                </tr>
-                                <tr>
-                                    <td>France</td>
-                                    <td class="value"><img src="images/bar.png" alt="" width="39" height="16" />3.33</td>
-                                </tr>
-                                <tr>
-                                    <td>Russia</td>
-
-                                    <td class="value last"><img src="images/bar.png" alt="" width="12" height="16" />1.04</td>
-                                </tr>
-                            </table>
-
-        
+                            <hr/>
+                            <div id="place_for_graphs">
+                            </div>
+                            <select id="graph_options">
+                                <option value="1">Comentarios por dia</option>
+                                <option value="2">Comentarios por persona</option>
+                            </select>
                             <input type="button" onclick="askForData()" value="Click"/>
                         </div>
                         <div id="sidebar">

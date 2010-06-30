@@ -153,7 +153,7 @@ function addImage(src) {
 	newImg.style.margin = "5px";
   newImg.width = 54;
   newImg.height = 54;
-  document.getElementById("div_image_update").innerHTML = "";
+  //document.getElementById("div_image_update").innerHTML = "";
   document.getElementById("div_image_update").appendChild(newImg);
   	
   if (newImg.filters) {

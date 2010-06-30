@@ -404,3 +404,7 @@ form#form #button1:hover, form#form #button2:hover {
     /*width:  100px;	
 	float: left;*/
 }
+
+.images_left_floating{
+    float: left;
+}

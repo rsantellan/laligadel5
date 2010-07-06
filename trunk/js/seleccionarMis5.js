@@ -61,7 +61,7 @@ seleccionarMis5.dropGoaly = function(event, ui) {
 
 	// Make item available in the basker
 	var selectedItem = ui.draggable;
-        
+    //console.log($(this).attr('id'));
         var id = selectedItem.attr('id');
         if(seleccionarMis5.belongToOther(id)){
             return;
@@ -225,7 +225,7 @@ seleccionarMis5.dropAttackerRight = function(event, ui) {
 
 	// Make item available in the basker
 	var selectedItem = ui.draggable;
-
+    
         var id = selectedItem.attr('id');
         if(seleccionarMis5.belongToOther(id)){
             return;
@@ -283,22 +283,9 @@ seleccionarMis5.enviar = function() {
             if(data.result == 1){
                 $('#list_of_teams_of_the_round').prepend(data.body);
                 showListOfTeamOfTheRound();
-//                $("#player_team_goal_form_select_player").append("<option value='"+data.id+"'>"+data.name+"</option>");
-//                $('#players_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td>...</td></tr>');
-//                $('#logo_ok').show();
-//                $('#form_jugadores_errors').html($('#logo_ok'));
-//                $('#form_jugadores_errors').show();
-//                $('#logo_ok').fadeOut(6000, function () {
-//                    $('#logo_ok').hide();
-//                    $('#logos_container').append($('#logo_ok'));
-//                });
 
             }else{
-//                $('#form_jugadores_errors').show();
-//                $('#form_jugadores_errors').html('<h2>'+data.error+'</h2>');
-//                $('#form_jugadores_errors').fadeOut(8000, function () {
-//                    $('#form_jugadores_errors').hide();
-//                });
+
             }
         }
 

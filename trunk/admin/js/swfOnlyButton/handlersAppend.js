@@ -1,15 +1,70 @@
+/* This is an example of how to cancel all the files queued up.  It's made somewhat generic.  Just pass your SWFUpload
+object in to this method and it loops through cancelling the uploads. */
+function cancelQueue(instance) {
+	document.getElementById(instance.customSettings.cancelButtonId).disabled = true;
+	instance.stopUpload();
+	var stats;
+
+	do {
+		stats = instance.getStats();
+		instance.cancelUpload();
+	} while (stats.files_queued !== 0);
+
+}
+
+/* **********************
+   Event Handlers
+   These are my custom event handlers to make my
+   web application behave the way I went when SWFUpload
+   completes different tasks.  These aren't part of the SWFUpload
+   package.  They are part of my application.  Without these none
+   of the actions SWFUpload makes will show up in my application.
+   ********************** */
+function fileDialogStart() {
+	/* I don't need to do anything here */
+}
+function fileQueued(file) {
+	try {
+		// You might include code here that prevents the form from being submitted while the upload is in
+		// progress.  Then you'll want to put code in the Queue Complete handler to "unblock" the form
+		var progress = new FileProgress(file, this.customSettings.progressTarget);
+		progress.setStatus("Pendiente...");
+		progress.toggleCancel(true, this);
+
+	} catch (ex) {
+		this.debug(ex);
+	}
+
+}
+
+function uploadStart(file) {
+	try {
+		/* I don't want to do any file validation or anything,  I'll just update the UI and return true to indicate that the upload should start */
+		var progress = new FileProgress(file, this.customSettings.progressTarget);
+		progress.setStatus("Subiendo...");
+		progress.toggleCancel(true, this);
+	}
+	catch (ex) {
+	}
+
+	return true;
+}
+
+
+/*
+ * De aca para arriba es nuevo
+ */
+
 function fileQueueError(file, errorCode, message) {
 	try {
-    console.log('Error code: '.errorCode);
 		var imageName = "error.gif";
 		var errorName = "";
 		if (errorCode === SWFUpload.errorCode_QUEUE_LIMIT_EXCEEDED) {
-			errorName = "You have attempted to queue too many files.";
+			errorName = "A sobrepaso el limite de archivos permitidos.";
 		}
 
 		if (errorName !== "") {
 			alert(errorName);
-      console.log(errorName);
       this.debug(errorName);
 			return;
 		}
@@ -50,11 +105,10 @@ function uploadProgress(file, bytesLoaded) {
 
 	try {
 		var percent = Math.ceil((bytesLoaded / file.size) * 100);
-
-		var progress = new FileProgress(file,  this.customSettings.upload_target);
+        var progress = new FileProgress(file,  this.customSettings.progressTarget);
 		progress.setProgress(percent);
 		if (percent === 100) {
-			progress.setStatus("Creating thumbnail...");
+			progress.setStatus("Creando las galerias necesarias...");
 			progress.toggleCancel(false, this);
 		} else {
 			progress.setStatus("Uploading...");
@@ -67,13 +121,13 @@ function uploadProgress(file, bytesLoaded) {
 
 function uploadSuccess(file, serverData) {
 try {
-		var progress = new FileProgress(file,  this.customSettings.upload_target);
+		var progress = new FileProgress(file,  this.customSettings.progressTarget);
 
 		if (serverData.substring(0, 7) === "FILEID:") {
 		
       addImage(serverData.substring(7));
 
-			progress.setStatus("Thumbnail Created.");
+			progress.setStatus("Se a creado la galeria necesaria.");
 			progress.toggleCancel(false);
 		} else {
 			addImage("images/error.gif");
@@ -95,9 +149,9 @@ function uploadComplete(file) {
 		if (this.getStats().files_queued > 0) {
 			this.startUpload();
 		} else {
-			var progress = new FileProgress(file,  this.customSettings.upload_target);
+			var progress = new FileProgress(file,  this.customSettings.progressTarget);
 			progress.setComplete();
-			progress.setStatus("All images received.");
+			progress.setStatus("Los archivos han sido recividos.");
 			progress.toggleCancel(false);
 		}
 	} catch (ex) {
@@ -112,9 +166,9 @@ function uploadError(file, errorCode, message) {
 		switch (errorCode) {
 		case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:
 			try {
-				progress = new FileProgress(file,  this.customSettings.upload_target);
+				progress = new FileProgress(file,  this.customSettings.progressTarget);
 				progress.setCancelled();
-				progress.setStatus("Cancelled");
+				progress.setStatus("Cancelado");
 				progress.toggleCancel(false);
 			}
 			catch (ex1) {
@@ -123,9 +177,9 @@ function uploadError(file, errorCode, message) {
 			break;
 		case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
 			try {
-				progress = new FileProgress(file,  this.customSettings.upload_target);
+				progress = new FileProgress(file,  this.customSettings.progressTarget);
 				progress.setCancelled();
-				progress.setStatus("Stopped");
+				progress.setStatus("Parado");
 				progress.toggleCancel(true);
 			}
 			catch (ex2) {
@@ -211,11 +265,11 @@ function fadeIn(element, opacity) {
  *	Control object for displaying file info
  * ****************************************** */
 
-function FileProgress(file, targetID) {
+/*function FileProgress(file, targetID) {
 	this.fileProgressID = "divFileProgress";
 
 	this.fileProgressWrapper = document.getElementById(this.fileProgressID);
-	if (!this.fileProgressWrapper) {
+    if (!this.fileProgressWrapper) {
 		this.fileProgressWrapper = document.createElement("div");
 		this.fileProgressWrapper.className = "progressWrapper";
 		this.fileProgressWrapper.id = this.fileProgressID;
@@ -295,3 +349,4 @@ FileProgress.prototype.toggleCancel = function (show, swfuploadInstance) {
 		};
 	}
 };
+*/

@@ -76,7 +76,7 @@ if ($_REQUEST['id']!= null){
 
 				custom_settings : {
 					upload_target : "divFileProgressContainer",
-          object_class_name : "<?php echo get_class($player);?>"
+                    object_class_name : "<?php echo get_class($player);?>"
 				},
 				
 				// Debug Settings

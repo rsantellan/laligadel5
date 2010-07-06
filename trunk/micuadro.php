@@ -19,9 +19,7 @@
     <h2 class="title">Arma el equipo de la: <?php echo $round->getName() ?><label id="help"> Ayuda <img src="images/HelpIcon.gif" alt="Futbol" width="34" height="34" /></label></h2>
     <div class="story">
         <a href="javascript:void(0)" onclick="showAddTeamOfTheRound()" id="add_team_of_the_round_link">Agregar equipo de la fecha</a>
-        <br/>
-        <br/>
-        <br/>
+
         <div id ="addTeamOfTheRound" class="hide">
 
             <div id='field' class='field'>
@@ -61,10 +59,19 @@
 
             <div id="players">
                 <?php include_once 'logica/Player.class.php'; ?>
+                <?php
+                include './logica/ImageHandler.class.php';
+                $imageHandler = new ImageHandler();
+                ?>
                 <?php $list = Player::getPlayersOfLastRound(); ?>
                 <?php foreach ($list as $player): ?>
+                <?php
+                    $auxPath = $player->getImage();
+                    if ($player->hasImage()) {
+                        $auxPath = $imageHandler->getConvertedPath($player->getImage(), 54, 54, true, false);
+                    } ?>
                     <div class="player" id="<?php echo $player->getId() ?>">
-                        <img src="<?php echo $player->getImage() ?>" width="54" height="54" tooltip="<?php echo $player->getName() ?>"/>
+                        <img src="<?php echo $auxPath ?>" width="54" height="54" tooltip="<?php echo $player->getName() ?>"/>
                         <p class="remove">sacar</p>
                     </div>
                 <?php endforeach; ?>
@@ -106,10 +113,10 @@
                         <br/>
             <?php $allTeamsOfTheRound = TeamOfTheRound::getTeamOfTheRoundOfOneRound($auxRound->getId(), $listAllPlayers) ?>
             <?php
-            $canChange = false;
-            if($round->getId() == $auxRound->getId()){
-                $canChange = true;
-            }
+                        $canChange = false;
+                        if ($round->getId() == $auxRound->getId()) {
+                            $canChange = true;
+                        }
             ?>
             <?php foreach ($allTeamsOfTheRound as $teamOfTheRound): ?>
                             <div id="container_team_of_the_round_<?php echo $teamOfTheRound->getId() ?>" class="team_of_the_round_container">
@@ -119,56 +126,87 @@
                                 </div>
                                 <div class ="team_of_the_round_container_player">
                                     <h5 class="team_of_the_round_container_player_title">Golero</h5>
-                                    <img src="<?php echo $teamOfTheRound->getPlayerGoaly()->getImage() ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerGoaly()->getName() ?>"/>
-                                    <br/>
-                                    <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerGoaly()->getName() ?></h7>
-                                </div>
-                                <div class ="team_of_the_round_container_player">
-                                    <h5 class="team_of_the_round_container_player_title">Defensa Izquierdo</h5>
-                                    <img src="<?php echo $teamOfTheRound->getPlayerDefenderLeft()->getImage() ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerDefenderLeft()->getName() ?>"/>
-                                    <br/>
-                                    <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerDefenderLeft()->getName() ?></h7>
-                                </div>
-                                <div class ="team_of_the_round_container_player">
-                                    <h5 class="team_of_the_round_container_player_title">Defensa Derecho</h5>
-                                    <img src="<?php echo $teamOfTheRound->getPlayerDefenderRight()->getImage() ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerDefenderRight()->getName() ?>"/>
-                                    <br/>
-                                    <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerDefenderRight()->getName() ?></h7>
-                                </div>
-                                <div class ="team_of_the_round_container_player">
-                                    <h5 class="team_of_the_round_container_player_title">Atacante Izquierdo</h5>
-                                    <img src="<?php echo $teamOfTheRound->getPlayerAttackerLeft()->getImage() ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerAttackerLeft()->getName() ?>"/>
-                                    <br/>
-                                    <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerAttackerLeft()->getName() ?></h7>
-                                </div>
-                                <div class ="team_of_the_round_container_player">
-                                    <h5 class="team_of_the_round_container_player_title">Atacante Derecho</h5>
-                                    <img src="<?php echo $teamOfTheRound->getPlayerAttackerRight()->getImage() ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerAttackerRight()->getName() ?>"/>
-                                    <br/>
-                                    <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerAttackerRight()->getName() ?></h7>
-                                </div>
-                                <div class="clear"></div>
-                                <div class ="team_of_the_round_container_lower">
-                                    <div id="stars" class="stars_container">
-                                        <h5>Ponle un puntaje: </h5>
-                                        <ul class="star-rating <?php if($canChange) echo 'rate_widget'?>" id="team_of_the_round_<?php echo $teamOfTheRound->getId()?>" object_id="<?php echo $teamOfTheRound->getId() ?>">
-                                            <li class="current-rating" style="width:<?php echo $teamOfTheRound->getCalculatedRatingPercent()?>%;">Currently 3/5 Stars.</li>
-                                            <li><a href="javascript:void(0)" title="1 star out of 5" class="one-star <?php if($canChange) echo 'ratings_stars'?>" rating="1">1</a></li>
-                                            <li><a href="javascript:void(0)" title="2 stars out of 5" class="two-stars <?php if($canChange) echo 'ratings_stars'?>" rating="2">2</a></li>
-                                            <li><a href="javascript:void(0)" title="3 stars out of 5" class="three-stars <?php if($canChange) echo 'ratings_stars'?>" rating="3">3</a></li>
-                                            <li><a href="javascript:void(0)" title="4 stars out of 5" class="four-stars <?php if($canChange) echo 'ratings_stars'?>" rating="4">4</a></li>
-                                            <li><a href="javascript:void(0)" title="5 stars out of 5" class="five-stars <?php if($canChange) echo 'ratings_stars'?>" rating="5">5</a></li>
-                                        </ul>                
-                                        <h6> Puntos del equipo: <?php echo $teamOfTheRound->getCalculatedRating()?> </h6>
-                                    </div>
-                                </div>
-                            </div>
-            <?php endforeach; ?>
+                    <?php
+                            $auxPath = $teamOfTheRound->getPlayerGoaly()->getImage();
+                            if ($teamOfTheRound->getPlayerGoaly()->hasImage()) {
+                                $auxPath = $imageHandler->getConvertedPath($teamOfTheRound->getPlayerGoaly()->getImage(), 54, 54, true, false);
+                            } ?>
+                            <img src="<?php echo $auxPath ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerGoaly()->getName() ?>"/>
                             <br/>
+                            <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerGoaly()->getName() ?></h7>
+                        </div>
+                        <div class ="team_of_the_round_container_player">
+                            <h5 class="team_of_the_round_container_player_title">Defensa Izquierdo</h5>
+                    <?php
+                            $auxPath = $teamOfTheRound->getPlayerDefenderLeft()->getImage();
+                            if ($teamOfTheRound->getPlayerDefenderLeft()->hasImage()) {
+                                $auxPath = $imageHandler->getConvertedPath($teamOfTheRound->getPlayerDefenderLeft()->getImage(), 54, 54, true, false);
+                            } ?>
+                            <img src="<?php echo $auxPath ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerDefenderLeft()->getName() ?>"/>
                             <br/>
-                            <hr/>
+                            <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerDefenderLeft()->getName() ?></h7>
+                        </div>
+                        <div class ="team_of_the_round_container_player">
+                            <h5 class="team_of_the_round_container_player_title">Defensa Derecho</h5>
+                    <?php
+                            $auxPath = $teamOfTheRound->getPlayerDefenderRight()->getImage();
+                            if ($teamOfTheRound->getPlayerDefenderRight()->hasImage()) {
+                                $auxPath = $imageHandler->getConvertedPath($teamOfTheRound->getPlayerDefenderRight()->getImage(), 54, 54, true, false);
+                            } ?>
+                            <img src="<?php echo $auxPath ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerDefenderRight()->getName() ?>"/>
+                            <br/>
+                            <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerDefenderRight()->getName() ?></h7>
+                        </div>
+                        <div class ="team_of_the_round_container_player">
+                            <h5 class="team_of_the_round_container_player_title">Atacante Izquierdo</h5>
+                    <?php
+                            $auxPath = $teamOfTheRound->getPlayerAttackerLeft()->getImage();
+                            if ($teamOfTheRound->getPlayerAttackerLeft()->hasImage()) {
+                                $auxPath = $imageHandler->getConvertedPath($teamOfTheRound->getPlayerAttackerLeft()->getImage(), 54, 54, true, false);
+                            } ?>
+                            <img src="<?php echo $auxPath ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerAttackerLeft()->getName() ?>"/>
+                            <br/>
+                            <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerAttackerLeft()->getName() ?></h7>
+                        </div>
+                        <div class ="team_of_the_round_container_player">
+                            <h5 class="team_of_the_round_container_player_title">Atacante Derecho</h5>
+                    <?php
+                            $auxPath = $teamOfTheRound->getPlayerAttackerRight()->getImage();
+                            if ($teamOfTheRound->getPlayerAttackerRight()->hasImage()) {
+                                $auxPath = $imageHandler->getConvertedPath($teamOfTheRound->getPlayerAttackerRight()->getImage(), 54, 54, true, false);
+                            } ?>
+                            <img src="<?php echo $auxPath ?>" width="54" height="54" tooltip="<?php echo $teamOfTheRound->getPlayerAttackerRight()->getName() ?>"/>
+                            <br/>
+                            <h7 class="team_of_the_round_container_player_title"><?php echo $teamOfTheRound->getPlayerAttackerRight()->getName() ?></h7>
+                        </div>
+                        <div class="clear"></div>
+                        <div class ="team_of_the_round_container_lower">
+                            <div id="stars" class="stars_container">
+                                <h5>Ponle un puntaje: </h5>
+                                <ul class="star-rating <?php if ($canChange)
+                                echo 'rate_widget' ?>" id="team_of_the_round_<?php echo $teamOfTheRound->getId() ?>" object_id="<?php echo $teamOfTheRound->getId() ?>">
+                                <li class="current-rating" style="width:<?php echo $teamOfTheRound->getCalculatedRatingPercent() ?>%;">Currently 3/5 Stars.</li>
+                                <li><a href="javascript:void(0)" title="1 star out of 5" class="one-star <?php if ($canChange)
+                                    echo 'ratings_stars' ?>" rating="1">1</a></li>
+                             <li><a href="javascript:void(0)" title="2 stars out of 5" class="two-stars <?php if ($canChange)
+                                        echo 'ratings_stars' ?>" rating="2">2</a></li>
+                                 <li><a href="javascript:void(0)" title="3 stars out of 5" class="three-stars <?php if ($canChange)
+                                            echo 'ratings_stars' ?>" rating="3">3</a></li>
+                                     <li><a href="javascript:void(0)" title="4 stars out of 5" class="four-stars <?php if ($canChange)
+                                                echo 'ratings_stars' ?>" rating="4">4</a></li>
+                                         <li><a href="javascript:void(0)" title="5 stars out of 5" class="five-stars <?php if ($canChange)
+                                                    echo 'ratings_stars' ?>" rating="5">5</a></li>
+                                         </ul>
+                                         <h6> Puntos del equipo: <?php echo $teamOfTheRound->getCalculatedRating() ?> </h6>
+                                     </div>
+                                 </div>
+                             </div>
             <?php endforeach; ?>
-            </div>
-                    </div>
+                                                    <br/>
+                                                    <br/>
+                                                    <hr/>
+            <?php endforeach; ?>
+                                                </div>
+                                            </div>
 
     <?php include('bottom.php') ?>

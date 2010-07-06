@@ -2,68 +2,120 @@
 <?php if (!$_SESSION['userAdmin']): ?>
 <?php header("location:loginForm.php"); ?>
 <?php else: ?>
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml">
-            <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>Admin Theta Terra</title>
-                <link rel="stylesheet" type="text/css" href="../css/adminTheme.css" />
-                <link rel="stylesheet" type="text/css" href="../css/adminStyle.css" />
-                <link rel="stylesheet" type="text/css" href="../css/adminTheme4.css" />
-                <script type="text/javascript" src="../js/jquery-1.3.2.min.js"> </script>
+<?php include ('headerUpper.php'); ?>
+
+        <link rel="stylesheet" type="text/css" href="css/managePictures.css" />
+        <script type="text/javascript" src="../js/jquery-1.3.2.min.js"> </script>
+        <script type="text/javascript" src="../js/jquery-ui-1.7.3.custom.min.js"></script>
+        <script type="text/javascript" src="js/picturesManagement.js"> </script>
+        <script type="text/javascript" src="./js/pictureManagementTabs.js"> </script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#managePictures').addClass('current');
+            });
+        </script>
+<?php include ('headerDown.php'); ?>
+        
+<?php        include ('emptyTopPanel.php'); ?>
+        
+        <div id="wrapper">
+            <div id="content">
+                <div>
+                    <h1>Manejador de imagenes</h1>
+            <?php
+            include '../logica/Image.class.php';
+            include '../logica/ImageHandler.class.php';
+            include '../logica/Category.class.php';
+            ?>
+            <?php
+            $imageList = Image::getAllWithoutCategory(true, true);
+            $categoryList = Category::getAllCategories(false, true, true);
+            $imageHandler = new ImageHandler();
+            $index = 1;
+            ?>
 
 
-                <!--
-                [if IE]>
-                <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
-                <![endif]-->
-            </head>
+            <ul class="tabs">
+                <?php foreach ($categoryList as $category): ?>
+                    <li><a href="#tab<?php echo $category->getId() ?>"><?php echo $category->getName() ?></a></li>
+                <?php endforeach; ?>
+                </ul>
+
+                <div class="tab_container">
+                <?php foreach ($categoryList as $category): ?>
+                        <div id="tab<?php echo $category->getId() ?>" class="tab_content">
+                            <!--Content-->
+                            <div id="category_holder_<?php echo $category->getId() ?>" placeId ="<?php echo $category->getId() ?>" class="category_holder">
+
+                        <?php $imageCategoryList = Image::getAllOfCategory($category->getId(), true, true);
+                        foreach ($imageCategoryList as $image): ?>
+                        <?php $auxPath = $imageHandler->getConvertedPath($image->getFile(), 60, 60, true, true); ?>
+                            <div id ="image_<?php echo $image->getId() ?>" class="image_div_on_container image_draggable" imageId ="<?php echo $image->getId() ?>">
+
+                                <img src="<?php echo $auxPath ?>"  tooltip="<?php echo $image->getName() ?>" alt="<?php echo $image->getName() ?>"/>
 
 
-            <body>
-                <div id="container">
-                    <div id="header">
-                        <h2>Admin area</h2>
-                        <div id="topmenu">
-                            <ul>
-                                <li class="current"><a href="index.php">Dashboard</a></li>
-                                <li><a href="manager.php">Manejar la liga</a></li>
-                                <li><a href="index_upload.php">Subir fotos</a></li>
-                            </ul>
+                            </div>
+                        <?php endforeach; ?>
+
+
                         </div>
                     </div>
-                    <div id="top-panel">
-                        <div id="panel">
+                <?php endforeach; ?>
+
+                        </div>
+
+                        <div style="clear: both;"></div>
+                        <hr/>
+                        <br/>
+                        <h4>Arrastra hasta aqui para sacarles las categorias</h4>
+                        <div id="container_images_not_used" class ="container_images_not_used" placeId="0">
+                            <img src="images/cancel-icon.png" alt="Cancelar"/>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <br/>
+                        <br/>
+                        <h3>Imagenes que no pertenecen a ninguna galeria</h3>
+                        <div id="images_not_used_container">
+                <?php foreach ($imageList as $image): ?>
+
+
+
+<?php
+                                $auxPath = $imageHandler->getConvertedPath($image->getFile(), 100, 100, true, true);
+?>
+                                <div id ="image_<?php echo $image->getId() ?>" class="image_div image_draggable" imageId ="<?php echo $image->getId() ?>">
+
+                                    <img src="<?php echo $auxPath ?>"  tooltip="<?php echo $image->getName() ?>" alt="<?php echo $image->getName() ?>"/>
+
+
+                                </div>
+
+<?php endforeach; ?>
+                            </div>
+                            <br/>
+
+                            <div style="clear: both;"></div>
+                            <hr/>
+                            <div id="trash_droppable" class="trash_droppable" placeId="-1">
+                                <img src="images/Trash_128x128.png" alt="Basura"/>
+                            </div>
+                            <input type="button" value="Eliminar las imagenes" id="start_delete_images"/>
+
+                            <div id="delete_confirmation" class="hide">
+                                <input type="button" value="No eliminar las imagenes" id="cancel_delete_images"/>
+                                <input type="button" value="Confirmar Eliminar las imagenes" id="finish_delete_images"/>
+                            </div>
+
+                            <div id="trash_image_container" class="trash_image_container"  >
+
+
+                            </div>
+
 
                         </div>
                     </div>
-                    <div id="wrapper">
-                        <div id="content">
-                            <div>
-                                <h1>Manejador de imagenes</h1>
-                        <?php include '../logica/Image.class.php' ?>
-                        <?php
-                        $imageList = Image::getAllWithoutCategory(true, true);
-                        include '../logica/ImageHandler.class.php';
-                                $imageHandler = new ImageHandler();
-                        ?>
-
-                        <?php foreach ($imageList as $image): ?>
-                            
-                                
-
-        <?php
-
-                              $auxPath =  $imageHandler->getConvertedPath($image->getFile(), '100', '100', true, true);
-                            ?>
-                            <img src="<?php echo $auxPath ?>" width="100" height="100" tooltip="<?php echo $image->getName() ?>" alt="<?php echo $image->getName() ?>"/>
-                                
-        <?php endforeach; ?>
-
-
-                            
-                    </div>
-                        </div>
                     <div id="sidebar">
                         <ul>
 
@@ -87,14 +139,14 @@
                 </div>
                 <div id="footer">
                     <div id="credits">
-                                       		Template by Yo
+                                                                                                   		Template by Yo
                     </div>
                     <div id="styleswitcher">
 
                     </div><br />
 
                 </div>
-            </div>
-        </body>
-    </html>
+                </div>
+                </body>
+                </html>
 <?php endif; ?>

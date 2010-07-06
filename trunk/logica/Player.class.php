@@ -62,6 +62,10 @@ class Player {
         $this->name = $name;
     }
 
+    public function hasImage(){
+        if (strcmp($this->image, "-") == 0) return false;
+        return true;
+    }
     public static function savePlayer($name) {
 
         require_once '../../persistencia/dBase.php';

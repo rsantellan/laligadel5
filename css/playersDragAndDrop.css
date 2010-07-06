@@ -64,7 +64,7 @@
         top:535px;*/
     left:182px;
     position:relative;
-    top:-350px;
+    top:-425px;
 }
 
 .defensaDerecho{
@@ -73,7 +73,7 @@
         top:635px;*/
     left:200px;
     position:relative;
-    top:-365px;
+    top:-440px;
 }
 
 .campo{
@@ -95,7 +95,7 @@
         top:635px;*/
     left:3px;
     position:relative;
-    top:-365px;
+    top:-440px;
 }
 
 .atacanteIzquierdo{
@@ -104,7 +104,7 @@
         top: 775px;*/
     left:60px;
     position:relative;
-    top:-360px;
+    top:-435px;
 }
 
 .atacanteDerecho{
@@ -113,7 +113,7 @@
         top: 775px;*/
     left:145px;
     position:relative;
-    top:-360px;
+    top:-435px;
 }
 
 .formulario{

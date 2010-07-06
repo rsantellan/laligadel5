@@ -135,16 +135,24 @@ if (!$is_valid_extension) {
  */
 
 //If the object is a player then it will update the avatar picture.
+include_once '../logica/ImageHandler.class.php';
+$randName = md5(rand() * time());
+$realName = $file_name;
+$file_name = $randName . "." . $file_extension;
+
+$imageHandler = new ImageHandler();
 if (strcmp($className, "Player") == 0) {
     $different_path = "../uploads/player_avatar/";
     $save_path = getcwd() . "/" . $different_path;
-    if (!@move_uploaded_file($_FILES[$upload_name]["tmp_name"], $save_path . $id . '-' . $file_name)) {
+    ImageHandler::checkDirectory($save_path);
+    if (!@move_uploaded_file($_FILES[$upload_name]["tmp_name"], $save_path . $file_name)) {
         HandleError("File could not be saved.");
         exit(0);
     } else {
         include_once '../logica/Player.class.php';
-        Player::updatePlayerAvatar($id, "uploads/player_avatar/" . $id . '-' . $file_name);
-        echo "FILEID:" . $different_path . $id . '-' . $file_name;
+        Player::updatePlayerAvatar($id, "uploads/player_avatar/" . $file_name);
+        $place = $imageHandler->getConvertedPath("uploads/player_avatar/" . $file_name, 54, 54, false, true);
+        echo "FILEID:" . $place;
     }
 
     exit(0);
@@ -153,21 +161,23 @@ if (strcmp($className, "Player") == 0) {
 if (strcmp($className, "Images") == 0) {
     $different_path = "../uploads/galleries/";
     $save_path = getcwd() . "/" . $different_path;
-    srand(time());
+    ImageHandler::checkDirectory($save_path);
+    srand(time());$id . '-' .
     $id = rand(1, 1500);
-    if (!@move_uploaded_file($_FILES[$upload_name]["tmp_name"], $save_path . $id . '-' . $file_name)) {
+    if (!@move_uploaded_file($_FILES[$upload_name]["tmp_name"], $save_path . $file_name)) {
         HandleError("File could not be saved.");
         exit(0);
     } else {
         include_once '../logica/Image.class.php';
 
-        Image::saveImage(true, true, $file_name, "uploads/galleries/" . $id . '-' . $file_name);
-        echo "FILEID:" . $different_path . $id . '-' . $file_name;
+        $image = Image::saveImage(true, true, $realName, "uploads/galleries/" . $file_name);
+        $place = $imageHandler->getConvertedPath("uploads/galleries/" .  $file_name, 54, 54, false, true);
+        echo "FILEID:" . $place;
     }
 
     exit(0);
 }
-
+ImageHandler::checkDirectory($save_path);
 if (!@move_uploaded_file($_FILES[$upload_name]["tmp_name"], $save_path . $file_name)) {
     HandleError("File could not be saved.");
     exit(0);

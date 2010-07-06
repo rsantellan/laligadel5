@@ -3,23 +3,13 @@
 <?php header("location:loginForm.php"); ?>
 <?php else: ?>
 
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml">
-            <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>Admin Theta Terra</title>
-                <link rel="stylesheet" type="text/css" href="../css/adminTheme.css" />
-                <link rel="stylesheet" type="text/css" href="../css/adminStyle.css" />
-                <link rel="stylesheet" type="text/css" href="../css/adminTheme4.css" />
-                <!--[if IE]>
-                <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
-                <![endif]-->
+        <?php        include ('headerUpper.php'); ?>
 
                 <script type="text/javascript" src="./swfupload/swfupload.js"></script>
                 <script type="text/javascript" src="./js/swfupload.queue.js"></script>
                 <script type="text/javascript" src="./js/fileprogress.js"></script>
                 <script type="text/javascript" src="./js/swfOnlyButton/handlersAppend.js"></script>
-
+                <script type="text/javascript" src="../js/jquery-1.3.2.min.js"> </script>
                 <script type="text/javascript">
                     var swfu;
                     window.onload = function () {
@@ -64,7 +54,7 @@
                             flash_url : "./swfupload/swfupload.swf",
 
                             custom_settings : {
-                                upload_target : "divFileProgressContainer",
+                                progressTarget : "fsUploadProgress1",
                                 object_class_name : "<?php echo get_class($player); ?>"
                             },
 
@@ -75,81 +65,52 @@
                 </script>
 
 
-            </head>
-
-
-            <body>
-                <div id="container">
-                    <div id="header">
-                        <h2>Admin area</h2>
-                        <div id="topmenu">
-                            <ul>
-                                <li class="current"><a href="index.php">Dashboard</a></li>
-                                <li><a href="manager.php">Manejar la liga</a></li>
-                                <li><a href="index_upload.php">Subir fotos</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="top-panel">
-                        <div id="panel">
-
-                        </div>
-                    </div>
+                    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#addPicture').addClass('current');
+    });
+</script>
+            <?php        include ('headerDown.php'); ?>
+                
+            <?php        include ('emptyTopPanel.php'); ?>
                     <div id="wrapper">
                         <div id="content">
                             <div>
-
+                                <div class ="images_left_floating">
                                 <h2>Elija las fotos que quiere subir </h2>
-                                <div class ="images_left_floating" id="div_image_update">
 
-                                </div>
                                 <form>
+                                    <div class="fieldset flash" id="fsUploadProgress1">
+                                        <span class="legend">Progreso...</span>
+                                    </div>
                                     <div style="display: inline; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
                                         <span id="spanButtonPlaceholder"></span>
 
                                     </div>
 
                                 </form>
+                                </div>
+                                <div class ="images_left_floating_pictures" id="div_image_update">
 
+                                </div>
+                                <div style="clear: both"></div>
                             </div>
 
-                            <div id="divFileProgressContainer" style="height: 75px; display: none;"></div>
-                            <div id="thumbnails" style="display: none;"></div>
-
                             <br/>
                             <br/>
                             <br/>
-                            <a href="managePictures.php">Manejar imagenes subidas</a>
+<!--                            <a href="managePictures.php">Manejar imagenes subidas</a>
                             <hr/>
-                            <a href="manager.php">Volver</a>
+                            <a href="manager.php">Volver</a>-->
 
 
                         </div>
                     </div>
-                    <div id="sidebar">
-                        <ul>
-
-                            <li><h3><a href="#" class="folder_table">Imagenes</a></h3>
-                                <ul>
-                                    <li><a href="#" class="addorder">Nueva imagen</a></li>
-                                    <li><a href="#" class="shipping">Manejar</a></li>
-                                </ul>
-                            </li>
-                            <li><h3><a href="#" class="user">Users</a></h3>
-                                <ul>
-                                    <li><a href="#" class="useradd">Nuevo usuario</a></li>
-                                    <li><a href="#" class="group">Mandar notificacion</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3><a href="#" onclick='return adminLogout()'>Salir</a></h3>
-                            </li>
-                        </ul>
-                    </div>
+                    <?php        include ('defaultSideBar.php'); ?>
                 </div>
                 <div id="footer">
                     <div id="credits">
-           		Template by Yo
+                   		Template by Yo
                     </div>
                     <div id="styleswitcher">
 

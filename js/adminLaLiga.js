@@ -4,6 +4,8 @@
  */
 
 $(document).ready(function(){
+    $('#manager').addClass('current');
+    $("#dialog").hide();
 	startHidenContainers();
     $("#player_team_goal_form_goles").keydown(function(event) {
         // Allow only backspace and delete
@@ -394,6 +396,57 @@ function showTeamGoals(){
                 $('#player_team_goal_form_errors').fadeOut(8000, function () {
                     $('#player_team_goal_form_errors').hide();
                 });
+            }
+        }
+
+    });
+}
+
+function startDelete(id, type){
+        $("#dialog").dialog({
+        autoOpen: false,
+        modal: true,
+        resize: false,
+        height: 200,
+        buttons : {
+            "Si" : function() {
+                processDelete(id,type);
+                $(this).dialog("close");
+            },
+            "No" : function() {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    $("#dialog").dialog("open");
+}
+
+function processDelete(id, type){
+
+    var dataString = 'id='+ id +'&type='+type;
+
+    $.ajax({
+        type: "POST",
+        url: "process/deleteProcessAjax.php",
+        data: dataString,
+        dataType: "json",
+        beforeSend: function(x) {
+            if(x && x.overrideMimeType) {
+                x.overrideMimeType("application/json;charset=UTF-8");
+            }
+        },
+        success: function(data){
+            if(data.result == 1){
+
+//                $('#player_team_goal_form_on_round').html(data.body);
+
+            }else{
+//                $('#player_team_goal_form_errors').show();
+//                $('#player_team_goal_form_errors').html('<h2>'+data.error+'</h2>');
+//                $('#player_team_goal_form_errors').fadeOut(8000, function () {
+//                    $('#player_team_goal_form_errors').hide();
+//                });
             }
         }
 

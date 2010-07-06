@@ -27,6 +27,10 @@
         <?php include_once 'logica/Team.class.php'; ?>
         <?php include_once 'logica/Player.class.php'; ?>
         <?php 
+            include './logica/ImageHandler.class.php';
+            $imageHandler = new ImageHandler();
+        ?>
+        <?php 
             $teamList = Team::getAllTeams();
             
         ?>
@@ -41,9 +45,14 @@
             
         ?>
         <?php foreach ($playersList as $player): ?>
-
+            <?php 
+            $auxPath = $player->getImage();
+            if($player->hasImage())
+            {
+             $auxPath = $imageHandler->getConvertedPath($player->getImage(), 54, 54, true, false);
+            }?>
                 <div class="player" id="<?php echo $player->getId() ?>">
-                    <img src="<?php echo $player->getImage() ?>" width="54" height="54" tooltip="<?php echo $player->getName() ?>"/>
+                    <img src="<?php echo $auxPath ?>" width="54" height="54" tooltip="<?php echo $player->getName() ?>"/>
                     <p class="remove"><?php echo $player->getName(); ?></p>
                 </div>
                

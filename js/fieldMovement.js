@@ -16,11 +16,11 @@ $(document).ready(function(){
     startRatings();
     var movementStart = 500;
     var top = 15;//$('#campo').offset().top;
-    var goaly = -350;//$('#goaly').offset().top;
-    var defense_left = -365; //$('#defense_left').offset().top;
-    var defense_right = -365; //$('#defense_right').offset().top;
-    var attacker_left = -360; //$('#attacker_left').offset().top;
-    var attacker_right = -360; //$('#attacker_right').offset().top;
+    var goaly = -425;//$('#goaly').offset().top;
+    var defense_left = -440; //$('#defense_left').offset().top;
+    var defense_right = -440; //$('#defense_right').offset().top;
+    var attacker_left = -435; //$('#attacker_left').offset().top;
+    var attacker_right = -435; //$('#attacker_right').offset().top;
     $(window).scroll(function (event) {
         // what the y position of the scroll is
 

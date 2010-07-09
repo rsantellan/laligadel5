@@ -150,5 +150,62 @@ class Team {
         return $team;
     }
 
+    public static function removeTeam($team, $strict = false, $requiered = true, $admin = true) {
+        if ($requiered) {
+
+            require_once '../../persistencia/dBase.php';
+            require_once '../../persistencia/persistencia.php';
+            require_once '../../persistencia/laligadel5DBase.php';
+        }
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        if (!$strict) {
+
+            $per = new Persistencia('select');
+
+            $per->addColum("id_team");
+            $per->setTable("team_player_round");
+            $per->addWhere('id_team = ' . $team);
+            $str = $per->constructQuery();
+            $result = $per->doQuery($str);
+            $per->viewData($result);
+            $auxDatos = $per->returnValores();
+            if (count($auxDatos) > 0) {
+                return count($auxDatos);
+            }
+            $per = new Persistencia('select');
+
+            $per->addColum("id_round");
+            $per->setTable("team_vs_team");
+            $per->addWhere('id_team_1 = ' . $team . ' OR id_team_2 = ' . $team);
+            $str = $per->constructQuery();
+            $result = $per->doQuery($str);
+            $per->viewData($result);
+            $auxDatos = $per->returnValores();
+            if (count($auxDatos) > 0) {
+                return count($auxDatos);
+            }
+        }
+
+        $per = new Persistencia('delete');
+        $per->setTable("team_vs_team");
+        $per->addWhere('id_team_1 = ' . $team . ' OR id_team_2 = ' . $team);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        $per = new Persistencia('delete');
+        $per->setTable("team_player_round");
+        $per->addWhere('id_team = ' . $team);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        $per = new Persistencia('delete');
+        $per->setTable("team");
+        $per->addWhere('id = ' . $team);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        return 0;
+    }
+
 }
 

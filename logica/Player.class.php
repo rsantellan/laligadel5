@@ -62,10 +62,12 @@ class Player {
         $this->name = $name;
     }
 
-    public function hasImage(){
-        if (strcmp($this->image, "-") == 0) return false;
+    public function hasImage() {
+        if (strcmp($this->image, "-") == 0)
+            return false;
         return true;
     }
+
     public static function savePlayer($name) {
 
         require_once '../../persistencia/dBase.php';
@@ -354,7 +356,7 @@ class Player {
             p.id IN (
 				SELECT tp.id_player
 				FROM team_player_round tp
-				WHERE tp.id_team = ".$teamId.")");
+				WHERE tp.id_team = " . $teamId . ")");
         $str = $per->constructQuery();
         $result = $per->doQuery($str);
         $per->viewData($result);
@@ -371,6 +373,44 @@ class Player {
             $indexAux++;
         }
         return $list;
+    }
+
+    public static function removePlayer($player, $strict = false, $requiered = true, $admin = true) {
+        if ($requiered) {
+
+            require_once '../../persistencia/dBase.php';
+            require_once '../../persistencia/persistencia.php';
+            require_once '../../persistencia/laligadel5DBase.php';
+        }
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        if (!$strict) {
+
+            $per = new Persistencia('select');
+
+            $per->addColum("id_player");
+            $per->setTable("team_player_round");
+            $per->addWhere('id_player = ' . $player);
+            $str = $per->constructQuery();
+            $result = $per->doQuery($str);
+            $per->viewData($result);
+            $auxDatos = $per->returnValores();
+            if (count($auxDatos) > 0) {
+                return count($auxDatos);
+            }
+        }
+        $per = new Persistencia('delete');
+        $per->setTable("team_player_round");
+        $per->addWhere('id_player = ' . $player);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        $per = new Persistencia('delete');
+        $per->setTable("player");
+        $per->addWhere('id = ' . $player);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        return 0;
     }
 
 }

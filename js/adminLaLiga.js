@@ -6,7 +6,9 @@
 $(document).ready(function(){
     $('#manager').addClass('current');
     $("#dialog").hide();
-	startHidenContainers();
+    $("#dialog_double_check").hide();
+
+    startHidenContainers();
     $("#player_team_goal_form_goles").keydown(function(event) {
         // Allow only backspace and delete
         if ( event.keyCode == 46 || event.keyCode == 8 ) {
@@ -47,29 +49,29 @@ $(document).ready(function(){
     $('#player_team_goal_form_select_round').change(showTeamGoals);
     $('#player_team_goal_form_errors').hide();
     $('#players_admin_table').click(function(){
-    	$('#player_table_list').slideToggle("slow");
+        $('#player_table_list').slideToggle("slow");
     });
     $('#teams_admin_table').click(function(){
-    	$('#teams_table_list').slideToggle("slow");
+        $('#teams_table_list').slideToggle("slow");
     });
     $('#rounds_admin_table').click(function(){
-    	$('#rounds_table_list').slideToggle("slow");
+        $('#rounds_table_list').slideToggle("slow");
     });
     showTeamGoals();
     mostrarPartidosDeLaFecha();
 });
 
 function startHidenContainers(){
-	$('#logos_container').hide();
-	$('#logo_ok').hide();
-	$('#player_table_list').hide();
-	$('#addPlayer').hide();
-	$('#addTeam').hide();
-	$('#addRound').hide();
-	$('#addTeamVsTeam').hide();
-	$('#addPlayerTeamGoals').hide();
-	$('#teams_table_list').hide();
-	$('#rounds_table_list').hide();
+    $('#logos_container').hide();
+    $('#logo_ok').hide();
+    $('#player_table_list').hide();
+    $('#addPlayer').hide();
+    $('#addTeam').hide();
+    $('#addRound').hide();
+    $('#addTeamVsTeam').hide();
+    $('#addPlayerTeamGoals').hide();
+    $('#teams_table_list').hide();
+    $('#rounds_table_list').hide();
 }
 function showAddPlayer(){
     $('#addPlayer').slideToggle("slow");
@@ -403,14 +405,15 @@ function showTeamGoals(){
 }
 
 function startDelete(id, type){
-        $("#dialog").dialog({
+    $("#dialog").dialog( "destroy" );
+    $("#dialog").dialog({
         autoOpen: false,
         modal: true,
         resize: false,
         height: 200,
         buttons : {
             "Si" : function() {
-                processDelete(id,type);
+                processDelete(id,type, false);
                 $(this).dialog("close");
             },
             "No" : function() {
@@ -422,10 +425,14 @@ function startDelete(id, type){
     $("#dialog").dialog("open");
 }
 
-function processDelete(id, type){
-
-    var dataString = 'id='+ id +'&type='+type;
-
+function processDelete(id, type, strict){
+    var dataString;
+    if(strict){
+        dataString = 'id='+ id +'&type='+type + '&strict=true';
+    }else{
+        dataString = 'id='+ id +'&type='+type;
+    }
+    
     $.ajax({
         type: "POST",
         url: "process/deleteProcessAjax.php",
@@ -437,18 +444,37 @@ function processDelete(id, type){
             }
         },
         success: function(data){
-            if(data.result == 1){
-
-//                $('#player_team_goal_form_on_round').html(data.body);
-
-            }else{
-//                $('#player_team_goal_form_errors').show();
-//                $('#player_team_goal_form_errors').html('<h2>'+data.error+'</h2>');
-//                $('#player_team_goal_form_errors').fadeOut(8000, function () {
-//                    $('#player_team_goal_form_errors').hide();
-//                });
+            switch (data.result) {
+                case 1:
+                    $('#'+data.place).remove();
+                    break;
+                case 2:
+                    doubleCheckDeletion(id, type);
+                default:
+                    break;
             }
         }
 
     });
+}
+
+function doubleCheckDeletion(id, type){
+    $("#dialog_double_check").dialog( "destroy" );
+    $("#dialog_double_check").dialog({
+        autoOpen: false,
+        modal: true,
+        resize: false,
+        height: 200,
+        buttons : {
+            "Confirmar" : function() {
+                processDelete(id,type, true);
+                $(this).dialog("close");
+            },
+            "Cancelar" : function() {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    $("#dialog_double_check").dialog("open");
 }

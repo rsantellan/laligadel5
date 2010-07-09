@@ -28,6 +28,9 @@
                 <div id="dialog" title="Confirmacion requerida">
                     Estas seguro?
                 </div>
+                <div id="dialog_double_check" title="Realmente esta seguro?">
+                    Si continua alterara la informacion estadistica de la liga.
+                </div>
                 <div id="information">
                     <h2>Utiliza los botones de arriba y los de la derecha para ingresar
                         <br/>

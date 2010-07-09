@@ -23,11 +23,11 @@
                             },
 
                             // File Upload Settings
-                            file_size_limit : "2 MB",	// 2MB
+                            file_size_limit : "20 MB",	// 2MB
                             file_types : "*.jpg",
                             file_types_description : "JPG Images",
-                            file_upload_limit : "100",
-                            file_queue_limit:   "100",
+                            file_upload_limit : "200",
+                            file_queue_limit:   "200",
 
                             // Event Handler Settings - these functions as defined in Handlers.js
                             //  The handlers are not part of SWFUpload but are part of my website and control how
@@ -67,12 +67,12 @@
 
                     <script type="text/javascript">
     $(document).ready(function(){
-        $('#addPicture').addClass('current');
+        $('#managePictures').addClass('current');
     });
 </script>
             <?php        include ('headerDown.php'); ?>
                 
-            <?php        include ('emptyTopPanel.php'); ?>
+            <?php        include ('imageTopPanel.php'); ?>
                     <div id="wrapper">
                         <div id="content">
                             <div>
@@ -107,17 +107,5 @@
                         </div>
                     </div>
                     <?php        include ('defaultSideBar.php'); ?>
-                </div>
-                <div id="footer">
-                    <div id="credits">
-                   		Template by Yo
-                    </div>
-                    <div id="styleswitcher">
-
-                    </div><br />
-
-                </div>
-                </div>
-            </body>
-        </html>
+                <?php include ('endPage.php') ?>
 <?php endif; ?>

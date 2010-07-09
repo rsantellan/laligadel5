@@ -290,7 +290,7 @@
                                         <li><h3><a href="javascript:void(0)" class="user">Users</a></h3>
                                             <ul>
                                                 <li><a href="javascript:void(0)" class="useradd">Nuevo usuario</a></li>
-                                                <li><a href="javascript:void(0)" class="group">Mandar notificacion</a></li>
+                                                <li><a href="manageMailing.php" class="group">Mailing</a></li>
                                             </ul>
                                         </li>
                                         <li>

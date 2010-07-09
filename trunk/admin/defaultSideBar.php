@@ -1,20 +1,20 @@
 <div id="sidebar">
     <ul>
 
-        <li><h3><a href="#" class="folder_table">Imagenes</a></h3>
+        <li><h3><a href="javascript:void(0)" class="folder_table">Imagenes</a></h3>
             <ul>
-                <li><a href="#" class="addorder">Nueva imagen</a></li>
-                <li><a href="#" class="shipping">Manejar</a></li>
+                <li><a href="javascript:void(0)" class="addorder">Nueva imagen</a></li>
+                <li><a href="javascript:void(0)" class="shipping">Manejar</a></li>
             </ul>
         </li>
-        <li><h3><a href="#" class="user">Users</a></h3>
+        <li><h3><a href="javascript:void(0)" class="user">Users</a></h3>
             <ul>
-                <li><a href="#" class="useradd">Nuevo usuario</a></li>
-                <li><a href="#" class="group">Mandar notificacion</a></li>
+                <li><a href="javascript:void(0)" class="useradd">Nuevo usuario</a></li>
+                <li><a href="manageMailing.php" class="group">Mailing</a></li>
             </ul>
         </li>
         <li>
-            <h3><a href="#" onclick='return adminLogout()'>Salir</a></h3>
+            <h3><a href="javascript:void(0)" onclick='return adminLogout()'>Salir</a></h3>
         </li>
     </ul>
 </div>

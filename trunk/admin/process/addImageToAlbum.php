@@ -11,7 +11,7 @@ if ($_POST['bigChangeImageId'] <> '') {
         $image = Image::retrieveById($_POST['bigChangeImageId'], true, true, true);
         $imageHandler = new ImageHandler();
         $auxPath = $imageHandler->getConvertedPath($image->getFile(), 100, 100, true, true, true);
-        $body = $body = "<img src='" . $auxPath . "'  tooltip='" . $image->getName() . "' alt='" . $image->getName() . "'/>";
+        $body = $body = "<img src='" . substr($auxPath, 3) . "'  tooltip='" . $image->getName() . "' alt='" . $image->getName() . "'/>";
         $data = array('result' => 1, 'body' => $body);
     } catch (Exception $e) {
         $data = array('result' => 0, 'error' => $e->getMessage());
@@ -27,7 +27,7 @@ if ($_POST['changeImageId'] <> '') {
         $image = Image::retrieveById($_POST['changeImageId'], true, true, true);
         $imageHandler = new ImageHandler();
         $auxPath = $imageHandler->getConvertedPath($image->getFile(), 60, 60, true, true, true);
-        $body = $body = "<img src='" . $auxPath . "'  tooltip='" . $image->getName() . "' alt='" . $image->getName() . "'/>";
+        $body = $body = "<img src='" . substr($auxPath, 3) . "'  tooltip='" . $image->getName() . "' alt='" . $image->getName() . "'/>";
         $data = array('result' => 1, 'body' => $body);
     } catch (Exception $e) {
         $data = array('result' => 0, 'error' => $e->getMessage());

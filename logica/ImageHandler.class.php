@@ -12,9 +12,14 @@ class ImageHandler {
     public function getConvertedPath($path, $height, $width, $crop = false, $admin = false, $ajax = false) {
         if (!$this->included) {
             if (!$admin) {
-                include './mdImageMagickHandler.class.php';
+                include 'mdImageMagickHandler.class.php';
             } else {
-                include '../logica/mdImageMagickHandler.class.php';
+                if($ajax) {
+                    include '../../logica/mdImageMagickHandler.class.php';
+                }else {
+                    include '../logica/mdImageMagickHandler.class.php';
+                }
+
             }
             $this->included = true;
         }
@@ -128,6 +133,53 @@ class ImageHandler {
 
         //closing the directory
         closedir($dir_handle);
+    }
+
+    //# Original PHP code by Chirp Internet: www.chirp.com.au
+    //# Please acknowledge use of this code by including this header.
+    public function getFileList($dir, $noDirectories = false, $noCache = false, $recurse=false) {
+        # array to hold return value
+        $retval = array();
+
+        # add trailing slash if missing
+        if(substr($dir, -1) != "/") $dir .= "/";
+
+        # open pointer to directory and read list of files
+        $d = @dir($dir) or die("getFileList: Failed opening directory  $dir for reading");
+
+        while(false !== ($entry = $d->read())) {
+            # skip hidden files
+            if($entry[0] == ".") continue;
+            if(is_dir("$dir$entry")) {
+                if(!$noDirectories){
+                    $retval[] = array(
+                        "name" => "$dir$entry/",
+                        "type" => filetype("$dir$entry"),
+                        "size" => 0,
+                        "lastmod" => filemtime("$dir$entry")
+                            );
+                }
+
+                if($recurse && is_readable("$dir$entry/")) {
+                    if($noCache){
+                       if($entry != 'cache'){
+                            $retval = array_merge($retval, $this->getFileList("$dir$entry/", $noDirectories, $noCache, true));
+                       }
+                    }
+                    
+                }
+            }
+            elseif(is_readable("$dir$entry")) {
+                $retval[] = array(
+                        "name" => "$dir$entry",
+                        "type" => mime_content_type("$dir$entry"),
+                        "size" => filesize("$dir$entry"),
+                        "lastmod" => filemtime("$dir$entry")
+                    );
+            }
+        }
+        $d->close();
+        return $retval;
     }
 
 }

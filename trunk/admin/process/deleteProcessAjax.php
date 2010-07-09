@@ -6,9 +6,18 @@ if ($_POST['id'] <> '' && $_POST['type'] <> '') {
     switch ($_POST['type']) {
         case 1:
             try {
-                //include("../../logica/Category.class.php");
-                //$id = Category::removeCategory($_POST["id"]);
-                $data = array('result' => 1, 'body' => 'player');
+                include("../../logica/Player.class.php");
+                $strict = false;
+                if($_POST['strict'] <> ''){
+                    $strict = true;
+                }
+                $cantidad = Player::removePlayer($_POST["id"], $strict);
+                if($cantidad > 0){
+                    $data = array('result' => 2, 'body' => 'Too many');
+                }else{
+                    $data = array('result' => 1, 'body' => 'player', 'place'=>'player_tr_'.$_POST['id']);
+                }
+                
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());
             }
@@ -16,18 +25,34 @@ if ($_POST['id'] <> '' && $_POST['type'] <> '') {
             break;
         case 2:
             try {
-                //include("../../logica/Category.class.php");
-                //$id = Category::removeCategory($_POST["id"]);
-                $data = array('result' => 1, 'body' => 'team');
+                include("../../logica/Team.class.php");
+                $strict = false;
+                if($_POST['strict'] <> ''){
+                    $strict = true;
+                }
+                $cantidad = Team::removeTeam($_POST["id"], $strict);
+                if($cantidad > 0){
+                    $data = array('result' => 2, 'body' => 'Too many');
+                }else{
+                    $data = array('result' => 1, 'body' => 'team', 'place'=>'team_tr_'.$_POST['id']);
+                }
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());
             }
             break;
         case 3:
             try {
-                //include("../../logica/Category.class.php");
-                //$id = Category::removeCategory($_POST["id"]);
-                $data = array('result' => 1, 'body' => 'round');
+         include("../../logica/Round.class.php");
+                $strict = false;
+                if($_POST['strict'] <> ''){
+                    $strict = true;
+                }
+                $cantidad = Round::removeRound($_POST["id"], $strict);
+                if($cantidad > 0){
+                    $data = array('result' => 2, 'body' => 'Too many');
+                }else{
+                    $data = array('result' => 1, 'body' => 'team', 'place'=>'round_tr_'.$_POST['id']);
+                }
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());
             }

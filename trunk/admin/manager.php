@@ -74,7 +74,7 @@
                         <td> <img src="<?php echo $auxPath ?>" width="54" height="54" tooltip="<?php echo $player->getName() ?>"/></td>
                     <?php else: ?>
                             <td> - </td>
-                    <? endif ?>
+                    <?php endif; ?>
                             <td><a href="javascript:void(0)" onclick="startDelete(<?php echo $player->getId() ?>,1)" >Eliminar</a></td>
                         </tr>
                 <?php endforeach; ?>

@@ -31,9 +31,10 @@
         include './logica/Image.class.php';
         include './logica/ImageHandler.class.php';
         include './logica/Category.class.php';
+        
         ?>
 <?php
-                                //$imageList = Image::getAllWithoutCategory(true, true);
+                        //$imageList = Image::getAllWithoutCategory(true, true);
                         $categoryList = Category::getAllCategories(true, true, false);
                         $imageHandler = new ImageHandler();
      ?>

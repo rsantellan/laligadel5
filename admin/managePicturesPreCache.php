@@ -15,7 +15,7 @@
         </script>
 <?php include ('headerDown.php'); ?>
         
-<?php        include ('emptyTopPanel.php'); ?>
+<?php        include ('imageTopPanel.php'); ?>
         
         <div id="wrapper">
             <div id="content">
@@ -27,6 +27,8 @@
                     <h2>Imagenes procesadas: <label id="image_process"></label></h2>
                     <br/>
                     <div id="progressBar"></div>
+                    <br/>
+                    <br/>
             <?php
             //include '../logica/Image.class.php';
             include '../logica/ImageHandler.class.php';
@@ -46,10 +48,10 @@ $filesList = $imageHandler->getFileList($dir, true, true, true);
 
 $index = 0;
 while($index < count($filesList)): ?>
-
-    <div id="container_<?php echo $index?>" name="<?php echo $filesList[$index]['name']?>" class="image_container"> <?php echo $filesList[$index]['name']?> <br/> </div>
-    <br/>
-    <hr/>
+    <div id="holder_<?php echo $index?>" style="float:left;width:100px; height:100px;padding-top:10px;">
+        <div id="container_<?php echo $index?>_show" style="float:left;width:100px; height:100px;"></div>
+        <div id="container_<?php echo $index?>" name="<?php echo $filesList[$index]['name']?>" class="image_container"> <?php echo $filesList[$index]['name']?> <br/> </div>
+    </div>
 
 <?php
 $index++;
@@ -61,37 +63,7 @@ endwhile;
 
                         </div>
                     </div>
-                    <div id="sidebar">
-                        <ul>
-
-                            <li><h3><a href="#" class="folder_table">Imagenes</a></h3>
-                                <ul>
-                                    <li><a href="#" class="addorder">Nueva imagen</a></li>
-                                    <li><a href="#" class="shipping">Manejar</a></li>
-                                </ul>
-                            </li>
-                            <li><h3><a href="#" class="user">Users</a></h3>
-                                <ul>
-                                    <li><a href="#" class="useradd">Nuevo usuario</a></li>
-                                    <li><a href="#" class="group">Mandar notificacion</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3><a href="#" onclick='return adminLogout()'>Salir</a></h3>
-                            </li>
-                        </ul>
-                    </div>
+                    <?php        include ('defaultSideBar.php'); ?>
                 </div>
-                <div id="footer">
-                    <div id="credits">
-                                                                                                   		Template by Yo
-                    </div>
-                    <div id="styleswitcher">
-
-                    </div><br />
-
-                </div>
-                </div>
-                </body>
-                </html>
+<?php include ('endPage.php') ?>
 <?php endif; ?>

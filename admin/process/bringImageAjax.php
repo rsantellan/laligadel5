@@ -7,18 +7,17 @@ if ($_POST['name'] <> '' && $_POST['type'] <> '') {
     switch ($_POST['type']) {
         case 1:
             try {
-                $auxPath = $imageHandler->getConvertedPath($_POST['name'], 54, 54, false, true, true);
-                $body = $body = "<img src='" . $auxPath . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
+                $auxPath = $imageHandler->getConvertedPath($_POST['name'], 100, 100, true, true, true);
+                $body = $body = "<img src='" . substr($auxPath, 3) . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
                 $data = array('result' => 1, 'body' => $body);
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());
             }
-
             break;
         case 2:
             try {
                 $auxPath = $imageHandler->getConvertedPath($_POST['name'], 60, 60, true, true, true);
-                $body = $body = "<img src='" . $auxPath . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
+                $body = $body = "<img src='" . substr($auxPath, 3) . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
                 $data = array('result' => 1, 'body' => $body);
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());
@@ -26,17 +25,18 @@ if ($_POST['name'] <> '' && $_POST['type'] <> '') {
             break;
         case 3:
             try {
-                $auxPath = $imageHandler->getConvertedPath($_POST['name'], 100, 100, true, true, true);
-                $body = $body = "<img src='" . $auxPath . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
+                $auxPath = $imageHandler->getConvertedPath($_POST['name'], 54, 54, false, true, true);
+                $body = $body = "<img src='" . substr($auxPath, 3) . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
                 $data = array('result' => 1, 'body' => $body);
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());
             }
+
             break;
         case 4:
             try {
                 $auxPath = $imageHandler->getConvertedPath($_POST['name'], 101, 67, true, true, true);
-                $body = $body = "<img src='" . $auxPath . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
+                $body = $body = "<img src='" . substr($auxPath, 3) . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
                 $data = array('result' => 1, 'body' => $body);
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());
@@ -45,7 +45,7 @@ if ($_POST['name'] <> '' && $_POST['type'] <> '') {
         case 5:
             try {
                 $auxPath = $imageHandler->getConvertedPath($_POST['name'], 600, 400, false, true, true);
-                $body = $body = "<img src='" . $auxPath . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
+                $body = $body = "<img src='" . substr($auxPath, 3) . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
                 $data = array('result' => 1, 'body' => $body);
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());
@@ -54,7 +54,7 @@ if ($_POST['name'] <> '' && $_POST['type'] <> '') {
         case 6:
             try {
                 $auxPath = $imageHandler->getConvertedPath($_POST['name'], 800, 600, false, true, true);
-                $body = $body = "<img src='" . $auxPath . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
+                $body = $body = "<img src='" . substr($auxPath, 3)s . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
                 $data = array('result' => 1, 'body' => $body);
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());

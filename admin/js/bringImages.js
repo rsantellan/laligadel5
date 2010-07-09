@@ -13,6 +13,7 @@ function getAllImageDivs(){
         var position = new Array($(this).attr('id'), $(this).attr('name').substr(3), 1);
         container.push(position);
         quantity++;
+        $(this).hide();
     });
     quantity = quantity * 6;
     $('#image_quantity').html(quantity);
@@ -36,10 +37,14 @@ function calculateProgressBar(){
 function callNext(){
 
     $('#image_process').html(indice);
-    indice ++;
+    if(indice < quantity){
+        indice ++;
+    }
+    
     var first = container.shift();
     ajaxCall(first[0],first[1],first[2]);
     calculateProgressBar();
+    //callNext();
 }
 
 function ajaxCall(id, name, type){
@@ -57,7 +62,9 @@ function ajaxCall(id, name, type){
         success: function(data){
             if(data.result == 1){
                 $('#'+id).append(data.body);
-                if(type == 7) return;
+                if(type == 6){
+                    showContainer(id);
+                }
                 var position = new Array(id, name, type + 1);
                 container.push(position);
                 callNext();
@@ -68,4 +75,9 @@ function ajaxCall(id, name, type){
         }
 
     });
+}
+
+function showContainer(id){
+    $('#'+id+'_show').append($('#'+id+' img:first'));
+    $('#'+id+'_show').show('blind','slow');
 }

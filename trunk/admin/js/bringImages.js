@@ -18,8 +18,8 @@ function getAllImageDivs(){
     quantity = quantity * 6;
     $('#image_quantity').html(quantity);
     $('#progressBar').progressbar({
-			value: 0
-		});
+        value: 0
+    });
     callNext();
 
 }
@@ -40,11 +40,11 @@ function callNext(){
     if(indice < quantity){
         indice ++;
     }
-    
-    var first = container.shift();
-    ajaxCall(first[0],first[1],first[2]);
+    if(container.length > 0){
+        var first = container.shift();
+        ajaxCall(first[0],first[1],first[2]);
+    }
     calculateProgressBar();
-    //callNext();
 }
 
 function ajaxCall(id, name, type){

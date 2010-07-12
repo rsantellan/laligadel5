@@ -1,0 +1,4324 @@
+format 70
+"logica" // logica
+  revision 1
+  modified_by 3 "rodrigo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  deploymentview 128003 "logica"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 128003 "Category.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 128003 // Category
+      end
+    end
+
+    artifact 128131 "Comments.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 128131 // Comments
+      end
+    end
+
+    artifact 128259 "CommentsMailing.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 128259 // CommentsMailing
+      end
+    end
+
+    artifact 128387 "Image.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 128387 // Image
+      end
+    end
+
+    artifact 128515 "ImageHandler.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 128515 // ImageHandler
+      end
+    end
+
+    artifact 128771 "manageUserLogued.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 128771 // manageUserLogued
+      end
+    end
+
+    artifact 128899 "mdImageMagickHandler.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 128899 // mdImageMagickHandler
+      end
+    end
+
+    artifact 129027 "PictureListing.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 129027 // PictureListing
+      end
+    end
+
+    artifact 129155 "Player.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 129155 // Player
+      end
+    end
+
+    artifact 129283 "Round.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 129283 // Round
+      end
+    end
+
+    artifact 129411 "SendMail.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 129411 // SendMail
+      end
+    end
+
+    artifact 129539 "Team.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 129539 // Team
+      end
+    end
+
+    artifact 129667 "TeamOfTheRound.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 129667 // TeamOfTheRound
+      end
+    end
+
+    artifact 129795 "TeamPlayerRound.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 129795 // TeamPlayerRound
+      end
+    end
+
+    artifact 129923 "TeamVsTeam.class"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+"
+      associated_classes
+	class_ref 129923 // TeamVsTeam
+	class_ref 130051 // auxTeam
+      end
+    end
+  end
+
+  classview 128003 "logica"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 128003 "Category"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "
+To change this template, choose Tools | Templates
+and open the template in the editor.
+
+
+Description of Category
+
+@author rodrigo
+"
+      attribute 128003 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "put your code here"
+      end
+
+      attribute 128131 "name"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128259 "visible"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 128003 "getId"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128131 "setId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128259 "getName"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128387 "setName"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128515 "getVisible"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128643 "setVisible"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "visible" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128771 "getAllCategories"
+	class_operation public explicit_return_type "array"
+	nparams 3
+	  param inout name "onlyVisible" explicit_type ""
+	  param inout name "requiered" explicit_type "boolean"
+	    defaultvalue "true"
+	  param inout name "admin" explicit_type "boolean"
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+
+@param ${t1} ${p1}
+@param ${t2} ${p2}
+@return ${type} <Category>
+"
+      end
+
+      operation 128899 "saveCategory"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "name" explicit_type ""
+	  param inout name "visible" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129027 "removeCategory"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129155 "makeVisible"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "id" explicit_type ""
+	  param inout name "value" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 128131 "Comments"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 128387 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128515 "name"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128643 "email"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128771 "comment"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128899 "date"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 129283 "getId"
+	public explicit_return_type "the"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@return ${type} $id
+"
+      end
+
+      operation 129411 "setDate"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "date" explicit_type "$date"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@param ${t0} the $date to set
+"
+      end
+
+      operation 129539 "getDate"
+	public explicit_return_type "the"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@return ${type} $date
+"
+      end
+
+      operation 129667 "getName"
+	public explicit_return_type "the"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@return ${type} $name
+"
+      end
+
+      operation 129795 "getEmail"
+	public explicit_return_type "the"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@return ${type} $email
+"
+      end
+
+      operation 129923 "getComment"
+	public explicit_return_type "the"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@return ${type} $comment
+"
+      end
+
+      operation 130051 "setId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type "$id"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@param ${t0} the $id to set
+"
+      end
+
+      operation 130179 "setName"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type "$name"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@param ${t0} the $name to set
+"
+      end
+
+      operation 130307 "setEmail"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "email" explicit_type "$email"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@param ${t0} the $email to set
+"
+      end
+
+      operation 130435 "setComment"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "comment" explicit_type "$comment"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@param ${t0} the $comment to set
+"
+      end
+
+      attribute 129027 "requiere"
+	private explicit_type ""
+	init_value " false"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 130563 "addRequiered"
+	private explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130691 "getAllComents"
+	class_operation public explicit_return_type ""
+	nparams 5
+	  param inout name "limitStart" explicit_type ""
+	    defaultvalue "0"
+	  param inout name "limitEnd" explicit_type ""
+	    defaultvalue "0"
+	  param inout name "required" explicit_type ""
+	    defaultvalue "true"
+	  param inout name "differentOrder" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "admin" explicit_type ""
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}, ${p4}${v4}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130819 "saveComment"
+	class_operation public explicit_return_type ""
+	nparams 3
+	  param inout name "name" explicit_type ""
+	  param inout name "email" explicit_type ""
+	  param inout name "comment" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130947 "groupAndCountByDay"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "commentsList" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131075 "getTableOfComments"
+	class_operation public explicit_return_type "string"
+	nparams 2
+	  param inout name "commentsList" explicit_type "Array()"
+	  param inout name "texto" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+
+@param ${t0} name, value $commentsList
+@return ${type}
+"
+      end
+
+      operation 131203 "calculatedWidth"
+	class_operation public explicit_return_type ""
+	nparams 3
+	  param inout name "min" explicit_type ""
+	  param inout name "max" explicit_type ""
+	  param inout name "value" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131331 "getCommentsCountByAuthor"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "requiered" explicit_type ""
+	    defaultvalue "true"
+	  param inout name "admin" explicit_type ""
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 128259 "CommentsMailing"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 129155 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129283 "email"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129411 "active"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 131459 "setActive"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "active" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131587 "setEmail"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "email" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131715 "setId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131843 "getActive"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131971 "getEmail"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132099 "getId"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132227 "getAllCommentsMailsAdmin"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132355 "getArrayAllMails"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132483 "addEmailAdminAjax"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "email" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132611 "changeStatus"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "id" explicit_type ""
+	  param inout name "status" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132739 "addBulkEmail"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "emailList" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 128387 "Image"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 129539 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129667 "name"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129795 "type"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129923 "rank"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130051 "file"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130179 "ownUser"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130307 "visible"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130435 "categoryId"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 132867 "getCategoryId"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132995 "setCategoryId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "categoryId" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133123 "getId"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133251 "setId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133379 "getName"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133507 "setName"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133635 "getType"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133763 "setType"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "type" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133891 "getRank"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134019 "setRank"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "rank" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134147 "getFile"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134275 "setFile"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "file" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134403 "getOwnUser"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134531 "setOwnUser"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ownUser" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134659 "getVisible"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134787 "setVisible"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "visible" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134915 "__toString"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      attribute 130563 "requiere"
+	private explicit_type ""
+	init_value " false"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130691 "imageActive"
+	private explicit_type ""
+	init_value " false"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130819 "requiereInclude"
+	private explicit_type ""
+	init_value " false"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 135043 "addRequiered"
+	private explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135171 "addIncludeRequiere"
+	private explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135299 "retrieveByPk"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135427 "changeRating"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "number" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135555 "changeVisibility"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135683 "save"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135811 "saveImage"
+	class_operation public explicit_return_type ""
+	nparams 7
+	  param inout name "required" explicit_type ""
+	  param inout name "admin" explicit_type ""
+	  param inout name "name" explicit_type ""
+	  param inout name "file" explicit_type ""
+	  param inout name "type" explicit_type ""
+	    defaultvalue "\"\""
+	  param inout name "rank" explicit_type ""
+	    defaultvalue "0"
+	  param inout name "ownUser" explicit_type ""
+	    defaultvalue "\"\""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}, ${p4}${v4}, ${p5}${v5}, ${p6}${v6}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135939 "getAllWithoutCategory"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "required" explicit_type ""
+	  param inout name "admin" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 136067 "getAllOfCategory"
+	class_operation public explicit_return_type ""
+	nparams 3
+	  param inout name "categoryId" explicit_type ""
+	  param inout name "required" explicit_type ""
+	  param inout name "admin" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 136195 "retrieveById"
+	class_operation public explicit_return_type ""
+	nparams 4
+	  param inout name "id" explicit_type ""
+	  param inout name "requiered" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "admin" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "ajax" explicit_type ""
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 136323 "addImageToCategory"
+	class_operation public explicit_return_type "Image"
+	nparams 4
+	  param inout name "imageId" explicit_type "int"
+	  param inout name "categoryId" explicit_type "int"
+	  param inout name "required" explicit_type "boolean"
+	  param inout name "admin" explicit_type "boolean"
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+
+@param ${t0} ${p0}
+@param ${t1} ${p1}
+@param ${t2} ${p2}
+@param ${t3} ${p3}
+@return ${type} the changed image
+"
+      end
+
+      operation 136451 "removeImage"
+	class_operation public explicit_return_type ""
+	nparams 5
+	  param inout name "imageId" explicit_type ""
+	  param inout name "required" explicit_type ""
+	  param inout name "admin" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "imageHandler" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "ajax" explicit_type ""
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}, ${p4}${v4}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 128515 "ImageHandler"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "
+Description of ImageHandler
+
+@author rodrigo
+"
+      attribute 130947 "included"
+	private explicit_type ""
+	init_value " false"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 136579 "getConvertedPath"
+	public explicit_return_type ""
+	nparams 6
+	  param inout name "path" explicit_type ""
+	  param inout name "height" explicit_type ""
+	  param inout name "width" explicit_type ""
+	  param inout name "crop" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "admin" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "ajax" explicit_type ""
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}, ${p4}${v4}, ${p5}${v5}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 136707 "fileExists"
+	private explicit_return_type ""
+	nparams 1
+	  param inout name "file" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 136835 "checkDirectory"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "path" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 136963 "remove"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "file" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 137091 "removeCompleteImage"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "file" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 137219 "findAndRemoveFile"
+	class_operation private explicit_return_type ""
+	nparams 2
+	  param inout name "path" explicit_type ""
+	  param inout name "fileName" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 137347 "getFileList"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "dir" explicit_type ""
+	  param inout name "noDirectories" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "noCache" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "recurse" explicit_type ""
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "# Original PHP code by Chirp Internet: www.chirp.com.au
+# Please acknowledge use of this code by including this header."
+      end
+    end
+
+    class 128771 "manageUserLogued"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 139011 "checkAdminUser"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "user" explicit_type ""
+	  param inout name "pass" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139139 "checkUser"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "email" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 128899 "mdImageMagickHandler"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "
+Description of mdImageMagickHandler
+
+@author rodrigo
+"
+      attribute 131715 "width"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "put your code here"
+      end
+
+      attribute 131843 "height"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131971 "crop"
+	private explicit_type ""
+	init_value " false"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132099 "imageSource"
+	private explicit_type ""
+	init_value " \"\""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132227 "fileDestination"
+	private explicit_type ""
+	init_value " \"\""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132355 "convertPath"
+	private explicit_type ""
+	init_value " \"convert\""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132483 "imageMagickLocation"
+	private explicit_type ""
+	init_value " '/usr/bin/'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 139267 "__construct"
+	public explicit_return_type ""
+	nparams 5
+	  param inout name "imageSource" explicit_type "<String>"
+	  param inout name "fileDestination" explicit_type ""
+	  param inout name "width" explicit_type "<int>"
+	  param inout name "height" explicit_type "<int>"
+	  param inout name "crop" explicit_type "<boolean>"
+	    defaultvalue "false"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}, ${p4}${v4}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " Produccion '/usr/local/bin/'; // local '/usr/bin/'
+
+
+@param ${t0} ${p0}
+@param ${t5} $folderDestination
+@param ${t2} ${p2}
+@param ${t3} ${p3}
+@param ${t4} ${p4}
+"
+      end
+
+      operation 139395 "fileGenerate"
+	private explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139523 "fileExist"
+	private explicit_return_type ""
+	nparams 1
+	  param inout name "file" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139651 "getConvertCropCommand"
+	private explicit_return_type ""
+	nparams 2
+	  param inout name "width" explicit_type ""
+	  param inout name "height" explicit_type ""
+	    defaultvalue "null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139779 "process"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139907 "getImage"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 129027 "PictureListing"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment " 
+To change this template, choose Tools | Templates
+and open the template in the editor.
+
+
+Description of PictureListingclass
+
+@author rodrigo
+"
+      operation 140035 "getFileList"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "dir" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 129155 "Player"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "
+To change this template, choose Tools | Templates
+and open the template in the editor.
+
+
+Description of Playerclass
+
+@author rodrigo
+"
+      attribute 132611 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "put your code here"
+      end
+
+      attribute 132739 "name"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132867 "auxGoals"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132995 "auxPlayed"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 133123 "image"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 140163 "setImage"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "image" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140291 "getImage"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140419 "getAuxPlayed"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140547 "setAuxPlayed"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "auxPlayed" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140675 "getAuxGoals"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140803 "setAuxGoals"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "auxGoals" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140931 "getId"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141059 "getName"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141187 "setId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141315 "setName"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141443 "hasImage"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141571 "savePlayer"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141699 "getPlayerAdmin"
+	class_operation public explicit_return_type "Player"
+	nparams 2
+	  param inout name "id" explicit_type ""
+	  param inout name "add_requiered" explicit_type ""
+	    defaultvalue "true"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@author Rodrigo Santellan
+@return ${type} 
+"
+      end
+
+      operation 141827 "updatePlayerAvatar"
+	class_operation public explicit_return_type "Player"
+	nparams 2
+	  param inout name "id" explicit_type ""
+	  param inout name "file" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@author Rodrigo Santellan
+@return ${type} 
+"
+      end
+
+      operation 141955 "getAllPlayersAdmin"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142083 "getAll"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142211 "getTeamRoundPlayers"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "team_id" explicit_type ""
+	  param inout name "round_id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142339 "getTeamRoundPlayersAdmin"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "team_id" explicit_type ""
+	  param inout name "round_id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142467 "getPlayersOfLastRound"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142595 "getPlayersOfATeam"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "teamId" explicit_type ""
+	  param inout name "requiered" explicit_type ""
+	    defaultvalue "true"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142723 "removePlayer"
+	class_operation public explicit_return_type ""
+	nparams 4
+	  param inout name "player" explicit_type ""
+	  param inout name "strict" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "requiered" explicit_type ""
+	    defaultvalue "true"
+	  param inout name "admin" explicit_type ""
+	    defaultvalue "true"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 129283 "Round"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment " 
+To change this template, choose Tools | Templates
+and open the template in the editor.
+
+
+Description of Roundclass
+
+@author rodrigo
+"
+      attribute 133251 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "put your code here"
+      end
+
+      attribute 133379 "name"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 142851 "getId"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142979 "getName"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 143107 "setId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 143235 "setName"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 143363 "saveRound"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 143491 "getAllRoundsAdmin"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 143619 "getAll"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 143747 "getLastRound"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 143875 "removeRound"
+	class_operation public explicit_return_type ""
+	nparams 4
+	  param inout name "round" explicit_type ""
+	  param inout name "strict" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "requiered" explicit_type ""
+	    defaultvalue "true"
+	  param inout name "admin" explicit_type ""
+	    defaultvalue "true"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      attribute 137859 "tournament_id"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 128899 // <unidirectional association>
+	relation 128899 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128899 // <unidirectional association>
+	  b parent class_ref 130179 // Tournament
+      end
+    end
+
+    class 129411 "SendMail"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 133507 "username"
+	private explicit_type ""
+	init_value " \"rsantellan@gmail.com\""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 133635 "list"
+	private explicit_type ""
+	init_value " array(
+        'rsantellan@gmail.com',
+        'alfredobalino@gmail.com',
+        'fbola18@hotmail.com',
+        'diegoceicys@hotmail.com',
+        'spi.loki@gmail.com',
+        'brusco84@gmail.com',
+        'juanmorlan@gmail.com',
+        'flowersuy@gmail.com',
+        'lmauro_7@hotmail.com',
+        'chogron@hotmail.com',
+        'lbueno26@gmail.com',
+        'juan.taborelli@gmail.com',
+        'agustin2424@gmail.com',
+        'jgmeilan@hotmail.com',
+        'jocheval@gmail.com',
+        'andalican17@hotmail.com',
+        'pablo.morlan@linde.com',
+        'agustin.recine@gmail.com',
+        'arq.fflores@gmail.com',
+        'giannibazz@gmail.com'
+    )"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 144003 "sendFeedBackMail"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "from" explicit_type ""
+	  param inout name "name" explicit_type ""
+	  param inout name "comment" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 144131 "sendPhotoMail"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "file_name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 144259 "actualSendMail"
+	public explicit_return_type ""
+	nparams 5
+	  param inout name "from" explicit_type ""
+	  param inout name "Subject" explicit_type ""
+	  param inout name "MESSAGE_BODY" explicit_type ""
+	  param inout name "to" explicit_type ""
+	  param inout name "include" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}, ${p4}${v4}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 129539 "Team"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "
+To change this template, choose Tools | Templates
+and open the template in the editor.
+
+
+Description of Teamclass
+
+@author rodrigo
+"
+      attribute 133763 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "put your code here"
+      end
+
+      attribute 133891 "name"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 144387 "getId"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 144515 "getName"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 144643 "setId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 144771 "setName"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 144899 "saveTeam"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 145027 "getAllTeamsAdmin"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 145155 "getAllTeams"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "requiered" explicit_type ""
+	    defaultvalue "true"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 145283 "getTeamById"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "team_id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 145411 "removeTeam"
+	class_operation public explicit_return_type ""
+	nparams 4
+	  param inout name "team" explicit_type ""
+	  param inout name "strict" explicit_type ""
+	    defaultvalue "false"
+	  param inout name "requiered" explicit_type ""
+	    defaultvalue "true"
+	  param inout name "admin" explicit_type ""
+	    defaultvalue "true"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 129667 "TeamOfTheRound"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "
+Description of EquipoDeLaSemana
+
+@author rodrigo
+"
+      attribute 134019 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "put your code here"
+      end
+
+      attribute 134147 "goaly"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134275 "defenderRight"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134403 "defenderLeft"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134531 "attackerRight"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134659 "attackerLeft"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134787 "playerGoaly"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134915 "playerDefenderRight"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135043 "playerDefenderLeft"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135171 "playerAttackerRight"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135299 "playerAttackerLeft"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135427 "author"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135555 "round"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135683 "rating"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135811 "votes"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 145539 "getId"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 145667 "setId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 145795 "getGoaly"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 145923 "setGoaly"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "goaly" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 146051 "getDefenderRight"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 146179 "setDefenderRight"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "defenderRight" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 146307 "getDefenderLeft"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 146435 "setDefenderLeft"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "defenderLeft" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 146563 "getAttackerRight"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 146691 "setAttackerRight"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "attackerRight" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 146819 "getAttackerLeft"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 146947 "setAttackerLeft"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "attackerLeft" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 147075 "getAuthor"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 147203 "setAuthor"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "author" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 147331 "getRound"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 147459 "setRound"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "round" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 147587 "getPlayerGoaly"
+	public explicit_return_type "Player"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+
+@return ${type}
+"
+      end
+
+      operation 147715 "setPlayerGoaly"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "playerGoaly" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 147843 "getPlayerDefenderRight"
+	public explicit_return_type "Player"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+
+@return ${type}
+"
+      end
+
+      operation 147971 "setPlayerDefenderRight"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "playerDefenderRight" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 148099 "getPlayerDefenderLeft"
+	public explicit_return_type "Player"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+
+@return ${type}
+"
+      end
+
+      operation 148227 "setPlayerDefenderLeft"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "playerDefenderLeft" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 148355 "getPlayerAttackerRight"
+	public explicit_return_type "Player"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+
+@return ${type}
+"
+      end
+
+      operation 148483 "setPlayerAttackerRight"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "playerAttackerRight" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 148611 "getPlayerAttackerLeft"
+	public explicit_return_type "Player"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "
+
+@return ${type}
+"
+      end
+
+      operation 148739 "setPlayerAttackerLeft"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "playerAttackerLeft" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 148867 "getRating"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 148995 "setRating"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "rating" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 149123 "getVotes"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 149251 "setVotes"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "votes" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 149379 "getCalculatedRating"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 149507 "getCalculatedRatingPercent"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 149635 "getTeamOfTheRoundOfOneRound"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "round" explicit_type ""
+	  param inout name "listOfAllPlayers" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 149763 "changeTeamOfTheRoundRating"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "id" explicit_type ""
+	  param inout name "rating" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 149891 "saveTeamOfTheRound"
+	class_operation public explicit_return_type ""
+	nparams 7
+	  param inout name "goaly" explicit_type ""
+	  param inout name "defenderRight" explicit_type ""
+	  param inout name "defenderLeft" explicit_type ""
+	  param inout name "attackerRight" explicit_type ""
+	  param inout name "attackerLeft" explicit_type ""
+	  param inout name "author" explicit_type ""
+	  param inout name "round" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}, ${p4}${v4}, ${p5}${v5}, ${p6}${v6}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 150019 "getTeamOfTheRoundById"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 129795 "TeamPlayerRound"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment " 
+To change this template, choose Tools | Templates
+and open the template in the editor.
+
+
+Description of TeamPlayerRoundclass
+
+@author rodrigo
+"
+      attribute 135939 "id_player"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "put your code here"
+      end
+
+      attribute 136067 "id_team"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136195 "id_round"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136323 "goals"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 150147 "getId_player"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 150275 "setId_player"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id_player" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 150403 "getId_team"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 150531 "setId_team"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id_team" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 150659 "getId_round"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 150787 "setId_round"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id_round" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 150915 "getGoals"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151043 "setGoals"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "goals" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151171 "saveTeamPlayerRound"
+	class_operation public explicit_return_type ""
+	nparams 4
+	  param inout name "team_id" explicit_type ""
+	  param inout name "player_id" explicit_type ""
+	  param inout name "round_id" explicit_type ""
+	  param inout name "goals" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}, ${p3}${v3}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      classrelation 128003 // <generalisation>
+	relation 128003 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 128003 // <generalisation>
+	  b parent class_ref 129539 // Team
+      end
+
+      classrelation 128131 // <unidirectional association>
+	relation 128131 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128131 // <unidirectional association>
+	  b parent class_ref 129539 // Team
+      end
+
+      classrelation 128643 // <unidirectional association>
+	relation 128643 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128643 // <unidirectional association>
+	  b parent class_ref 129283 // Round
+      end
+
+      classrelation 128771 // <unidirectional association>
+	relation 128771 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128771 // <unidirectional association>
+	  b parent class_ref 129155 // Player
+      end
+    end
+
+    class 129923 "TeamVsTeam"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment " 
+To change this template, choose Tools | Templates
+and open the template in the editor.
+
+
+Description of TeamVsTeamclass
+
+@author rodrigo
+"
+      attribute 136451 "id_team_1"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "put your code here"
+      end
+
+      attribute 136579 "id_team_2"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136707 "id_round"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 151299 "getId_team_1"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151427 "setId_team_1"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id_team_1" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151555 "getId_team_2"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151683 "setId_team_2"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id_team_2" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151811 "getId_round"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151939 "setId_round"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "id_round" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152067 "saveTeamVsTeam"
+	class_operation public explicit_return_type ""
+	nparams 3
+	  param inout name "team1_id" explicit_type ""
+	  param inout name "team2_id" explicit_type ""
+	  param inout name "round_id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}, ${p2}${v2}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152195 "getRoundTeamsAdmin"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "round_id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152323 "getRoundTeams"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "round_id" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152451 "getTeamListPosition"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      classrelation 128259 // <unidirectional association>
+	relation 128259 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128259 // <unidirectional association>
+	  b parent class_ref 129539 // Team
+      end
+
+      classrelation 128387 // <unidirectional association>
+	relation 128387 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128387 // <unidirectional association>
+	  b parent class_ref 129539 // Team
+      end
+
+      classrelation 128515 // <unidirectional association>
+	relation 128515 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128515 // <unidirectional association>
+	  b parent class_ref 129283 // Round
+      end
+    end
+
+    class 130051 "auxTeam"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 136835 "teamName"
+	private explicit_type ""
+	init_value " ''"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136963 "lost"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137091 "tie"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137219 "win"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137347 "goalsFavor"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137475 "goalsAgainst"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 152579 "getTeamName"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152707 "setTeamName"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "teamName" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152835 "getLost"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152963 "setLost"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "lost" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153091 "getTie"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153219 "setTie"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "tie" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153347 "getWin"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153475 "setWin"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "win" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153603 "getPoints"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153731 "getGoalsFavor"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153859 "setGoalsFavor"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "goalsFavor" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153987 "getGoalsAgainst"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154115 "setGoalsAgainst"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "goalsAgainst" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154243 "getGoalDifference"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154371 "resultToArray"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "auxTeam" type class_ref 130051 // auxTeam
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154499 "fromArray"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "array" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}array ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154627 "orderBy"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param inout name "data" explicit_type ""
+	  param inout name "field" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154755 "orderByGoalsDifference"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "data" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154883 "reorderByGoalDifference"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "data" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155011 "bubbleOrderByGoalDifference"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param inout name "data" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155139 "swap"
+	class_operation public explicit_return_type ""
+	nparams 3
+	  param inout name "data" explicit_type ""
+	  param inout name "a" explicit_type ""
+	  param inout name "b" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}& ${p0}${v0}, ${p1}${v1}, ${p2}${v2}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155267 "compare_results"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "a" explicit_type ""
+	  param inout name "b" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    classdiagram 128003 "Diagrama de clase"
+      draw_all_relations default hide_attributes default hide_operations yes hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 130179 "Tournament"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 137603 "id"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137731 "name"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137987 "current"
+	private explicit_type "bool"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+    end
+  end
+end

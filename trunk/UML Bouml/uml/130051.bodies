@@ -1,0 +1,106 @@
+class auxTeam
+!!!152579.php!!!	getTeamName()
+        return $this->teamName;
+!!!152707.php!!!	setTeamName(inout teamName : )
+        $this->teamName = $teamName;
+!!!152835.php!!!	getLost()
+        return $this->lost;
+!!!152963.php!!!	setLost(inout lost : )
+        $this->lost += $lost;
+!!!153091.php!!!	getTie()
+        return $this->tie;
+!!!153219.php!!!	setTie(inout tie : )
+        $this->tie += $tie;
+!!!153347.php!!!	getWin()
+        return $this->win;
+!!!153475.php!!!	setWin(inout win : )
+        $this->win += $win;
+!!!153603.php!!!	getPoints()
+        return $this->getTie() + (3 * $this->getWin());
+!!!153731.php!!!	getGoalsFavor()
+        return $this->goalsFavor;
+!!!153859.php!!!	setGoalsFavor(inout goalsFavor : )
+        $this->goalsFavor += $goalsFavor;
+!!!153987.php!!!	getGoalsAgainst()
+        return $this->goalsAgainst;
+!!!154115.php!!!	setGoalsAgainst(inout goalsAgainst : )
+        $this->goalsAgainst += $goalsAgainst;
+!!!154243.php!!!	getGoalDifference()
+        return $this->getGoalsFavor() - $this->getGoalsAgainst();
+!!!154371.php!!!	resultToArray(inout auxTeam : auxTeam)
+        $array = array();
+        $array['name'] = $auxTeam->getTeamName();
+        $array['lost'] = $auxTeam->getLost();
+        $array['tie'] = $auxTeam->getTie();
+        $array['won'] = $auxTeam->getWin();
+        $array['points'] = $auxTeam->getPoints();
+        $array['goalsFavor'] = $auxTeam->getGoalsFavor();
+        $array['goalsAgainst'] = $auxTeam->getGoalsAgainst();
+        $array['goalsDifference'] = $auxTeam->getGoalDifference();
+        return $array;
+!!!154499.php!!!	fromArray(inout array : )
+        $auxTeam = new auxTeam();
+        $aux = $array['name'];
+        $auxTeam->setTeamName((string)$aux);
+        //print_r('aux team '. $auxTeam->getTeamName());
+        $aux = $array['lost'];
+        $auxTeam->setLost((int) $aux);
+        $auxTeam->setTie($array['tie']);
+        $auxTeam->setWin($array['won']);
+        $auxTeam->setGoalsFavor($array['goalsFavor']);
+        $auxTeam->setGoalsAgainst($array['goalsAgainst']);
+        return $auxTeam;
+!!!154627.php!!!	orderBy(inout data : , inout field : )
+        $code = "return strnatcmp(\$a['$field'], \$b['$field']);";
+        usort($data, create_function('$a,$b', $code));
+        return $data;
+
+!!!154755.php!!!	orderByGoalsDifference(inout data : )
+
+        $data = self::orderBy($data, 'points');
+
+        $data = self::reorderByGoalDifference($data);
+
+        $data = self::bubbleOrderByGoalDifference($data);
+        //usort($data, 'compare_results');
+        return $data;
+!!!154883.php!!!	reorderByGoalDifference(inout data : )
+        $index = count($data) - 1;
+        $change = false;
+        while($index >= 0){
+            if($index != 1){
+                if($data[$index]['points'] == $data[$index-1]['points']){
+                    if($data[$index]['goalsDifference'] < $data[$index-1]['goalsDifference']){
+                        $aux = $data[$index];
+                        $data[$index] = $data[$index -1];
+                        $data[$index -1] = $aux;
+                    }
+                    $change = true;
+                }
+            }
+            $index--;
+        }
+//        if($change){
+//            $data = self::reorderByGoalDifference($data);
+//        }
+        return $data;
+!!!155011.php!!!	bubbleOrderByGoalDifference(inout data : )
+    $size = count($data);
+    for ($i=0; $i<$size; $i++) {
+        for ($j=0; $j<$size-1-$i; $j++) {
+            if($data[$j]['points'] == $data[$j+1]['points']){
+                if($data[$j]['goalsDifference'] > $data[$j + 1]['goalsDifference']){
+                        self::swap($data, $j, $j+1);
+                    }
+            }
+        }
+    }
+    return $data;
+!!!155139.php!!!	swap(inout data : , inout a : , inout b : )
+    $aux = $data[$a];
+    $data[$a] = $data[$b];
+    $data[$b] = $aux;
+!!!155267.php!!!	compare_results(inout a : , inout b : )
+        $retval = strnatcmp($a['points'], $b['points']);
+        if(!$retval) return strnatcmp($a['goalsDifference'], $b['goalsDifference']);
+        return $retval;

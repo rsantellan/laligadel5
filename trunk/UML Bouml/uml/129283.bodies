@@ -1,0 +1,170 @@
+class Round
+!!!142851.php!!!	getId()
+        return $this->id;
+!!!142979.php!!!	getName()
+        return $this->name;
+!!!143107.php!!!	setId(inout id : )
+        $this->id = $id;
+!!!143235.php!!!	setName(inout name : )
+        $this->name = $name;
+!!!143363.php!!!	saveRound(inout name : )
+
+        require_once '../../persistencia/dBase.php';
+        require_once '../../persistencia/persistencia.php';
+        require_once '../../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+
+        $per1 = new Persistencia ( "INSERT" );
+        $per1->setTable("rounds");
+        $per1->addColum ( 'nombre' );
+
+        $per1->addValue ( "'".$name."'");
+
+        $str = $per1->constructQuery ();
+        $result = $per1->doQuery ( $str );
+
+        $per = new Persistencia("SELECT");
+        $per->addColum ( "id" );
+        $per->setTable ( "rounds" );
+        $per->addOrderBy("id DESC");
+        $per->addLimit(0, 1);
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        return $auxDatos[0];
+!!!143491.php!!!	getAllRoundsAdmin()
+
+        require_once '../persistencia/dBase.php';
+        require_once '../persistencia/persistencia.php';
+        require_once '../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "*" );
+        $per->setTable ( "rounds" );
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while($index+2 <= count($auxDatos)) {
+            $round = new Round();
+            $round->setId($auxDatos[$index]);
+            $round->setName($auxDatos[$index+1]);
+            array_push($list,$round);
+            $index = $index+2;
+        }
+        return $list;
+!!!143619.php!!!	getAll()
+
+        require_once './persistencia/dBase.php';
+        require_once './persistencia/persistencia.php';
+        require_once './persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "*" );
+        $per->setTable ( "rounds" );
+        $per->addOrderBy('id DESC');
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while($index+2 <= count($auxDatos)) {
+            $round = new Round();
+            $round->setId($auxDatos[$index]);
+            $round->setName($auxDatos[$index+1]);
+            array_push($list,$round);
+            $index = $index+2;
+        }
+        return $list;
+!!!143747.php!!!	getLastRound()
+                require_once './persistencia/dBase.php';
+        require_once './persistencia/persistencia.php';
+        require_once './persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "r.*" );
+        $per->setTable ( "rounds r" );
+        $per->addWhere("id = (
+						SELECT max( r1.id )
+						FROM rounds r1 )
+						");
+        $str = $per->constructQuery ();
+
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $round = new Round();
+        $round->setId($auxDatos[$index]);
+        $round->setName($auxDatos[$index+1]);
+        return $round;
+!!!143875.php!!!	removeRound(inout round : , inout strict :  = false, inout requiered :  = true, inout admin :  = true)
+        if ($requiered) {
+
+            require_once '../../persistencia/dBase.php';
+            require_once '../../persistencia/persistencia.php';
+            require_once '../../persistencia/laligadel5DBase.php';
+        }
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        if (!$strict) {
+
+            $per = new Persistencia('select');
+
+            $per->addColum("id_round");
+            $per->setTable("team_player_round");
+            $per->addWhere('id_round = ' . $round);
+            $str = $per->constructQuery();
+            $result = $per->doQuery($str);
+            $per->viewData($result);
+            $auxDatos = $per->returnValores();
+            if (count($auxDatos) > 0) {
+                return count($auxDatos);
+            }
+            $per = new Persistencia('select');
+
+            $per->addColum("id_round");
+            $per->setTable("team_vs_team");
+            $per->addWhere('id_round = ' . $round);
+            $str = $per->constructQuery();
+            $result = $per->doQuery($str);
+            $per->viewData($result);
+            $auxDatos = $per->returnValores();
+            if (count($auxDatos) > 0) {
+                return count($auxDatos);
+            }
+        }
+
+        $per = new Persistencia('delete');
+        $per->setTable("team_vs_team");
+        $per->addWhere('id_round = ' . $round);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        $per = new Persistencia('delete');
+        $per->setTable("team_player_round");
+        $per->addWhere('id_round = ' . $round);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        $per = new Persistencia('delete');
+        $per->setTable("rounds");
+        $per->addWhere('id = ' . $round);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        return 0;

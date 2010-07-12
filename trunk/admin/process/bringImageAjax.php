@@ -4,6 +4,7 @@ $data = array();
 if ($_POST['name'] <> '' && $_POST['type'] <> '') {
     include("../../logica/ImageHandler.class.php");
     $imageHandler = new ImageHandler();
+    
     switch ($_POST['type']) {
         case 1:
             try {
@@ -54,7 +55,7 @@ if ($_POST['name'] <> '' && $_POST['type'] <> '') {
         case 6:
             try {
                 $auxPath = $imageHandler->getConvertedPath($_POST['name'], 800, 600, false, true, true);
-                $body = $body = "<img src='" . substr($auxPath, 3)s . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
+                $body = $body = "<img src='" . substr($auxPath, 3) . "'  tooltip='" . $_POST['name'] . "' alt='" . $_POST['name'] . "'/><br/>";
                 $data = array('result' => 1, 'body' => $body);
             } catch (Exception $e) {
                 $data = array('result' => 0, 'error' => $e->getMessage());

@@ -13,6 +13,10 @@
                 $('#managePictures').addClass('current');
             });
         </script>
+        <style type="text/css">
+		.ui-progressbar-value { background-image: url(images/pbar-ani.gif); }
+	</style>
+
 <?php include ('headerDown.php'); ?>
         
 <?php        include ('imageTopPanel.php'); ?>
@@ -30,15 +34,11 @@
                     <br/>
                     <br/>
             <?php
-            //include '../logica/Image.class.php';
-            include '../logica/ImageHandler.class.php';
-            //include '../logica/Category.class.php';
+                include '../logica/ImageHandler.class.php';
             ?>
             <?php
-            //$imageList = Image::getAllWithoutCategory(true, true);
-            //$categoryList = Category::getAllCategories(false, true, true);
-            $imageHandler = new ImageHandler();
-            $index = 1;
+                $imageHandler = new ImageHandler();
+                $index = 1;
             ?>
 
 <?php

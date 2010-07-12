@@ -151,7 +151,7 @@ function uploadComplete(file) {
 		} else {
 			var progress = new FileProgress(file,  this.customSettings.progressTarget);
 			progress.setComplete();
-			progress.setStatus("Los archivos han sido recividos.");
+			progress.setStatus("Los archivos han sido recibidos.");
 			progress.toggleCancel(false);
 		}
 	} catch (ex) {

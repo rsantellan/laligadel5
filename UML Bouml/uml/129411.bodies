@@ -1,0 +1,77 @@
+class SendMail
+!!!144003.php!!!	sendFeedBackMail(inout from : , inout name : , inout comment : )
+        include_once './logica/CommentsMailing.class.php';
+        $emailList = CommentsMailing::getArrayAllMails();
+
+        $MESSAGE_BODY = "Nombre: " . $name . "<br/><br/>";
+        $MESSAGE_BODY .= "Email: " . $from . "<br/><br/>";
+        $MESSAGE_BODY .= "Comentario: " . nl2br($comment) . "<br/><br/><br/>";
+        $MESSAGE_BODY .= "Para ver otros comentarios ve a : <a href='http://www.thetaterra.com/laligadel5/comentarios.php'>La liga del 5</a>";
+        $first = true;
+        foreach ($emailList as $mail) {
+            $this->actualSendMail($from, "La liga del 5 Comentario", $MESSAGE_BODY, $mail, $first);
+            if ($first
+                )$first = false;
+        }
+        return true;
+!!!144131.php!!!	sendPhotoMail(inout file_name : )
+        $MESSAGE_BODY = "Se subion la siguiente foto por uploads " . $file_name;
+        include("../PHPMailer/class.phpmailer.php");
+        include("../PHPMailer/class.smtp.php");
+        $mail = new PHPMailer();
+        $mail->Host = "relay-hosting.secureserver.net";
+        /*
+          $mail->IsSMTP();
+          $mail->SMTPAuth = true;
+          $mail->SMTPSecure = "tls";
+          //$mail->SMTPSecure = "ssl";
+          $mail->Host = "smtp.gmail.com";
+          //$mail->Port = 465; // set the SMTP port for the GMAIL server
+          $mail->Port = 587;
+          $mail->Username = $this->username;
+          $mail->Password = $this->password;
+         */
+        $mail->From = 'thetaterra@mail.com'; //$from;
+        $mail->FromName = "laligadel5";
+        $mail->Subject = "La liga del 5 admin";
+        $mail->AltBody = $MESSAGE_BODY;
+        $mail->MsgHTML($MESSAGE_BODY);
+        $mail->AddAddress('rsantellan@gmail.com', "Destinatario");
+        $mail->IsHTML(true);
+        if (!$mail->Send()) {
+            print_r("Error: " . $mail->ErrorInfo);
+            return false;
+        }
+        return true;
+!!!144259.php!!!	actualSendMail(inout from : , inout Subject : , inout MESSAGE_BODY : , inout to : , inout include : )
+        if ($include) {
+            include("./PHPMailer/class.phpmailer.php");
+            include("./PHPMailer/class.smtp.php");
+        }
+        $mail = new PHPMailer();
+        $mail->Host = "relay-hosting.secureserver.net";
+        /*
+          $mail->IsSMTP();
+          $mail->SMTPAuth = true;
+          $mail->SMTPSecure = "tls";
+          //$mail->SMTPSecure = "ssl";
+          $mail->Host = "smtp.gmail.com";
+          //$mail->Port = 465; // set the SMTP port for the GMAIL server
+          $mail->Port = 587;
+          $mail->Username = $this->username;
+          $mail->Password = $this->password;
+         */
+        $mail->From = 'thetaterra@mail.com'; //$from;
+        $mail->FromName = "laligadel5";
+        $mail->Subject = $Subject;
+
+        $mail->AltBody = $MESSAGE_BODY;
+        $mail->MsgHTML($MESSAGE_BODY);
+        $mail->AddAddress($to, "Destinatario");
+        $mail->IsHTML(true);
+
+        if (!$mail->Send()) {
+            print_r("Error: " . $mail->ErrorInfo);
+            return false;
+        }
+        return true;

@@ -1,0 +1,207 @@
+class TeamOfTheRound
+!!!145539.php!!!	getId()
+        return $this->id;
+!!!145667.php!!!	setId(inout id : )
+        $this->id = $id;
+!!!145795.php!!!	getGoaly()
+        return $this->goaly;
+!!!145923.php!!!	setGoaly(inout goaly : )
+        $this->goaly = $goaly;
+!!!146051.php!!!	getDefenderRight()
+        return $this->defenderRight;
+!!!146179.php!!!	setDefenderRight(inout defenderRight : )
+        $this->defenderRight = $defenderRight;
+!!!146307.php!!!	getDefenderLeft()
+        return $this->defenderLeft;
+!!!146435.php!!!	setDefenderLeft(inout defenderLeft : )
+        $this->defenderLeft = $defenderLeft;
+!!!146563.php!!!	getAttackerRight()
+        return $this->attackerRight;
+!!!146691.php!!!	setAttackerRight(inout attackerRight : )
+        $this->attackerRight = $attackerRight;
+!!!146819.php!!!	getAttackerLeft()
+        return $this->attackerLeft;
+!!!146947.php!!!	setAttackerLeft(inout attackerLeft : )
+        $this->attackerLeft = $attackerLeft;
+!!!147075.php!!!	getAuthor()
+        return $this->author;
+!!!147203.php!!!	setAuthor(inout author : )
+        $this->author = $author;
+!!!147331.php!!!	getRound()
+        return $this->round;
+!!!147459.php!!!	setRound(inout round : )
+        $this->round = $round;
+!!!147587.php!!!	getPlayerGoaly() : Player
+        return $this->playerGoaly;
+!!!147715.php!!!	setPlayerGoaly(inout playerGoaly : )
+        $this->playerGoaly = $playerGoaly;
+!!!147843.php!!!	getPlayerDefenderRight() : Player
+        return $this->playerDefenderRight;
+!!!147971.php!!!	setPlayerDefenderRight(inout playerDefenderRight : )
+        $this->playerDefenderRight = $playerDefenderRight;
+!!!148099.php!!!	getPlayerDefenderLeft() : Player
+        return $this->playerDefenderLeft;
+!!!148227.php!!!	setPlayerDefenderLeft(inout playerDefenderLeft : )
+        $this->playerDefenderLeft = $playerDefenderLeft;
+!!!148355.php!!!	getPlayerAttackerRight() : Player
+        return $this->playerAttackerRight;
+!!!148483.php!!!	setPlayerAttackerRight(inout playerAttackerRight : )
+        $this->playerAttackerRight = $playerAttackerRight;
+!!!148611.php!!!	getPlayerAttackerLeft() : Player
+        return $this->playerAttackerLeft;
+!!!148739.php!!!	setPlayerAttackerLeft(inout playerAttackerLeft : )
+        $this->playerAttackerLeft = $playerAttackerLeft;
+!!!148867.php!!!	getRating()
+        return $this->rating;
+!!!148995.php!!!	setRating(inout rating : )
+        $this->rating = $rating;
+!!!149123.php!!!	getVotes()
+        return $this->votes;
+!!!149251.php!!!	setVotes(inout votes : )
+        $this->votes = $votes;
+!!!149379.php!!!	getCalculatedRating()
+        if ($this->getVotes() == 0) {
+            return 0;
+        }
+        return round(($this->getRating() / $this->getVotes()), 2);
+!!!149507.php!!!	getCalculatedRatingPercent()
+        $rating = $this->getCalculatedRating();
+        return ($rating * 100) / 5;
+!!!149635.php!!!	getTeamOfTheRoundOfOneRound(inout round : , inout listOfAllPlayers : )
+        //require_once '../persistencia/dBase.php';
+        //require_once '../persistencia/persistencia.php';
+        //require_once '../persistencia/laligadel5DBase.php';
+        require_once 'Player.class.php';
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia('select');
+
+        $per->addColum("*");
+        $per->setTable("team_of_the_round");
+        $per->addWhere('round = ' . $round);
+        $per->addOrderBy('ranking DESC');
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+
+        $index = 0;
+        $list = array();
+        while ($index + 10 <= count($auxDatos)) {
+            $teamOfTheRound = new TeamOfTheRound();
+            $teamOfTheRound->setId($auxDatos[$index]);
+            $teamOfTheRound->setAuthor($auxDatos[$index + 1]);
+            $teamOfTheRound->setRound($auxDatos[$index + 2]);
+
+            $teamOfTheRound->setPlayerGoaly($listOfAllPlayers[$auxDatos[$index + 3]]);
+            $teamOfTheRound->setPlayerDefenderRight($listOfAllPlayers[$auxDatos[$index + 4]]);
+            $teamOfTheRound->setPlayerDefenderLeft($listOfAllPlayers[$auxDatos[$index + 5]]);
+            $teamOfTheRound->setPlayerAttackerRight($listOfAllPlayers[$auxDatos[$index + 6]]);
+            $teamOfTheRound->setPlayerAttackerLeft($listOfAllPlayers[$auxDatos[$index + 7]]);
+            $teamOfTheRound->setRating($auxDatos[$index + 8]);
+            $teamOfTheRound->setVotes($auxDatos[$index + 9]);
+            array_push($list, $teamOfTheRound);
+            $index = $index + 10;
+        }
+        return $list;
+!!!149763.php!!!	changeTeamOfTheRoundRating(inout id : , inout rating : )
+        require_once '../persistencia/dBase.php';
+        require_once '../persistencia/persistencia.php';
+        require_once '../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per = new Persistencia("SELECT");
+        $per->setTable("team_of_the_round");
+        $per->addColum("ranking");
+        $per->addColum("votes");
+        $per->addWhere("id = " . $id);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $per1 = new Persistencia("UPDATE");
+        $per1->setTable("team_of_the_round");
+        $per1->addColum("ranking");
+        $per1->addColum("votes");
+        $per1->addValue($auxDatos[0] + $rating);
+        $per1->addValue($auxDatos[1] + 1);
+        $per1->addWhere("id = " . $id);
+        $str = $per1->constructQuery();
+        $result = $per1->doQuery($str);
+        return array(0 => $auxDatos[0] + $rating, 1 => $auxDatos[1] + 1);
+!!!149891.php!!!	saveTeamOfTheRound(inout goaly : , inout defenderRight : , inout defenderLeft : , inout attackerRight : , inout attackerLeft : , inout author : , inout round : )
+        require_once '../persistencia/dBase.php';
+        require_once '../persistencia/persistencia.php';
+        require_once '../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per1 = new Persistencia("INSERT");
+        $per1->setTable("team_of_the_round");
+        $per1->addColum('name');
+        $per1->addColum('round');
+        $per1->addColum('goaly');
+        $per1->addColum('defender_right');
+        $per1->addColum('defender_left');
+        $per1->addColum('attacker_right');
+        $per1->addColum('attacker_left');
+
+        $per1->addValue("'" . $author . "'");
+        $per1->addValue($round);
+        $per1->addValue($goaly);
+        $per1->addValue($defenderRight);
+        $per1->addValue($defenderLeft);
+        $per1->addValue($attackerRight);
+        $per1->addValue($attackerLeft);
+
+        $str = $per1->constructQuery();
+        $result = $per1->doQuery($str);
+        $per = new Persistencia("SELECT");
+        $per->addColum("id");
+        $per->setTable("team_of_the_round");
+        $per->addOrderBy("id DESC");
+        $per->addLimit(0, 1);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        return TeamOfTheRound::getTeamOfTheRoundById($auxDatos[0]);
+!!!150019.php!!!	getTeamOfTheRoundById(inout id : )
+        //require_once '../persistencia/dBase.php';
+        //require_once '../persistencia/persistencia.php';
+        //require_once '../persistencia/laligadel5DBase.php';
+        require_once 'Player.class.php';
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia('select');
+
+        $per->addColum("*");
+        $per->setTable("team_of_the_round");
+        $per->addWhere('id = ' . $id);
+        $per->addOrderBy('ranking DESC');
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+
+        $index = 0;
+
+        $teamOfTheRound = new TeamOfTheRound();
+        $teamOfTheRound->setId($auxDatos[$index]);
+        $teamOfTheRound->setAuthor($auxDatos[$index + 1]);
+        $teamOfTheRound->setRound($auxDatos[$index + 2]);
+        
+        $teamOfTheRound->setPlayerGoaly(Player::getPlayerAdmin($auxDatos[$index + 3], false));
+        
+        $teamOfTheRound->setPlayerDefenderRight(Player::getPlayerAdmin($auxDatos[$index + 4], false));
+        $teamOfTheRound->setPlayerDefenderLeft(Player::getPlayerAdmin($auxDatos[$index + 5], false));
+        $teamOfTheRound->setPlayerAttackerRight(Player::getPlayerAdmin($auxDatos[$index + 6], false));
+        $teamOfTheRound->setPlayerAttackerLeft(Player::getPlayerAdmin($auxDatos[$index + 7], false));
+        $teamOfTheRound->setRating($auxDatos[$index + 8]);
+        $teamOfTheRound->setVotes($auxDatos[$index + 9]);
+
+
+        return $teamOfTheRound;

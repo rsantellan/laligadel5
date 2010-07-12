@@ -1,0 +1,130 @@
+class CommentsMailing
+!!!131459.php!!!	setActive(inout active : )
+        $this->active = $active;
+!!!131587.php!!!	setEmail(inout email : )
+        $this->email = $email;
+!!!131715.php!!!	setId(inout id : )
+        $this->id = $id;
+!!!131843.php!!!	getActive()
+        if($this->active == '1') return true;
+        return false;
+        //return $this->active;
+!!!131971.php!!!	getEmail()
+        return $this->email;
+!!!132099.php!!!	getId()
+        return $this->id;
+!!!132227.php!!!	getAllCommentsMailsAdmin()
+        require_once '../persistencia/dBase.php';
+        require_once '../persistencia/persistencia.php';
+        require_once '../persistencia/laligadel5DBase.php';
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "*" );
+        $per->setTable ( "comments_mailing" );
+        $per->addOrderBy('email ASC');
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData ( $result );
+        $auxDatos = $per->returnValores ();
+        $index = 0;
+        $list = array ();
+        while ( $index + 3 <= count ( $auxDatos ) ) {
+
+            $commentMail = new CommentsMailing();
+            $commentMail->setId($auxDatos [$index]);
+            $commentMail->setEmail($auxDatos [$index+1]);
+            $commentMail->setActive($auxDatos [$index+2]);
+            array_push ( $list, $commentMail);
+            $index = $index + 3;
+        }
+
+        return $list;
+!!!132355.php!!!	getArrayAllMails()
+        require_once './persistencia/dBase.php';
+        require_once './persistencia/persistencia.php';
+        require_once './persistencia/laligadel5DBase.php';
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "email" );
+        $per->setTable ( "comments_mailing" );
+        $per->addWhere('active = 1');
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData ( $result );
+        $auxDatos = $per->returnValores ();
+        $index = 0;
+        $list = array ();
+        while ( $index < count ( $auxDatos ) ) {
+            array_push ( $list, $auxDatos [$index] );
+            $index++;
+        }
+        return $list;
+!!!132483.php!!!	addEmailAdminAjax(inout email : )
+        require_once '../../persistencia/dBase.php';
+        require_once '../../persistencia/persistencia.php';
+        require_once '../../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+
+        $per1 = new Persistencia ( "INSERT" );
+        $per1->setTable("comments_mailing");
+        $per1->addColum ( 'email' );
+
+        $per1->addValue ( "'".$email."'" );
+
+        $str = $per1->constructQuery ();
+        $result = $per1->doQuery ( $str );
+
+        $per = new Persistencia ( 'select' );
+
+        $per->addColum ( "id" );
+        $per->setTable ( "comments_mailing" );
+        $per->addOrderBy("id DESC");
+        $per->addLimit(0, 1);
+        $str = $per->constructQuery ();
+        $result = $per->doQuery ( $str );
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        return $auxDatos[0];
+!!!132611.php!!!	changeStatus(inout id : , inout status : )
+        require_once '../../persistencia/dBase.php';
+        require_once '../../persistencia/persistencia.php';
+        require_once '../../persistencia/laligadel5DBase.php';
+        
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+        
+        $per1 = new Persistencia ( "UPDATE" );
+        $per1->setTable("comments_mailing");
+        $per1->addColum ( 'active' );
+        
+        $per1->addValue ( $status);
+        $per1->addWhere('id = '.$id);
+        $str = $per1->constructQuery ();
+        $result = $per1->doQuery ( $str );
+        
+        return true;
+!!!132739.php!!!	addBulkEmail(inout emailList : )
+        require_once './persistencia/dBase.php';
+        require_once './persistencia/persistencia.php';
+        require_once './persistencia/laligadel5DBase.php';
+
+        $conn = new DBase ( laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass );
+        $conn->selectDB ( laligadel5DBase::$database );
+
+        foreach($emailList as $email) {
+            $per1 = new Persistencia ( "INSERT" );
+            $per1->setTable("comments_mailing");
+            $per1->addColum ( 'email' );
+
+            $per1->addValue ( "'".$email."'" );
+
+            $str = $per1->constructQuery ();
+            $result = $per1->doQuery ( $str );
+        }
+        return true;

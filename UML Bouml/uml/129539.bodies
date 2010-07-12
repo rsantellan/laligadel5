@@ -1,0 +1,173 @@
+class Team
+!!!144387.php!!!	getId()
+        return $this->id;
+!!!144515.php!!!	getName()
+        return $this->name;
+!!!144643.php!!!	setId(inout id : )
+        $this->id = $id;
+!!!144771.php!!!	setName(inout name : )
+        $this->name = $name;
+!!!144899.php!!!	saveTeam(inout name : )
+
+        require_once '../../persistencia/dBase.php';
+        require_once '../../persistencia/persistencia.php';
+        require_once '../../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per1 = new Persistencia("INSERT");
+        $per1->setTable("team");
+        $per1->addColum('nombre');
+
+        $per1->addValue("'" . $name . "'");
+
+        $str = $per1->constructQuery();
+        $result = $per1->doQuery($str);
+        $per = new Persistencia("SELECT");
+        $per->addColum("id");
+        $per->setTable("team");
+        $per->addOrderBy("id DESC");
+        $per->addLimit(0, 1);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        return $auxDatos[0];
+!!!145027.php!!!	getAllTeamsAdmin()
+
+        require_once '../persistencia/dBase.php';
+        require_once '../persistencia/persistencia.php';
+        require_once '../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia('select');
+
+        $per->addColum("*");
+        $per->setTable("team");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while ($index + 2 <= count($auxDatos)) {
+            $team = new Team();
+            $team->setId($auxDatos[$index]);
+            $team->setName($auxDatos[$index + 1]);
+            array_push($list, $team);
+            $index = $index + 2;
+        }
+        return $list;
+!!!145155.php!!!	getAllTeams(inout requiered :  = true)
+        if ($requiered) {
+            require_once './persistencia/dBase.php';
+            require_once './persistencia/persistencia.php';
+            require_once './persistencia/laligadel5DBase.php';
+        }
+
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia('select');
+
+        $per->addColum("*");
+        $per->setTable("team");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+        while ($index + 2 <= count($auxDatos)) {
+            $team = new Team();
+            $team->setId($auxDatos[$index]);
+            $team->setName($auxDatos[$index + 1]);
+            array_push($list, $team);
+            $index = $index + 2;
+        }
+        return $list;
+!!!145283.php!!!	getTeamById(inout team_id : )
+
+//            require_once '../persistencia/dBase.php';
+//            require_once '../persistencia/persistencia.php';
+//            require_once '../persistencia/laligadel5DBase.php';
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia('select');
+
+        $per->addColum("*");
+        $per->setTable("team");
+        $per->addWhere("id = " . $team_id);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        if (count($auxDatos) == 0)
+            return null;
+        $team = new Team();
+        while ($index + 2 <= count($auxDatos)) {
+
+            $team->setId($auxDatos[$index]);
+            $team->setName($auxDatos[$index + 1]);
+            $index = $index + 2;
+        }
+        return $team;
+!!!145411.php!!!	removeTeam(inout team : , inout strict :  = false, inout requiered :  = true, inout admin :  = true)
+        if ($requiered) {
+
+            require_once '../../persistencia/dBase.php';
+            require_once '../../persistencia/persistencia.php';
+            require_once '../../persistencia/laligadel5DBase.php';
+        }
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        if (!$strict) {
+
+            $per = new Persistencia('select');
+
+            $per->addColum("id_team");
+            $per->setTable("team_player_round");
+            $per->addWhere('id_team = ' . $team);
+            $str = $per->constructQuery();
+            $result = $per->doQuery($str);
+            $per->viewData($result);
+            $auxDatos = $per->returnValores();
+            if (count($auxDatos) > 0) {
+                return count($auxDatos);
+            }
+            $per = new Persistencia('select');
+
+            $per->addColum("id_round");
+            $per->setTable("team_vs_team");
+            $per->addWhere('id_team_1 = ' . $team . ' OR id_team_2 = ' . $team);
+            $str = $per->constructQuery();
+            $result = $per->doQuery($str);
+            $per->viewData($result);
+            $auxDatos = $per->returnValores();
+            if (count($auxDatos) > 0) {
+                return count($auxDatos);
+            }
+        }
+
+        $per = new Persistencia('delete');
+        $per->setTable("team_vs_team");
+        $per->addWhere('id_team_1 = ' . $team . ' OR id_team_2 = ' . $team);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        $per = new Persistencia('delete');
+        $per->setTable("team_player_round");
+        $per->addWhere('id_team = ' . $team);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        $per = new Persistencia('delete');
+        $per->setTable("team");
+        $per->addWhere('id = ' . $team);
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        return 0;

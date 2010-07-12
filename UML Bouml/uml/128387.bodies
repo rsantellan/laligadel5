@@ -1,0 +1,370 @@
+class Image
+!!!132867.php!!!	getCategoryId()
+        return $this->categoryId;
+!!!132995.php!!!	setCategoryId(inout categoryId : )
+        $this->categoryId = $categoryId;
+!!!133123.php!!!	getId()
+        return $this->id;
+!!!133251.php!!!	setId(inout id : )
+        return $this->id = $id;
+!!!133379.php!!!	getName()
+        return $this->name;
+!!!133507.php!!!	setName(inout name : )
+        return $this->name = $name;
+!!!133635.php!!!	getType()
+        return $this->type;
+!!!133763.php!!!	setType(inout type : )
+        return $this->type = $type;
+!!!133891.php!!!	getRank()
+        return $this->rank;
+!!!134019.php!!!	setRank(inout rank : )
+        return $this->rank = $rank;
+!!!134147.php!!!	getFile()
+        return $this->file;
+!!!134275.php!!!	setFile(inout file : )
+        return $this->file = $file;
+!!!134403.php!!!	getOwnUser()
+        return $this->ownUser;
+!!!134531.php!!!	setOwnUser(inout ownUser : )
+        return $this->ownUser = $ownUser;
+!!!134659.php!!!	getVisible()
+        return $this->visible;
+!!!134787.php!!!	setVisible(inout visible : )
+        return $this->visible = $visible;
+!!!134915.php!!!	__toString()
+        return 'Imagen:' . $this->getName();
+!!!135043.php!!!	addRequiered()
+        if (!$this->requiere) {
+            require_once './persistencia/dBase.php';
+            require_once './persistencia/persistencia.php';
+            require_once './persistencia/laligadel5DBase.php';
+            $this->requiere = true;
+        }
+!!!135171.php!!!	addIncludeRequiere()
+        if (!$this->requiereInclude) {
+            include('../persistencia/dBase.php');
+            include('../persistencia/laligadel5DBase.php');
+            include('../persistencia/persistencia.php');
+            $this->requiereInclude = true;
+        }
+!!!135299.php!!!	retrieveByPk(inout id : )
+        //$this->addRequiered();
+        $this->addIncludeRequiere();
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per = new Persistencia('select');
+
+        $per->addColum("*");
+        $per->addWhere("id='$id'");
+        $per->setTable("images");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        if (!$result)
+            return null;
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $image = new Image();
+        $image->setId($auxDatos[0]);
+        $image->setName($auxDatos[1]);
+        $image->setType($auxDatos[2]);
+        $image->setRank($auxDatos[3]);
+        $image->setFile($auxDatos[4]);
+        $image->setOwnUser($auxDatos[5]);
+        $image->setVisible($auxDatos[6]);
+        return $image;
+!!!135427.php!!!	changeRating(inout number : )
+        $value = $this->getRank() + $number;
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia("UPDATE");
+        $per->setTable("images");
+        $per->addColum('rating');
+        $per->addValue($value);
+        $per->addWhere('id=' . $this->getId());
+        $str = $per->constructQuery();
+
+        $result = $per->doQuery($str);
+        return true;
+!!!135555.php!!!	changeVisibility()
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per = new Persistencia("UPDATE");
+        $per->setTable("images");
+        $per->addColum('visible');
+        $per->addValue(!$this->getVisible());
+        $per->addWhere('id=' . $this->getId());
+        $str = $per->constructQuery();
+
+        $result = $per->doQuery($str);
+        return true;
+!!!135683.php!!!	save()
+        $this->addIncludeRequiere();
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per1 = new Persistencia("INSERT");
+        $per1->setTable("images_laliga");
+        $per1->addColum('name');
+        $per1->addColum('type');
+        $per1->addColum('rating');
+        $per1->addColum('file');
+        $per1->addColum('ownuser');
+
+        $per1->addValue("'" . $this->getName() . "'");
+        $per1->addValue("'" . $this->getType() . "'");
+        $per1->addValue("'" . $this->getRank() . "'");
+        $per1->addValue("'" . $this->getFile() . "'");
+        $per1->addValue("'" . $this->getOwnUser() . "'");
+
+        $str = $per1->constructQuery();
+        $result = $per1->doQuery($str);
+        return true;
+!!!135811.php!!!	saveImage(inout required : , inout admin : , inout name : , inout file : , inout type :  = "", inout rank :  = 0, inout ownUser :  = "")
+        if ($required) {
+            if (!$admin) {
+                require_once './persistencia/dBase.php';
+                require_once './persistencia/persistencia.php';
+                require_once './persistencia/laligadel5DBase.php';
+            } else {
+                require_once '../persistencia/dBase.php';
+                require_once '../persistencia/persistencia.php';
+                require_once '../persistencia/laligadel5DBase.php';
+            }
+        }
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+        $per1 = new Persistencia("INSERT");
+        $per1->setTable("images_laliga");
+        $per1->addColum('name');
+        $per1->addColum('type');
+        $per1->addColum('rating');
+        $per1->addColum('file');
+        $per1->addColum('ownuser');
+
+        $per1->addValue("'" . $name . "'");
+        $per1->addValue("'" . $type . "'");
+        $per1->addValue("'" . $rank . "'");
+        $per1->addValue("'" . $file . "'");
+        $per1->addValue("'" . $ownUser . "'");
+
+        $str = $per1->constructQuery();
+        $result = $per1->doQuery($str);
+        return true;
+!!!135939.php!!!	getAllWithoutCategory(inout required : , inout admin : )
+        if ($required) {
+            if (!$admin) {
+                require_once './persistencia/dBase.php';
+                require_once './persistencia/persistencia.php';
+                require_once './persistencia/laligadel5DBase.php';
+            } else {
+                require_once '../persistencia/dBase.php';
+                require_once '../persistencia/persistencia.php';
+                require_once '../persistencia/laligadel5DBase.php';
+            }
+        }
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per = new Persistencia('select');
+        $per->addColum("*");
+        $per->addWhere("categoryId = 0");
+        $per->setTable("images_laliga");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+
+        while ($index + 8 <= count($auxDatos)) {
+            $image = new Image();
+            $image->setId($auxDatos[$index]);
+            $image->setName($auxDatos[$index + 1]);
+            $image->setType($auxDatos[$index + 2]);
+            $image->setRank($auxDatos[$index + 3]);
+            $image->setFile($auxDatos[$index + 4]);
+            $image->setOwnUser($auxDatos[$index + 5]);
+            $image->setVisible($auxDatos[$index + 6]);
+            $image->setCategoryId($auxDatos[$index + 7]);
+            array_push($list, $image);
+            $index = $index + 8;
+        }
+        return $list;
+!!!136067.php!!!	getAllOfCategory(inout categoryId : , inout required : , inout admin : )
+        if ($required) {
+            if (!$admin) {
+                require_once './persistencia/dBase.php';
+                require_once './persistencia/persistencia.php';
+                require_once './persistencia/laligadel5DBase.php';
+            } else {
+                require_once '../persistencia/dBase.php';
+                require_once '../persistencia/persistencia.php';
+                require_once '../persistencia/laligadel5DBase.php';
+            }
+        }
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per = new Persistencia('select');
+        $per->addColum("*");
+        $per->addWhere("categoryId = " . $categoryId);
+        $per->setTable("images_laliga");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $index = 0;
+        $list = array();
+
+        while ($index + 8 <= count($auxDatos)) {
+            $image = new Image();
+            $image->setId($auxDatos[$index]);
+            $image->setName($auxDatos[$index + 1]);
+            $image->setType($auxDatos[$index + 2]);
+            $image->setRank($auxDatos[$index + 3]);
+            $image->setFile($auxDatos[$index + 4]);
+            $image->setOwnUser($auxDatos[$index + 5]);
+            $image->setVisible($auxDatos[$index + 6]);
+            $image->setCategoryId($auxDatos[$index + 7]);
+            array_push($list, $image);
+            $index = $index + 8;
+        }
+        return $list;
+!!!136195.php!!!	retrieveById(inout id : , inout requiered :  = false, inout admin :  = false, inout ajax :  = false)
+
+        if ($requiered) {
+            if (!$admin) {
+                require_once './persistencia/dBase.php';
+                require_once './persistencia/persistencia.php';
+                require_once './persistencia/laligadel5DBase.php';
+            } else {
+                if (!$ajax) {
+                    require_once '../persistencia/dBase.php';
+                    require_once '../persistencia/persistencia.php';
+                    require_once '../persistencia/laligadel5DBase.php';
+                } else {
+                    require_once '../../persistencia/dBase.php';
+                    require_once '../../persistencia/persistencia.php';
+                    require_once '../../persistencia/laligadel5DBase.php';
+                }
+            }
+        }
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per = new Persistencia('select');
+
+        $per->addColum("*");
+        $per->addWhere("id='$id'");
+        $per->setTable("images_laliga");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+
+        if (!$result)
+            return null;
+        $per->viewData($result);
+        $auxDatos = $per->returnValores();
+        $image = new Image();
+        $image->setId($auxDatos[0]);
+        $image->setName($auxDatos[1]);
+        $image->setType($auxDatos[2]);
+        $image->setRank($auxDatos[3]);
+        $image->setFile($auxDatos[4]);
+        $image->setOwnUser($auxDatos[5]);
+        $image->setVisible($auxDatos[6]);
+        $image->setCategoryId($auxDatos[7]);
+        return $image;
+!!!136323.php!!!	addImageToCategory(inout imageId : int, inout categoryId : int, inout required : boolean, inout admin : boolean = false) : Image
+        if ($required) {
+            if (!$admin) {
+                require_once './persistencia/dBase.php';
+                require_once './persistencia/persistencia.php';
+                require_once './persistencia/laligadel5DBase.php';
+            } else {
+                require_once '../../persistencia/dBase.php';
+                require_once '../../persistencia/persistencia.php';
+                require_once '../../persistencia/laligadel5DBase.php';
+            }
+        }
+
+        try {
+            $image = self::retrieveById($imageId);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per = new Persistencia('update');
+        $per->addColum('categoryId');
+        $per->addValue($categoryId);
+        $per->addWhere("id = " . $imageId);
+        $per->setTable("images_laliga");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        return $image;
+!!!136451.php!!!	removeImage(inout imageId : , inout required : , inout admin :  = false, inout imageHandler :  = false, inout ajax :  = false)
+        if ($required) {
+            if (!$admin) {
+                require_once './persistencia/dBase.php';
+                require_once './persistencia/persistencia.php';
+                require_once './persistencia/laligadel5DBase.php';
+                if ($imageHandler) {
+                    require_once './ImageHandler.class.php';
+                }
+            } else {
+
+                if ($ajax) {
+                    require_once '../../persistencia/dBase.php';
+                    require_once '../../persistencia/persistencia.php';
+                    require_once '../../persistencia/laligadel5DBase.php';
+                    if ($imageHandler) {
+                        require_once '../../logica/ImageHandler.class.php';
+                    }
+                } else {
+                    require_once '../persistencia/dBase.php';
+                    require_once '../persistencia/persistencia.php';
+                    require_once '../persistencia/laligadel5DBase.php';
+                    if ($imageHandler) {
+                        require_once '../ImageHandler.class.php';
+                    }
+                }
+            }
+        }
+
+        try {
+            $image = self::retrieveById($imageId);
+
+            $imageHandler = new ImageHandler();
+            $realPath = getcwd();
+            $returnPath = "";
+            if ($admin) {
+                if ($ajax) {
+                    $realPath .= "/../../";
+                    $returnPath = "../../";
+                } else {
+                    $realPath .= "/../";
+                    $returnPath = "../";
+                }
+            } else {
+                $realPath .= "/";
+            }
+            $originalFile = $realPath . $image->getFile();
+            $imageHandler->removeCompleteImage($originalFile);
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+            return false;
+        }
+
+        $conn = new DBase(laligadel5DBase::$host, laligadel5DBase::$user, laligadel5DBase::$pass);
+        $conn->selectDB(laligadel5DBase::$database);
+
+        $per = new Persistencia('delete');
+        $per->addWhere("id = " . $imageId);
+        $per->setTable("images_laliga");
+        $str = $per->constructQuery();
+        $result = $per->doQuery($str);
+        return true;

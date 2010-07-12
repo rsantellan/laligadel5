@@ -1,0 +1,8 @@
+window_sizes 1278 726 300 972 532 120
+show_stereotypes
+selected attribute_ref 137987 // current
+open
+  class_ref 129283 // Round
+  class_ref 130179 // Tournament
+end
+end

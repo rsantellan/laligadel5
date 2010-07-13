@@ -456,3 +456,11 @@ div.flash {
     background-color: #F7F7F7;
     overflow: hidden;
 }
+
+.current_tournment{
+    text-align: center;
+}
+
+.torneo_actual{
+    color: blue;
+}

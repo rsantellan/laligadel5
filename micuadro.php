@@ -14,6 +14,10 @@
 <?php include('logoAndMenu.php') ?>
 
 <div id="body">
+    <?php
+        include('logica/Tournament.class.php');
+        $tournament = Tournament::getAllTournaments(true, true);
+    ?>
     <?php include_once 'logica/Round.class.php'; ?>
     <?php $round = Round::getLastRound() ?>
     <h2 class="title">Arma el equipo de la: <?php echo $round->getName() ?><label id="help"> Ayuda <img src="images/HelpIcon.gif" alt="Futbol" width="34" height="34" /></label></h2>
@@ -104,8 +108,8 @@
             </div>
 
             <div id="list_of_teams_of_the_round">
-            <?php $roundList = Round::getAll(); ?>
-            <?php $listAllPlayers = Player::getAll() ?>
+            <?php $roundList = Round::retrieveAll($tournament->getId(), true, false, false); ?>
+            <?php $listAllPlayers = Player::getAllByTournament($tournament->getId()); ?>
             <?php include_once 'logica/TeamOfTheRound.class.php'; ?>
             <?php foreach ($roundList as $auxRound): ?>
                         <h3><?php echo $auxRound->getName(); ?></h3>

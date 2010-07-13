@@ -16,10 +16,15 @@
 <div id="body">
 	<h2 class="title">Estadisticas</h2>
         <div class="story">
+        <?php 
+        include('logica/Tournament.class.php');
+        $tournament = Tournament::getAllTournaments(true, true);
+        ?>
+            <h2>Torneo: <?php echo $tournament->getName();?></h2>
 		<p>
 	<?php include('logica/TeamVsTeam.class.php')?>
 
-        <?php $testList = TeamVsTeam::getTeamListPosition() ?>
+        <?php $testList = TeamVsTeam::getTeamListPosition($tournament->getId()) ?>
         
                 <div class="ulTable">
                     <ul>
@@ -144,7 +149,7 @@
                 <br/>
 		<hr/>
 	
-		<?php $list = Player::getAll();?>
+		<?php $list = Player::getAllByTournament($tournament->getId());?>
 		
 
 		
@@ -214,7 +219,7 @@
                 <br/>
 		<hr/>
 	
-<?php $roundList = Round::getAll(); ?>
+<?php $roundList = Round::retrieveAll($tournament->getId(), true, false, false);?>
 
 <?php foreach($roundList as $round):?>
         <h2><?php echo $round->getName(); ?></h2>

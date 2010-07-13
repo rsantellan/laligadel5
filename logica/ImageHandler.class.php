@@ -172,7 +172,7 @@ class ImageHandler {
             elseif(is_readable("$dir$entry")) {
                 $retval[] = array(
                         "name" => "$dir$entry",
-                        "type" => "$dir$entry",
+                        "type" => mime_content_type("$dir$entry"),
                         "size" => filesize("$dir$entry"),
                         "lastmod" => filemtime("$dir$entry")
                     );

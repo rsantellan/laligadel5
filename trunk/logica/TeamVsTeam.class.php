@@ -151,10 +151,10 @@ class TeamVsTeam {
             return $list;
     }
 
-    public static function getTeamListPosition(){
+    public static function getTeamListPosition($tournamentId){
         require_once 'Round.class.php';
         require_once 'Player.class.php';
-        $roundList = Round::getAll();
+        $roundList = Round::retrieveAll($tournamentId, true, false, false);
         $list = array();
         foreach($roundList as $round){
             $teamVsTeamList = self::getRoundTeams($round->getId());

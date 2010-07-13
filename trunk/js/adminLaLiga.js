@@ -22,7 +22,7 @@ $(document).ready(function(){
         }
     });
 
-
+    $('#menu_agregar_torneo').click(showAddTournament);
     $('#menu_agregar_jugador').click(showAddPlayer);
     $('#menu_agregar_equipo').click(showAddTeam);
     $('#menu_agregar_ronda').click(showAddRound);
@@ -35,7 +35,7 @@ $(document).ready(function(){
     $('#top_agregar_team_vs_team').click(showAddTeamVsTeam);
     $('#top_agregar_player_goal_team').click(showAddPlayerTeamGoal);
 
-
+    $('#form_tournaments_enviar_torneo').click(agregarTorneo);
     $('#form_jugadores_enviar_jugador').click(agregarJugador);
     $('#form_jugadores_errors').hide();
     $('#form_equipos_enviar_equipo').click(agregarTeam);
@@ -57,8 +57,12 @@ $(document).ready(function(){
     $('#rounds_admin_table').click(function(){
         $('#rounds_table_list').slideToggle("slow");
     });
-    showTeamGoals();
-    mostrarPartidosDeLaFecha();
+    $('#tournaments_admin_table_link').click(function(){
+        $('#tournaments_table_list').slideToggle("slow");
+    });
+    $("#tournament_radios").buttonset();
+
+    loadTournamentData(true);
 });
 
 function startHidenContainers(){
@@ -72,7 +76,14 @@ function startHidenContainers(){
     $('#addPlayerTeamGoals').hide();
     $('#teams_table_list').hide();
     $('#rounds_table_list').hide();
+    $('#tournaments_table_list').hide();
+    $('#addTournament').hide();
 }
+
+function showAddTournament(){
+    $('#menu_agregar_torneo').slideToggle("slow");
+}
+
 function showAddPlayer(){
     $('#addPlayer').slideToggle("slow");
 }
@@ -91,6 +102,58 @@ function showAddTeamVsTeam(){
 
 function showAddPlayerTeamGoal(){
     $('#addPlayerTeamGoals').slideToggle("slow");
+}
+
+function agregarTorneo(){
+    var name = $('#form_tournaments_nombre_torneo').val();
+    if(name == '' || name == ' '){
+        $('#form_tournaments_errors').html('<h2>Nombre del Torneo vacio</h2>');
+        $('#form_tournaments_errors').show();
+        $('#form_tournaments_errors').fadeOut(8000, function () {
+            $('#form_tournaments_errors').hide();
+        });
+        return;
+    }
+
+    $("#form_tournaments_procesando").fadeIn(400).html('<img src="../images/ajax-loader.gif" /><h3>Procesando...</h3>');
+    var dataString = 'name='+ name;
+    $('#form_tournaments_errors').hide();
+    $.ajax({
+        type: "POST",
+        url: "process/agregarTorneoAjax.php",
+        data: dataString,
+        dataType: "json",
+        beforeSend: function(x) {
+            if(x && x.overrideMimeType) {
+                x.overrideMimeType("application/json;charset=UTF-8");
+            }
+        },
+        success: function(data){
+            if(data.result == 1){
+
+                //$("#player_team_goal_form_select_player").append("<option value='"+data.id+"'>"+data.name+"</option>");
+                var texto = '<input type="radio" id="radio_tournament_'+data.id+'" name="tournament_radio"/> <label for="radio_tournament_'+data.id+'">'+data.name+'</label>';
+                $("#tournament_radios").append(texto);
+                $('#tournaments_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td><a href="javascript:void(0)" onclick="startDelete('+data.id+',-1)" >Eliminar</a></td></tr>');
+                $('#logo_ok').show();
+                $('#form_tournaments_errors').html($('#logo_ok'));
+                $('#form_tournaments_errors').show();
+                $('#logo_ok').fadeOut(6000, function () {
+                    $('#logo_ok').hide();
+                    $('#logos_container').append($('#logo_ok'));
+                });
+
+            }else{
+                $('#form_tournaments_errors').show();
+                $('#form_tournaments_errors').html('<h2>'+data.error+'</h2>');
+                $('#form_tournaments_errors').fadeOut(8000, function () {
+                    $('#form_tournaments_errors').hide();
+                });
+            }
+        }
+
+    });
+    $('#form_tournaments_procesando').fadeOut(6000);
 }
 
 function agregarJugador(){
@@ -121,7 +184,7 @@ function agregarJugador(){
             if(data.result == 1){
                     
                 $("#player_team_goal_form_select_player").append("<option value='"+data.id+"'>"+data.name+"</option>");
-                $('#players_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td>...</td></tr>');
+                $('#players_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td><a href="javascript:void(0)" onclick="startDelete('+data.id+',1)" >Eliminar</a></td></tr>');
                 $('#logo_ok').show();
                 $('#form_jugadores_errors').html($('#logo_ok'));
                 $('#form_jugadores_errors').show();
@@ -174,7 +237,7 @@ function agregarTeam(){
                 $("#team_vs_team_form_equipo_2").append("<option value='"+data.id+"'>"+data.name+"</option>");
                 $("#team_vs_team_form_equipo_1").append("<option value='"+data.id+"'>"+data.name+"</option>");
                 
-                $('#teams_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td>...</td></tr>');
+                $('#teams_admin_table tr:last').after('<tr><td>'+data.id+'</td><td>'+data.name+'</td><td><a href="javascript:void(0)" onclick="startDelete('+data.id+',2)" >Eliminar</a></td></tr>');
                 $('#logo_ok').show();
                 $('#form_equipos_errors').html($('#logo_ok'));
                 $('#form_equipos_errors').show();
@@ -257,8 +320,18 @@ function agregarTeamVsTeam(){
         });
         return;
     }
+    var round = $('#team_vs_team_form_fecha').val();
+    if(round == null){
+        $('#team_vs_team_form_errors').show();
+        $('#team_vs_team_form_errors').html('<h2> No hay fecha seleccionada</h2>');
+        $('#team_vs_team_form_errors').fadeOut(8000, function () {
+            $('#team_vs_team_form_errors').hide();
+        });
+        return;
+    }
+
     $('#team_vs_team_form_errors').hide();
-    var dataString = 'equipo_1='+ team1 +'&equipo_2='+team2+'&fecha='+$('#team_vs_team_form_fecha').val();
+    var dataString = 'equipo_1='+ team1 +'&equipo_2='+team2+'&fecha='+round;
     $("#team_vs_team_form_on_round_procesando").fadeIn(400).html('<img src="../images/ajax-loader.gif" /><h3>Procesando...</h3>');
 
 
@@ -299,6 +372,10 @@ function agregarTeamVsTeam(){
 
 function mostrarPartidosDeLaFecha(){
     var id = $('#team_vs_team_form_fecha').val();
+    if(id == null){
+        $('#team_vs_team_form_on_round').html('');
+        return;
+    }
     var dataString = 'id='+ id;
     $('#form_fechas_errors').hide();
     $.ajax({
@@ -331,6 +408,14 @@ function mostrarPartidosDeLaFecha(){
 function agregarPlayerTeamGoals(){
     var team = $('#player_team_goal_form_select_team').val();
     var round = $('#player_team_goal_form_select_round').val();
+    if(round == null){
+        $('#player_team_goal_form_errors').show();
+        $('#player_team_goal_form_errors').html('<h2> No hay fecha seleccionada</h2>');
+        $('#player_team_goal_form_errors').fadeOut(8000, function () {
+            $('#player_team_goal_form_errors').hide();
+        });
+        return;
+    }
     var goals = $('#player_team_goal_form_goles').val();
     var player =$('#player_team_goal_form_select_player').val();
     var dataString = 'equipo='+ team +'&fecha='+round+'&jugador='+player+'&goles='+goals;
@@ -374,7 +459,10 @@ function agregarPlayerTeamGoals(){
 function showTeamGoals(){
     var team = $('#player_team_goal_form_select_team').val();
     var round = $('#player_team_goal_form_select_round').val();
-
+    if(round == null){
+        $('#player_team_goal_form_on_round').html('');
+        return;
+    }
     var dataString = 'team='+ team +'&round='+round;
     $('#player_team_goal_form_errors').hide();
     $.ajax({
@@ -477,4 +565,74 @@ function doubleCheckDeletion(id, type){
     });
 
     $("#dialog_double_check").dialog("open");
+}
+
+function loadTournamentData(first){
+    loadRounds();
+    if(!first){
+        changeActiveTournament();
+    }
+    
+}
+
+function changeActiveTournament(){
+    var tournament = $("#tournament_radios input[name='tournament_radio']:checked").attr('value');
+
+    var dataString = 'tournament='+ tournament;
+
+    $.ajax({
+        type: "POST",
+        url: "process/changeTournamentStatusAjax.php",
+        data: dataString,
+        dataType: "json",
+        beforeSend: function(x) {
+            if(x && x.overrideMimeType) {
+                x.overrideMimeType("application/json;charset=UTF-8");
+            }
+        },
+        success: function(data){
+            if(data.result == 1){
+                var selectedId = $("#tournament_radios input[name='tournament_radio']:checked").attr('id');
+                var selectedLabel = $("label[for=" + selectedId + "] span");
+                $("#span_torneo_actual").html(selectedLabel.html());
+            }
+            
+        }
+
+    });
+}
+
+function loadRounds(){
+    var tournament = $("#tournament_radios input[name='tournament_radio']:checked").attr('value');
+
+    var dataString = 'tournament='+ tournament;
+
+    $.ajax({
+        type: "POST",
+        url: "process/retrieveRoundAjax.php",
+        data: dataString,
+        dataType: "json",
+        beforeSend: function(x) {
+            if(x && x.overrideMimeType) {
+                x.overrideMimeType("application/json;charset=UTF-8");
+            }
+        },
+        success: function(data){
+            if(data.result == 1){
+                $('#team_vs_team_form_fecha').find('option').remove().end();
+                $('#player_team_goal_form_select_round').find('option').remove().end();
+                var x =0;
+                for(x=0;x<data.list.length;x++){
+                    var aux = data.list[x];
+                    $("#team_vs_team_form_fecha").append("<option value='"+aux.id+"'>"+aux.name+"</option>");
+                    $("#player_team_goal_form_select_round").append("<option value='"+aux.id+"'>"+aux.name+"</option>");
+                }
+
+            }
+            showTeamGoals();
+            mostrarPartidosDeLaFecha();
+        }
+
+    });
+    
 }

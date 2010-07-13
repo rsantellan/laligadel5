@@ -5,7 +5,7 @@ $(document).ready(function(){
         continuous: true
     });
     seleccionarMis5.bootstrap();
-    $('#menu_index').addClass('active');
+    $('#menu_mi_cuadro').addClass('active');
 
     $('#addTeamOfTheRound').hide();
     $('#addTeamOfTheRound').removeClass('hide');

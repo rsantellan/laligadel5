@@ -8,6 +8,7 @@
 		<li id='menu_estadistica'><a href="estadisticas.php" >Estadisticas</a></li>
 		<li id='menu_photos'><a href="photos.php" >Imagenes</a></li>
 		<li id='menu_comentarios'><a href="comentarios.php" >Comentarios</a></li>
+                <li id='menu_mi_cuadro'><a href="micuadro.php" >Arma el cuadro</a></li>
 	</ul>
 </div>
 <div id="image">
